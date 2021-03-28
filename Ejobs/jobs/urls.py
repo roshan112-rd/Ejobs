@@ -19,7 +19,8 @@ urlpatterns = [
     path('remove_applied_job/<int:id>', views.remove_applied_job, name='remove_applied_job'),
 
     path("search/", views.search, name="search"),
-    path("decline", views.decline, name="decline"),
+    path("accept/<int:id>/", views.accept, name="accept"),
+    path("decline/<int:id>/", views.decline, name="decline"),
     path('job_details_2/<int:id>', views.job_details_2, name='job_details_2'),
     
 

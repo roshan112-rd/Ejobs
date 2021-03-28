@@ -5,6 +5,9 @@ from django.contrib import messages, auth
 from .forms import *
 from django.http import HttpResponseRedirect
 from accounts.models import *
+from django.core.mail import send_mail
+
+
 # Create your views here.
 def add_job(request):
     if request.user.is_authenticated:
@@ -159,6 +162,7 @@ def apply_job(request,job_id):
                 if request.method == "POST":
                     job=Job.objects.get(job_id=job_id)
                     user=User.objects.get(username=request.user)
+                    usercv=request.FILES.get('usercv')
                     applied_jobs=AppliedJobs(job=job,user=user,usercv=usercv)
                     applied_jobs.save()
                     messages.info(request, 'Applied successfully!')
@@ -174,11 +178,48 @@ def apply_job(request,job_id):
 
 def search(request):
     query = request.GET['query']
+    if(query==''):
+        return redirect("jobs")
+    
     jobs = Job.objects.filter(job_title__icontains=query)
-    allJob =  {'jobs': jobs}
-    return render(request, 'jobs/search.html',allJob)       
+    if (jobs):
+        allJob =  {'jobs': jobs}
+        return render(request, 'jobs/search.html',allJob)
+    else:
+        messages.info(request, 'job not found')
+        return redirect('jobs')
 
 
 
-def decline(request):
+
+
+def decline(request,id):
+    job= AppliedJobs.objects.get(id=id)
+    user=job.user.email
+    job_title=job.job_title
+    send_mail(
+    'Job declined',
+    f'''
+    your job({job_title}) has been declined
+    ''',
+    'hello.ejobs@gmail.com',
+    [f'{user}',],
+    fail_silently=False,)
+    job.delete()
+    return redirect('applicants') 
+
+
+def accept(request,id):
+    job= AppliedJobs.objects.get(id=id)
+    user=job.user.email
+    job_title=job.job.job_title
+    send_mail(
+    'Job accepted',
+    f'''
+    your job application({job_title}) has been accepted
+    ''',
+    'hello.ejobs@gmail.com',
+    [f'{user}',],
+    fail_silently=False,)
+    job.delete()
     return redirect('applicants') 
