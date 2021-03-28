@@ -161,8 +161,8 @@ def apply_job(request,job_id):
                     user=User.objects.get(username=request.user)
                     applied_jobs=AppliedJobs(job=job,user=user,usercv=usercv)
                     applied_jobs.save()
-                    return redirect('appliedJobs')
                     messages.info(request, 'Applied successfully!')
+                    return redirect('appliedJobs')
                 else:
                     messages.info(request, 'Couldnot apply!')
             except:

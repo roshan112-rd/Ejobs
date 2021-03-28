@@ -35,10 +35,15 @@ class Job(models.Model):
 class SavedJobs(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, blank=True, null=True)
+    def __str__(self):
+        return self.job
+
 
 
 class AppliedJobs(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, blank=True, null=True)
     usercv = models.FileField(blank=True,null=True, upload_to='cv/')
+    def __str__(self):
+        return self.job
     
