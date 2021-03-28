@@ -1,0 +1,58 @@
+{% include 'seeker/seekerHeader.html'%}
+<div class="container">
+  <div class="row">
+    <ul class="job-items">
+      <li class="job-item">
+        <div class="job-item-left">
+          <h2 class="job-item-title">{{ job.job_title }}</h2>
+          <p class="job-desc">Job Description: {{ job.job_description }}</p>
+          <p>Employer: {{ job.job_employer }}</p>
+          <p>Position: {{ job.job_position }}</p>
+          <div class="job-category-wrapper">
+            <p class="job-item-category">Category:</p>
+            <p></p>
+            <p class="job-category">{{ job.job_category }}</p>
+          </div>
+        </div>
+
+        <div class="job-item-low">
+          <h5>Contact Info</h5>
+          <p>Phone: {{ job.job_phone }}</p>
+          <p>Email Us: <a href="">{{ job.job_email }}</a></p>
+          <p>Apply On Our Website: <a href="{{ job.job_website }}">{{ job.job_website }}</a></p>
+         <div class="job-item-cta">
+          <a href="{% url 'save_job' job.job_id %}"><button class="btn btn-primary"> save </button></a>
+          {% comment %} <a href="{% url 'apply_job' job.job_id %}" ><button class="btn btn-primary" style="margin-right:20px;"> APPLY</button></a> {% endcomment %}
+      <button class="btn btn-primary" style="margin-right:20px;"  onclick="openForm()" > APPLY</button>
+
+<div class="form-popup" id="myForm">
+  <form class="form-container" method="post" enctype="multipart/form-data" action="{% url 'apply_job' job.job_id %}">
+  {% csrf_token %}
+    <h1>Please enter following details to continue</h1>
+    <label for="usercv"><b>Attach your cv</b></label>
+    <input type="file" name="usercv" required>
+
+    <a href="{% url 'apply_job' job.job_id %}" ><button type="submit" class="btn btn-primary">APPLY</button></a>
+    <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+         
+        </div>
+        </div>
+      </li>
+      </div>
+    </ul>
+  </div>
+</div>
+

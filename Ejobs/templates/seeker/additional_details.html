@@ -1,0 +1,104 @@
+{% include 'seeker/seekerHeader.html' %}
+  <main class="signup auth">
+      <div class="container">
+        <div class="auth-left">
+          <div class="auth-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="auth-right">
+        
+          <div class="auth-form-wrapper">
+          
+            <form action="" method="post">
+            <h2>Add more details</h2>
+              {% csrf_token %}
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="qualification"
+                  placeholder="Qualification"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  name="university"
+                  required="true"
+                  placeholder="University"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="skills"
+                  placeholder="Skills"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="preferred_job_category"
+                  placeholder="Preferred Job Category"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="available_for"
+                  placeholder="Available For"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  required="true"
+                  class="form-input"
+                  name="preferred_location"
+                  placeholder="Preferred Location"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="work_experience"
+                  placeholder="Work Experience"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="submit"
+                  name="submit"
+                  class="form-button btn btn-primary"
+                  value="Submit"
+                />
+              </div>
+              <p><a href="{% url 'social_details' %}">Add social details?</a></p>
+             
+              <div class="popup-msg">
+                {% for message in messages %}
+                    <p class="popup-msg-text">{{message}}</h1>
+                {% endfor %}
+                </div
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+    {% include 'footer.html'%}
+</html>

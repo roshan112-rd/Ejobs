@@ -1,0 +1,35 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+<div class="container">
+  <div class="row">
+    <ul class="job-items">
+      <li class="job-item">
+        <div class="job-item-left">
+          <h2 class="job-item-title">{{ job.job_title }}</h2>
+          <p class="job-desc">Job Description: {{ job.job_description }}</p>
+          <p>Employer: {{ job.job_employer }}</p>
+          <p>Position: {{ job.job_position }}</p>
+          <div class="job-category-wrapper">
+            <p class="job-item-category">Category:</p>
+            <p></p>
+            <p class="job-category">{{ job.job_category }}</p>
+          </div>
+        </div>
+
+        <div class="job-item-low">
+          <h5>Contact Info</h5>
+          <p>Phone: {{ job.job_phone }}</p>
+          <p>Email Us: <a href="">{{ job.job_email }}</a></p>
+          <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
+          <div class="job-item-cta">
+            <a href="{% url 'delete_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px">Delete Job</button></a>
+          </div>
+          <div class="job-item-cta">
+            <a href=""><button class="btn btn-primary" style="float: right; margin-right: 40px">edit Job </button></a>
+          </div>
+        </div>
+      </li>
+      </div>
+    </ul>
+  </div>
+</div>

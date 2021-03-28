@@ -1,0 +1,30 @@
+
+{% include "recruiter/recruiterHeader.html" %}
+<ul class="job-items">
+<li class="job-item">
+  <div class="job-item-left">
+    {% if jobs %}
+    <h2 class="job-item-title">Applicants For  : {{ job.job }}</h2>
+    {% for jobs in jobs %}
+        <div class="job-item-low">
+            <h3>Name of applicant  :{{jobs.user.first_name}} {{jobs.user.last_name}}</h3>
+        </div>
+    <h3> Email :{{jobs.user.email}}  </h3>
+    <h3> Gender :{{jobs.user.seeker.gender}}  </h3>
+    <h3> Contact :{{jobs.user.seeker.contact}}  </h3>
+    <h3> Address :{{jobs.user.seeker.address}}  </h3>
+
+</div>
+<div class="job-item-low">
+    <div class="job-item-cta">
+                <a href="{% url 'decline' %}" ><button class="btn btn-primary" style="margin-right:20px;"> accept application</button></a>
+                <a href="{% url 'decline' %}"><button class="btn btn-primary"> decline application </button></a>
+                <a href="{% url 'seeker_profile' %}"><button class="btn btn-primary"> Profile </button></a>
+              </div>
+</div>
+{% endfor %}
+{% else %}
+
+<h1>{{job}}</h1>
+{% endif %}
+

@@ -1,0 +1,45 @@
+{% include 'seeker/seekerHeader.html'%}
+    <div class="cta">
+        <div class="search-bar">
+             <form method="get" action="{% url 'search' %}" class="search-bar">            
+              <input type="search" placeholder="Search your job" name="query" id="query" class="search-bar-input">
+              <button class="get-started-btn btn-primary" type ="submit">SEARCH</button>
+            </form>
+            </div>
+    </div>
+<ul class="job-items">
+    {% for job in jobs %}
+    <li class="job-item">
+      <div class="job-item-left">
+        <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
+        {% comment %} <p class="job-desc">Job Description: {{ job.job_description }}</p> {% endcomment %}
+        <p>Employer: {{ job.job_employer }}</p>
+        <p>Position: {{ job.job_position }}</p>
+        
+    <p>Salary: <a href="">{{ job.salary }}</a></p>
+    <p>Experience required: {{ job.experience }}</p>
+        <div class="job-category-wrapper">
+          <p class="job-item-category">Category:</p>
+          <p></p>
+          <p class="job-category">{{ job.job_category }}</p>
+        </div>
+      </div>
+
+      <div class="job-item-low">
+        <h5>Contact Info</h5>
+        <p>Phone: {{ job.job_phone }}</p>
+        <p>Email Us: <a href="">{{ job.job_email }}</a></p>
+        <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
+        {% comment %} <div class="job-item-cta">
+          <a href="{% url 'apply_job' job.job_id %}" ><button class="btn btn-primary" style="margin-right:20px;"> APPLY</button></a>
+          <a href="{% url 'save_job' job.job_id %}"><button class="btn btn-primary"> save </button></a>
+        </div> {% endcomment %}
+      </div>
+    </li>
+    {% endfor %}
+    </ul>
+<div class="popup-msg">
+  {% for message in messages %}
+    <p class="popup-msg-text">{{message}}</h1>
+  {% endfor %}
+</div>

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+  <title>Home</title>
+</head>
+<nav>
+    <div class="logo"></div>
+    <ul class="nav-items">
+        <li class="nav-item"><a href="{% url 'seeker_dashboard' %}"> Home</a></li>
+        <li class="nav-item"><a href="{% url 'saved_jobs' %}"> saved jobs</a></li>
+        <li class="nav-item"><a href="{% url 'appliedJobs' %}">Applied Jobs</a></li>
+        <li class="nav-item"><a href="{% url 'seeker_profile' %}">{{ user.first_name }} </a></li>
+        <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+    </ul>
+</nav>

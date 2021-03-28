@@ -1,0 +1,109 @@
+{% if user.is_staff %}
+  {% include 'recruiter/recruiterHeader.html' %}
+{% else %}
+  {% include 'seeker/seekerHeader.html' %}
+{% endif %}
+{% for userdata in userdata %}
+<div class="profile-wrapper">
+  <ul class="profile-items">
+    <li class="profile-item profile-first-name">
+      <small class="profile-item-title">First Name</small>
+      <p class="profile-item-text">{{request.user.first_name}}</p>
+    </li>
+    <li class="profile-item profile-last-name">
+      <small class="profile-item-title">Last Name</small>
+      <p class="profile-item-text">{{request.user.last_name}}</p>
+    </li>
+    <li class="profile-item ">
+      <small class="profile-item-title">Profile image</small>
+      <p ><img src="{{userdata.image.url}}" class="profile-image"></p>
+    </li> 
+    <li class="profile-item profile-email">
+      <small class="profile-item-title">Email</small>
+      <p class="profile-item-text">{{request.user.email}}</p>
+    </li>
+    
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">Contact</small>
+      <p class="profile-item-text">{{userdata.contact}}</p>
+    </li>
+    <li class="profile-item profile-gender">
+      <small class="profile-item-title">Gender</small>
+      <p class="profile-item-text">{{userdata.gender}}</p>
+    </li>
+    <li class="profile-item profile-gender">
+      <small class="profile-item-title">Address</small>
+      <p class="profile-item-text">{{userdata.address}}</p>
+    </li>
+    <li class="profile-item profile-user-type">
+      <small class="profile-item-title">User Type</small>
+      <p class="profile-item-text">Seeker</p>
+    </li>
+    {% endfor %}
+    
+
+
+    <h2>Additional Data</h2>
+    {% for adddata in adddata %}
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">University</small>
+      <p class="profile-item-text">{{adddata.university}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">Qualification</small>
+      <p class="profile-item-text">{{adddata.qualification}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">skills</small>
+      <p class="profile-item-text">{{adddata.skills}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">preferred_job_category</small>
+      <p class="profile-item-text">{{adddata.preferred_job_category}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">available_for</small>
+      <p class="profile-item-text">{{adddata.available_for}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">preferred_location</small>
+      <p class="profile-item-text">{{adddata.preferred_location}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">preferred_location</small>
+      <p class="profile-item-text">{{adddata.preferred_location}}</p>
+    </li>
+    {% endfor %}
+
+
+
+    <h2>Social media links</h2>
+    {% for socialdata in socialdata %}
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">facebook</small>
+      <p class="profile-item-text">{{socialdata.facebook}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">instagram</small>
+      <p class="profile-item-text">{{socialdata.instagram}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">twitter</small>
+      <p class="profile-item-text">{{socialdata.twitter}}</p>
+    </li>
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">others</small>
+      <p class="profile-item-text">{{socialdata.others}}</p>
+    </li>
+    {% endfor %}
+
+{% if user.seekeradditionaldetails and user.seekersocialdetails%}
+  <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
+{% else %}
+<a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
+   <a href="{% url 'additional_details' %}"><button class="btn btn-primary centrebtn">Complete your profile</button></a >
+{% endif %}
+
+  </ul>
+</div>
+{% comment %} {% include 'footer.html'  %} {% endcomment %}

@@ -1,0 +1,63 @@
+{% load static %}
+  {% include 'header1.html'%}
+    <main class="signup auth">
+      <div class="container">
+        <div class="auth-left">
+          <div class="auth-image-wrapper">
+            <img
+              src="https://images.pexels.com/photos/5711921/pexels-photo-5711921.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt=""
+            />
+          </div>
+        </div>
+        
+        <div class="auth-right">
+        
+          <div class="auth-form-wrapper">
+          <h2 >Login</h2><br><br><br>
+            <form action="{% url 'login' %}" method="post">
+              {% csrf_token %}
+
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  name="username"
+                  required="true"
+                  placeholder="Username"
+                />
+              </div>
+
+              <div class="form-item">
+                <input
+                  type="password"
+                  required="true"
+                  class="form-input"
+                  name="password1"
+                  placeholder="Password"
+                />
+              </div>
+
+              <div class="form-item">
+                <input
+                  type="submit"
+                  name="submit"
+                  class="form-button btn btn-primary"
+                  value="Sign In"
+                />
+              </div>
+              <p>Not a member? <a href="{% url 'seeker_register' %}">Register</a></p>
+              <div class="popup-msg">
+              {% for message in messages %}
+                  <p class="popup-msg-text">{{message}}</h1>
+              {% endfor %}
+              </div
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  {% include 'footer.html'%}
+  
+</html>

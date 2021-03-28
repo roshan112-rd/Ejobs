@@ -1,0 +1,47 @@
+{% include 'recruiter/recruiterHeader.html' %}
+{% for userdata in userdata %}
+<div class="profile-wrapper">
+  <ul class="profile-items">
+    <li class="profile-item profile-first-name">
+      <small class="profile-item-title">First Name</small>
+      <p class="profile-item-text">{{request.user.first_name}}</p>
+    </li>
+    <li class="profile-item profile-last-name">
+      <small class="profile-item-title">Last Name</small>
+      <p class="profile-item-text">{{request.user.last_name}}</p>
+    </li>
+    <li class="profile-item ">
+      <small class="profile-item-title">Profile image</small>
+      <p ><img src="{{userdata.image.url}}" class="profile-image" alt="Avatar"></p>
+    </li> 
+    <li class="profile-item profile-email">
+      <small class="profile-item-title">Email</small>
+      <p class="profile-item-text">{{request.user.email}}</p>
+    </li>
+    
+    <li class="profile-item profile-contact">
+      <small class="profile-item-title">Contact</small>
+      <p class="profile-item-text">{{userdata.contact}}</p>
+    </li>
+    <li class="profile-item profile-gender">
+      <small class="profile-item-title">Company Address</small>
+      <p class="profile-item-text">{{userdata.address}}</p>
+    </li>
+
+
+    <li class="profile-item profile-gender">
+      <small class="profile-item-title">Company Name</small>
+      <p class="profile-item-text">{{userdata.company_name}}</p>
+    </li>
+    <li class="profile-item profile-gender">
+      <small class="profile-item-title">Company Type</small>
+      <p class="profile-item-text">{{userdata.company_type}}</p>
+    </li>
+    <li class="profile-item profile-user-type">
+      <small class="profile-item-title">User Type</small>
+      <p class="profile-item-text">Recruiter</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% comment %} {% include 'footer.html' %} {% endcomment %}

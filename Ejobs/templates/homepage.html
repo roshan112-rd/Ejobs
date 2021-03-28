@@ -1,0 +1,64 @@
+{% include "header1.html" %}
+    <main class="hero">
+    
+        <div class="container">
+            <div class="hero-left">
+                <h1 class="hero-title">Welcome to EJobs.</h1>
+                <p class="hero-desc">WHO UNDERSTANDSIT'S PERSONAL?<br>WE DO.</p>
+                <div class="cta">
+                    <div class="search-bar">
+                    <div style="height: 10px;">
+                    
+                </div>
+                        {% comment %} <input type="text" placeholder="Search your job" class="search-bar-input"> {% endcomment %}
+                        <a href="{% url 'login' %}"><button class="get-started-btn btn-primary">Get started</button></a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="hero-right">
+
+                <div class="hero-right-image">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
+                </div>
+            </div>
+<div class="popup-msg">
+{% for message in messages %}
+    <p class="popup-msg-text">{{message}}</h1>
+{% endfor %}
+</div
+        </div>
+    </main>
+    <section class="services">
+        <div class="services-container section-container">
+            <h3>Our Services</h3>
+            <ul class="services-items">
+                <li class="services-item">
+                    <i class="fa fa-search"></i>
+                    <p>Job Search</p>
+                </li>
+                <li class="services-item">
+                    <i class="fa fa-user-friends"></i>
+                    <p>Recruitment</p>
+                </li>
+
+                <li class="services-item">
+                    <i class="fa fa-home"></i>
+                    <p>Placement</p>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+    <section class="motto">
+        <div class="motto-wrapper">
+            <div class="motto-text">
+                <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, laborum.</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, accusamus.</p>
+            </div>
+        </div>
+    </section>
+</body>
+{% include "footer.html" %}
+</html>

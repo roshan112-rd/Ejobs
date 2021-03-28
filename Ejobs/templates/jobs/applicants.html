@@ -1,0 +1,28 @@
+
+{% include "recruiter/recruiterHeader.html" %}
+{% for job in jobs %}
+<ul class="job-items">
+<li class="job-item">
+  <div class="job-item-left">
+    <h2 class="job-item-title"><a href="{% url 'applicant' job.job_id %}">{{ job }}</a></h2>
+    <p>Position: {{ job.job_position }}</p>
+    
+    <div class="job-category-wrapper">
+      <p class="job-item-category">Category:</p>
+      <p></p>
+      <p class="job-category">{{ job.job_category }}</p>
+    </div>
+  </div>
+
+  <div class="job-item-low">
+    <h5>Issued Date</h5>
+    <p>{{ job.created }}</p>
+  </div>
+</li>
+</ul>
+<div class="popup-msg">
+    {% for message in messages %}
+        <p class="popup-msg-text">{{message}}</h1>
+    {% endfor %}
+</div>
+{% endfor %}

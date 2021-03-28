@@ -1,0 +1,135 @@
+{% load static %}
+
+
+  {% include 'header1.html'%}
+    <main class="signup auth" >
+      <div class="container">
+        <div class="auth-left">
+          <div class="auth-image-wrapper">
+            <img
+              src="https://images.pexels.com/photos/5711921/pexels-photo-5711921.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="auth-right" style="margin-top:35px; margin-bottom:20px;>
+          <div class="auth-form-wrapper">
+            <form action="{% url 'recruiter_register' %}" method="post" enctype="multipart/form-data">
+            <h2> Register user</h2>
+              {% csrf_token %}
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="first_name"
+                  placeholder="First Name"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="last_name"
+                  placeholder="Last Name"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  required="true"
+                  class="form-input"
+                  name="username"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="form-item">
+                <label for="image">Chose company logo:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="contact"
+                  placeholder="Contact number"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="address"
+                  placeholder="Company Address"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="email"
+                  required="true"
+                  class="form-input"
+                  name="email"
+                  placeholder="Company Email Address"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  required="true"
+                  class="form-input"
+                  name="company_type"
+                  placeholder="Company Type"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  required="true"
+                  class="form-input"
+                  name="company_name"
+                  placeholder="Company Name"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="password"
+                  class="form-input"
+                  required="true"
+                  name="password1"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="password"
+                  class="form-input"
+                  required="true"
+                  name="password2"
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="submit"
+                  name="submit"
+                  class="form-button btn btn-primary"
+                  value="Signup"
+                />
+              </div>
+              <p>Already a member? <a href="{% url 'login' %}">Login</a></p>
+              <div class="popup-msg">
+{% for message in messages %}
+    <p class="popup-msg-text">{{message}}</h1>
+{% endfor %}
+</div
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+    {% include 'footer.html'%}
+</html>

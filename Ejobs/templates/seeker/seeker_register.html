@@ -1,0 +1,130 @@
+{% load static %}
+
+
+  {% include 'header1.html'%}
+    <main class="signup auth">
+      <div class="container">
+        <div class="auth-left">
+          <div class="auth-image-wrapper">
+            <img
+              src="https://images.pexels.com/photos/5711921/pexels-photo-5711921.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="auth-right">
+          <div class="auth-form-wrapper">
+            <form action="{% url 'seeker_register' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  name="first_name"
+                  required="true"
+                  placeholder="First Name"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="last_name"
+                  placeholder="Last Name"
+                />
+              </div>
+              <div class="gender">
+                <input type="radio" id="male" name="gender" value="male" checked="checked"/>
+                <label for="male" >Male</label>
+                <input type="radio" id="female" name="gender" value="female" />
+                <label for="female" >Female</label>
+                <input type="radio" id="other" name="gender" value="other" />
+                <label for="other" >Other</label>
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="username"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="contact"
+                  placeholder="Contact number"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="address"
+                  placeholder="Address"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="email"
+                  required="true"
+                  class="form-input"
+                  name="email"
+                  placeholder="Email"
+                />
+              </div>
+              
+
+              <div class="form-item">
+                <label for="image">Select profile image:</label>
+                <input type="file" id="image" name="image"  required="true" accept="image/*">
+              </div>
+
+
+
+              <div class="form-item">
+                <input
+                  type="password"
+                  class="form-input"
+                  required="true"
+                  name="password1"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="password"
+                  class="form-input"
+                  name="password2"
+                  required="true"
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="submit"
+                  name="submit"
+                  class="form-button btn btn-primary"
+                  value="Signup"
+                />
+              </div>
+              <p>Already a member? <a href="{% url 'login' %}">Login</a></p>
+              <p><a href="{% url 'recruiter_register' %}">Are you a recruiter? </a></p>
+              <div class="popup-msg">
+{% for message in messages %}
+    <p class="popup-msg-text">{{message}}</h1>
+{% endfor %}
+</div
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+    {% include 'footer.html'%}
+</html>
