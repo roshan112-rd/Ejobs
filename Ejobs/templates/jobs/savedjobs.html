@@ -32,8 +32,7 @@
       {% for job in jobs %}
       <li class="job-item">
         <div class="job-item-left">
-          <h2 class="job-item-title">{{ job.job.job_title }}</h2>
-          {% comment %} <p class="job-desc">Job Description: {{ job.job.job_description }}</p> {% endcomment %}
+        <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job.job_title }}</h2></a>
           <p>Employer: {{ job.job.job_employer }}</p>
           <p>Position: {{ job.job.job_position }}</p>
           <div class="job-category-wrapper">
@@ -53,9 +52,13 @@
 
 
           <div class="form-popup" id="myForm">
-          <h1>are you sure you want to remove this saved job?</h1>
-          <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px">Remove Job</button></a>
-          <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+            <form class="form-container">
+            <h1 class="details">are you sure you want to remove this saved job?</h1>
+            <div class="btns">
+              <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary apply" >Remove</button></a>
+              <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+            </div>
+            </form>
           </div>
             {% comment %} <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px">Remove Job</button></a> {% endcomment %}
           </div>

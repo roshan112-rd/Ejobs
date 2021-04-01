@@ -28,12 +28,13 @@
 <div class="form-popup" id="myForm">
   <form class="form-container" method="post" enctype="multipart/form-data" action="{% url 'apply_job' job.job_id %}">
   {% csrf_token %}
-    <h1>Please enter following details to continue</h1>
+    <h1 class="details">Please enter following details to continue</h1>
     <label for="usercv"><b>Attach your cv</b></label>
     <input type="file" name="usercv" required>
-
-    <a href="{% url 'apply_job' job.job_id %}" ><button type="submit" class="btn btn-primary">APPLY</button></a>
-    <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+    <div class="btns">
+      <a href="{% url 'apply_job' job.job_id %}" ><button type="submit" class="btn btn-primary apply">APPLY</button></a>
+      <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+    </div>
   </form>
 </div>
 

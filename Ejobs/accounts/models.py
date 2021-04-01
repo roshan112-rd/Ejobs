@@ -7,7 +7,7 @@ class Seeker(models.Model):
     user= models.OneToOneField(User,on_delete=models.CASCADE)
     contact = models.CharField(max_length=15,null=True)
     gender = models.CharField(max_length=10, null=True)
-    address = models.CharField(max_length=10, null=True)
+    address = models.CharField(max_length=100, null=True)
     image = models.ImageField(blank=True,null=True, upload_to='seeker/', default='user.jpg')
 
     # def save(self, *args, **kwargs):
@@ -51,6 +51,6 @@ class Recruiter(models.Model):
     address = models.CharField(max_length=100, null=True)
     company_type= models.CharField(max_length=100, null=True)
     company_name= models.CharField(max_length=100, null=True)
-    image = models.ImageField(blank=True, null=True, upload_to='seeker/')
+    image = models.ImageField(blank=True, null=True, upload_to='recruiter/')
     def __str__(self):
         return self.user.username

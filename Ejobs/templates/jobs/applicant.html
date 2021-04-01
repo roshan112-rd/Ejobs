@@ -20,17 +20,44 @@
     </div>
     <div class="job-item-low">
       <div class="job-item-cta">
+     {% comment %} <a href="" ><button class="btn btn-primary" id="myBtn" style="margin-right:20px;"> accept application</button></a>
+        <a href=""><button class="btn btn-primary" id="myBtn1"> decline application </button></a> {% endcomment %}
+
+
+
         <a href="{% url 'accept' job.id %}" ><button class="btn btn-primary" style="margin-right:20px;"> accept application</button></a>
         <a href="{% url 'decline' job.id %}"><button class="btn btn-primary"> decline application </button></a>
       </div>
     </div>
     {% endfor %}
     {% else %}
-
     <h1>{{job}}</h1>
     {% endif %}
 </ul>
 </li>
 
 
-
+{% comment %} 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Are you sure you want to accept the application?</p>
+     <a href="{% url 'accept' job.id %}" ><button class="btn btn-primary" style="margin-right:20px;"> accept application</button>
+  </div>
+</div>
+<script>
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script> {% endcomment %}

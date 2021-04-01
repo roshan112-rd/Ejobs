@@ -195,15 +195,16 @@ def search(request):
 
 def decline(request,id):
     job= AppliedJobs.objects.get(id=id)
-    user=job.user.email
-    job_title=job.job_title
+    email=job.user.email
+    name=job.user.first_name
+    job_title=job.job.job_title
     send_mail(
-    'Job declined',
+    'Job application DECLINED',
     f'''
-    your job({job_title}) has been declined
+    dear {name}, we are sorry to inform you that your job application for({job_title}) has been declined.
     ''',
     'hello.ejobs@gmail.com',
-    [f'{user}',],
+    [f'{email}',],
     fail_silently=False,)
     job.delete()
     return redirect('applicants') 
@@ -211,15 +212,16 @@ def decline(request,id):
 
 def accept(request,id):
     job= AppliedJobs.objects.get(id=id)
-    user=job.user.email
+    email=job.user.email
+    name=job.user.first_name
     job_title=job.job.job_title
     send_mail(
-    'Job accepted',
+    'Job application ACCEPTED',
     f'''
-    your job application({job_title}) has been accepted
+    dear {name},your job application for({job_title}) has been accepted. You will recieve calls or messages from the recruiter regarding further processing.
     ''',
     'hello.ejobs@gmail.com',
-    [f'{user}',],
+    [f'{email}',],
     fail_silently=False,)
     job.delete()
     return redirect('applicants') 

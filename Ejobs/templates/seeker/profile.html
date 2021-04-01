@@ -4,8 +4,10 @@
   {% include 'seeker/seekerHeader.html' %}
 {% endif %}
 {% for userdata in userdata %}
+
 <div class="profile-wrapper">
   <ul class="profile-items">
+  <h2>User data</h2>
     <li class="profile-item profile-first-name">
       <small class="profile-item-title">First Name</small>
       <p class="profile-item-text">{{request.user.first_name}}</p>
@@ -43,8 +45,9 @@
     
 
 
-    <h2>Additional Data</h2>
+    
     {% for adddata in adddata %}
+    <h2>Additional Data</h2>
     <li class="profile-item profile-contact">
       <small class="profile-item-title">University</small>
       <p class="profile-item-text">{{adddata.university}}</p>
@@ -66,44 +69,50 @@
       <p class="profile-item-text">{{adddata.available_for}}</p>
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">preferred_location</small>
-      <p class="profile-item-text">{{adddata.preferred_location}}</p>
+      <small class="profile-item-title">Work Experience</small>
+      <p class="profile-item-text">{{adddata.work_experience}}</p>
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">preferred_location</small>
+      <small class="profile-item-title">Preferred Location</small>
       <p class="profile-item-text">{{adddata.preferred_location}}</p>
     </li>
     {% endfor %}
 
 
 
-    <h2>Social media links</h2>
+    
     {% for socialdata in socialdata %}
+    <h2>Social media links</h2>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">facebook</small>
-      <p class="profile-item-text">{{socialdata.facebook}}</p>
+      <small class="profile-item-title">Facebook</small>
+      <p class="profile-item-text"><a href="{{socialdata.facebook}}">{{socialdata.facebook}}</a></p>
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">instagram</small>
-      <p class="profile-item-text">{{socialdata.instagram}}</p>
+      <small class="profile-item-title">Instagram</small>
+      <p class="profile-item-text"><a href="{{socialdata.instagram}}">{{socialdata.instagram}}</a></p>
+    
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">twitter</small>
-      <p class="profile-item-text">{{socialdata.twitter}}</p>
+      <small class="profile-item-title">Twitter</small>
+      <p class="profile-item-text"><a href="{{socialdata.twitter}}">{{socialdata.twitter}}</a></p>
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">others</small>
-      <p class="profile-item-text">{{socialdata.others}}</p>
+      <small class="profile-item-title">Others</small>
+      <p class="profile-item-text"><a href="{{socialdata.others}}">{{socialdata.others}}</a></p>
     </li>
     {% endfor %}
 
 {% if user.seekeradditionaldetails and user.seekersocialdetails%}
   <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
-{% else %}
-<a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
-   <a href="{% url 'additional_details' %}"><button class="btn btn-primary centrebtn">Complete your profile</button></a >
-{% endif %}
 
-  </ul>
+{% elif user.seekeradditionaldetails and not user.seekersocialdetails %}
+  <a href="{% url 'social_details' %}"><button class="btn btn-primary centrebtn">Add social details</button></a >
+
+{% else %}
+  <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
+  <a href="{% url 'additional_details' %}"><button class="btn btn-primary centrebtn">Complete your profile</button></a >
+
+{% endif %}
+</ul>
 </div>
 {% comment %} {% include 'footer.html'  %} {% endcomment %}

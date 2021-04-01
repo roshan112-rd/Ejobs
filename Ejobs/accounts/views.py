@@ -4,6 +4,8 @@ from .models import *
 from django.contrib import messages, auth
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from django.conf import settings
+from django.core.mail import send_mail
 
 def seeker_register(request):
     if request.method == 'POST':
@@ -33,29 +35,18 @@ def seeker_register(request):
         user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
         Seeker.objects.create(user=user, contact=contact, gender=gender, address=address, image=image)
         auth.login(request, user)
+                
+        subject = 'welcome to EJobs'
+        message = f'Hi {user.username}, thank you for registering in EJobs.'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [user.email, ]
+        send_mail( subject, message, email_from, recipient_list )
         return redirect('seeker_dashboard')
+
     else:
         return render(request, 'seeker/seeker_register.html')
 
-
-# def seeker_login(request):
-#     if request.method == "POST":
-#         username = request.POST['username']
-#         password1 = request.POST['password1']
-#         user = auth.authenticate(username=username, password=password1)
-#         if user is not None:
-#             seeker=Seeker.objects.get(user=user)
-#             if user.is_active:
-#                 auth.login(request, user)
-#                 return redirect('seeker_dashboard')
-#                 auth.login(request, user)
-#             else:
-#                 return render(request, 'login.html')
-#         else:
-#             messages.info(request, 'invalid credentials')
-#             return redirect('seeker_login')
-#     else:
-#         return render(request, 'seeker/seeker_login.html')
+    
     
 
 def seeker_dashboard(request):
@@ -108,33 +99,16 @@ def recruiter_register(request):
  
         auth.login(request, user)
         return redirect('recruiter_dashboard')
+
+
+        subject = 'welcome to EJobs'
+        message = f'Hi {user.username}, thank you for registering as recruiter in EJobs.'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [user.email, ]
+        send_mail( subject, message, email_from, recipient_list )
+        return redirect('seeker_dashboard')
     else:
         return render(request, 'recruiter/recruiter_register.html')
-    
-
-# def recruiter_login(request):
-#     if request.method == "POST":
-#         username = request.POST['username']
-#         password1 = request.POST['password1']
-#         user = auth.authenticate(username=username, password=password1)
-#         if user is not None:
-#             recruiter=Recruiter.objects.get(user=user)
-#             if user.is_active:
-#                 auth.login(request, user)
-                
-#                 return redirect('recruiter_dashboard')
-#                 auth.login(request, user)
-#             else:
-#                 return render(request, 'recruiter_login.html')
-#         else:
-#             messages.info(request, 'invalid credentials')
-#             return redirect('recruiter_login')
-#     else:
-#         return render(request, 'recruiter/recruiter_login.html')
-#     return render(request, 'recruiter/recruiter_login.html')
-
-
-
 
 
 def login(request):
@@ -157,24 +131,6 @@ def login(request):
     else:
         return render(request, 'seeker/login.html')
     return render(request, 'seeker/login.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   
 def recruiter_dashboard(request):

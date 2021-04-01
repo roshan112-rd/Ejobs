@@ -9,6 +9,9 @@ class Job(models.Model):
         ('marketing', 'Marketing'),
         ('webdesign', 'Webdesign'),
         ('accountant', 'Accountant'),
+        ('management', 'Management'),
+        ('technology', 'Technology'),
+        ('hardware', 'hardware'),
         ('others', 'Others')
     )
     job_title = models.CharField(max_length=200)
@@ -23,8 +26,6 @@ class Job(models.Model):
     salary = models.CharField(max_length=100,null=True)
     created = models.DateTimeField(auto_now_add=True)
     apply_until = models.CharField(max_length=100,null=True)
-
-    
     
     def __str__(self):
         return self.job_title
@@ -35,6 +36,7 @@ class Job(models.Model):
 class SavedJobs(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, blank=True, null=True)
+
     def __str__(self):
         return self.job
 
@@ -44,6 +46,7 @@ class AppliedJobs(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, blank=True, null=True)
     usercv = models.FileField(blank=True,null=True, upload_to='cv/')
+
     def __str__(self):
         return self.job
     

@@ -7,6 +7,9 @@ class JobForm(forms.ModelForm):
         ('marketing', 'Marketing'),
         ('webdesign', 'Webdesign'),
         ('accountant', 'Accountant'),
+        ('management', 'Management'),
+        ('technology', 'Technology'),
+        ('hardware', 'hardware'),
         ('others', 'Others')
     )
     job_title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
