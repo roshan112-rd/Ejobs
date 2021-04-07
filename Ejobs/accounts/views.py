@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.conf import settings
 from django.core.mail import send_mail
+from jobs.models import Job
 
 def seeker_register(request):
     if request.method == 'POST':
@@ -51,7 +52,13 @@ def seeker_register(request):
 
 def seeker_dashboard(request):
     if request.user.is_authenticated:
-        return render(request, 'seeker/seekerDashboard.html')
+        user_details = SeekerAdditionalDetails.objects.get(user=request.user) 
+        jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
+        # jobs = Job.objects.all()
+
+        print(jobs[0].job_category)
+        print(user_details.preferred_job_category)
+        return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('login')

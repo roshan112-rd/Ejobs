@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import *
 from django.contrib import messages, auth
@@ -6,6 +6,7 @@ from .forms import *
 from django.http import HttpResponseRedirect
 from accounts.models import *
 from django.core.mail import send_mail
+from django.db.models import Q
 
 
 # Create your views here.
@@ -177,11 +178,12 @@ def apply_job(request,job_id):
 
 
 def search(request):
+
     query = request.GET['query']
     if(query==''):
         return redirect("jobs")
     
-    jobs = Job.objects.filter(job_title__icontains=query)
+    jobs = Job.objects.filter(Q(job_title__icontains=query) | Q(job_employer__icontains=query) | Q(job_position__icontains=query) | Q(job_category__icontains=query))
     if (jobs):
         allJob =  {'jobs': jobs}
         return render(request, 'jobs/search.html',allJob)
@@ -193,21 +195,26 @@ def search(request):
 
 
 
+
 def decline(request,id):
-    job= AppliedJobs.objects.get(id=id)
-    email=job.user.email
-    name=job.user.first_name
-    job_title=job.job.job_title
-    send_mail(
-    'Job application DECLINED',
-    f'''
-    dear {name}, we are sorry to inform you that your job application for({job_title}) has been declined.
-    ''',
-    'hello.ejobs@gmail.com',
-    [f'{email}',],
-    fail_silently=False,)
-    job.delete()
-    return redirect('applicants') 
+    try:
+        job= AppliedJobs.objects.get(id=id)
+        email=job.user.email
+        name=job.user.first_name
+        job_title=job.job.job_title
+        send_mail(
+        'Job application DECLINED',
+        f'''
+        dear {name}, we are sorry to inform you that your job application for({job_title}) has been declined.
+        ''',
+        'hello.ejobs@gmail.com',
+        [f'{email}',],
+        fail_silently=False,)
+        job.delete()
+        return redirect('applicants')
+    finally:
+        messages.info(request, 'cannot decline job')
+
 
 
 def accept(request,id):
@@ -225,3 +232,20 @@ def accept(request,id):
     fail_silently=False,)
     job.delete()
     return redirect('applicants') 
+
+
+
+def edit_method(request,job_id,model,cls):
+    job= get_object_or_404(model,job_id=job_id)
+    if request.method =="POST":
+        form = cls(request.POST, instance=job)
+        if form.is_valid():
+            form.save()
+            return redirect('jobhome')
+
+    else:
+        form = cls(instance=job)
+        return render(request, 'jobs/edit_job.html', {'form': form})
+
+def edit_job(request,job_id):
+    return edit_method(request,job_id,Job,JobForm)

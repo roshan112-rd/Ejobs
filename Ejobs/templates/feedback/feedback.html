@@ -1,0 +1,60 @@
+{% include 'header1.html' %}
+<main class="signup auth" >
+      <div class="container">
+        <div class="auth-left">
+          <div class="auth-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1495106245177-55dc6f43e83f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="auth-right" style="margin-top:35px; margin-bottom:20px;>
+          <div class="auth-form-wrapper">
+            <form action="{% url 'feedback' %}" method="post" enctype="multipart/form-data">
+            <h2>Feedback form</h2>
+              {% csrf_token %}
+              <div class="form-item">
+                <label for="image">Provide screenshots if any:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+              </div>
+              <div class="form-item">
+                <input
+                  type="email"
+                  required="true"
+                  class="form-input"
+                  name="email"
+                  placeholder="Your email address"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  required="true"
+                  class="form-input"
+                  name="feedback"
+                  placeholder="Feedback"
+                />
+              </div>
+              
+              <div class="form-item">
+                <input
+                  type="submit"
+                  name="submit"
+                  class="form-button btn btn-primary"
+                  value="Submit"
+                />
+              </div>
+                <div class="popup-msg">
+                    {% for message in messages %}
+                    <p class="popup-msg-text">{{message}}</h1>
+                    {% endfor %}
+                </div
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+
+{% include 'footer.html' %}

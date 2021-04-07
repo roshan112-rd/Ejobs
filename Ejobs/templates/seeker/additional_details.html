@@ -17,13 +17,21 @@
             <h2>Add more details</h2>
               {% csrf_token %}
               <div class="form-item">
-                <input
+                {% comment %} <input
                   type="text"
                   class="form-input"
                   required="true"
                   name="qualification"
                   placeholder="Qualification"
-                />
+                /> {% endcomment %}
+              <label for="qualification">Please select your education qualification.</label>
+              <select name="qualification" id="qualification" required="true">
+                <option value="School">School</option>
+                <option value="High School">High School</option>
+                <option value="Bachelor + ">Bachelor + </option>
+                <option value="Masters ">Masters</option>
+              </select>
+
               </div>
               <div class="form-item">
                 <input
@@ -43,41 +51,81 @@
                   placeholder="Skills"
                 />
               </div>
+              
               <div class="form-item">
-                <input
+                {% comment %} <input
                   type="text"
                   class="form-input"
                   required="true"
                   name="preferred_job_category"
                   placeholder="Preferred Job Category"
-                />
+                /> {% endcomment %}
+
+
+              <label for="preferred_job_category">Please select your Preferred Job Category</label>
+              <select name="preferred_job_category" id="preferred_job_category" required="true">
+                <option value="finance">Finance</option>
+                <option value="marketing">Marketing</option>
+                <option value="webdesign ">Webdesign </option>
+                <option value="accountant ">Accountant</option>
+                <option value="management ">Management</option>
+                <option value="technology ">Technology</option>
+                <option value="hardware ">Hardware</option>
+                <option value="others ">Others</option>
+              </select>
               </div>
               <div class="form-item">
-                <input
+                {% comment %} <input
                   type="text"
                   class="form-input"
                   required="true"
                   name="available_for"
                   placeholder="Available For"
-                />
+                /> {% endcomment %}
+
+
+              <label for="available_for">Please specify when you are available for work</label>
+              <select name="available_for" id="available_for" required="true">
+                <option value="5AM to 11AM">5AM to 11AM</option>
+                <option value="10AM to 5PM">10AM to 5PM</option>
+                <option value="2PM to 8PM">2PM to 8PM</option>
+                <option value="5PM to 11PM">5PM to 11PM</option>
+                <option value="Berojgar">Berojgar</option>
+              </select>
               </div>
               <div class="form-item">
-                <input
+                {% comment %} <input
                   type="text"
                   required="true"
                   class="form-input"
                   name="preferred_location"
                   placeholder="Preferred Location"
-                />
+                /> {% endcomment %}
+              <label for="preferred_location">Please specify your preferred location</label>
+              <select name="preferred_location" id="preferred_location" required="true">
+                <option value="Inside kathmandu valley">Inside kathmandu valley</option>
+                <option value="Chitwan">Chitwan</option>
+                <option value="Biratnagar">Biratnagar</option>
+                <option value="Pokhara">Pokhara</option>
+                <option value="Anywhere">Anywhere</option>
+              </select>
               </div>
               <div class="form-item">
-                <input
+                {% comment %} <input
                   type="text"
                   class="form-input"
                   required="true"
                   name="work_experience"
                   placeholder="Work Experience"
-                />
+                /> {% endcomment %}
+              <label for="work_experience">Please specify your work experience.</label>
+              <select name="work_experience" id="work_experience" required="true">
+                <option value="Fresher">Fresher</option>
+                <option value="0 - 2years">0 - 2years</option>
+                <option value="2 - 5years">2 - 5years</option>
+                <option value="5 - 10years">5 - 10years</option>
+                <option value="10 years +">10 years +</option>
+              </select>
               </div>
               <div class="form-item">
                 <input

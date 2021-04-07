@@ -22,6 +22,6 @@ urlpatterns = [
     path("accept/<int:id>/", views.accept, name="accept"),
     path("decline/<int:id>/", views.decline, name="decline"),
     path('job_details_2/<int:id>', views.job_details_2, name='job_details_2'),
-    
-
+    path('edit_job/<int:job_id>', views.edit_job, name='edit_job'),
+    # path('interested_jobs/', views.interested_jobs, name='interested_jobs'),
 ]

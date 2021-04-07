@@ -8,7 +8,9 @@
             </div>
     </div>
 <ul class="job-items">
+<H1>Your Search Results:</H1>
     {% for job in jobs %}
+    
     <li class="job-item">
       <div class="job-item-left">
         <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>

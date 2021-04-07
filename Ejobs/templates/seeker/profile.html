@@ -57,15 +57,15 @@
       <p class="profile-item-text">{{adddata.qualification}}</p>
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">skills</small>
+      <small class="profile-item-title">Skills</small>
       <p class="profile-item-text">{{adddata.skills}}</p>
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">preferred_job_category</small>
+      <small class="profile-item-title">Preferred job category</small>
       <p class="profile-item-text">{{adddata.preferred_job_category}}</p>
     </li>
     <li class="profile-item profile-contact">
-      <small class="profile-item-title">available_for</small>
+      <small class="profile-item-title">Available for</small>
       <p class="profile-item-text">{{adddata.available_for}}</p>
     </li>
     <li class="profile-item profile-contact">
@@ -85,16 +85,25 @@
     <h2>Social media links</h2>
     <li class="profile-item profile-contact">
       <small class="profile-item-title">Facebook</small>
-      <p class="profile-item-text"><a href="{{socialdata.facebook}}">{{socialdata.facebook}}</a></p>
+      <p class="profile-item-text">
+        {% comment %} <a href="{{socialdata.facebook}}">{{socialdata.facebook}}</a> {% endcomment %}
+        <a href="{{socialdata.facebook}}" target="popup"  onclick="tab.open('{{socialdata.facebook}}','name')">{{socialdata.facebook}}</a>
+      </p>
     </li>
     <li class="profile-item profile-contact">
       <small class="profile-item-title">Instagram</small>
-      <p class="profile-item-text"><a href="{{socialdata.instagram}}">{{socialdata.instagram}}</a></p>
+      <p class="profile-item-text">
+      {% comment %} <a href="{{socialdata.instagram}}">{{socialdata.instagram}}</a> {% endcomment %}
+      <a href="{{socialdata.instagram}}" target="popup"  onclick="tab.open('{{socialdata.instagram}}','name')">{{socialdata.instagram}}</a>
+      </p>
     
     </li>
     <li class="profile-item profile-contact">
       <small class="profile-item-title">Twitter</small>
-      <p class="profile-item-text"><a href="{{socialdata.twitter}}">{{socialdata.twitter}}</a></p>
+      <p class="profile-item-text">
+      {% comment %} <a href="{{socialdata.twitter}}">{{socialdata.twitter}}</a> {% endcomment %}
+      <a href="{{socialdata.twitter}}" target="popup"  onclick="tab.open('{{socialdata.twitter}}','name')">{{socialdata.twitter}}</a>
+      </p>
     </li>
     <li class="profile-item profile-contact">
       <small class="profile-item-title">Others</small>

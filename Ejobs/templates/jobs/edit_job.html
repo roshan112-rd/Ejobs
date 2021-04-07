@@ -1,0 +1,23 @@
+
+{% include 'recruiter/recruiterHeader.html' %}
+{% load static %} 
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+{% block content %}
+<div class="job-container"style="margin-top:200px; margin-bottom:300px;">
+  <div class="form-group form-listJob">
+    <h3 class="form-title">Edit job</h3>
+    <form method="POST" action="">
+      {% csrf_token %} {{ form.as_ul }}
+      <input class="form-button btn btn-primary" type="submit" name="submit" />
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% for message in messages %}
+      <div class="popup-msg">
+        {% for message in messages %}
+        <p class="popup-msg-text">{{message}}</h1>
+        {% endfor %}
+      </div>
+{% endfor %}
+{% include 'footer.html' %}

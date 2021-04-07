@@ -25,7 +25,7 @@
             <a href="{% url 'delete_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px">Delete Job</button></a>
           </div>
           <div class="job-item-cta">
-            <a href=""><button class="btn btn-primary" style="float: right; margin-right: 40px">edit Job </button></a>
+            <a href="{% url 'edit_job' job_id=job.job_id %}"><button class="btn btn-primary" style="float: right; margin-right: 40px">edit Job </button></a>
           </div>
         </div>
       </li>

@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
   <title>Home</title>
 </head>
@@ -14,7 +15,11 @@
         <li class="nav-item"><a href="{% url 'seeker_dashboard' %}"> Home</a></li>
         <li class="nav-item"><a href="{% url 'saved_jobs' %}"> saved jobs</a></li>
         <li class="nav-item"><a href="{% url 'appliedJobs' %}">Applied Jobs</a></li>
+        {% if user.is_authenticated %}
         <li class="nav-item"><a href="{% url 'seeker_profile' %}">{{ user.first_name }} </a></li>
+        {% else %}
+        <li class="nav-item"><a href="{% url 'seeker_profile' %}">Profile</a></li>
+        {% endif %}
         <li class="nav-item" id="myBtn"><a>Logout</a></li>
     </ul>
 </nav>
