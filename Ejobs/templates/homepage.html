@@ -3,16 +3,17 @@
     
         <div class="container">
             <div class="hero-left">
-                <h1 class="hero-title">Welcome to E-Jobs.</h1>
-                <p class="hero-desc">WHO UNDERSTANDSIT'S PERSONAL?<br>WE DO.</p>
+                <h1 class="hero-title">COVID-19 Unemployment Response</h1>
+                <p class="hero-desc">The Coronavirus (COVID-19) pandemic has been brutal on Nepal's workforce, and merojob is committed to helping the superheroes of Nepal's economy.
+                <br><br>It is estimated that millions of Nepalese will lose their jobs. This section is dedicated to bridging active employers and active job-seekers in the fastest way.</p>
                 <div class="cta">
                     <div class="search-bar">
                         <div style="height: 10px;">
                         </div>
                         <form method="get" action="{% url 'search' %}" class="search-bar">            
-              <input type="search" placeholder="Search your job" name="query" id="query" class="search-bar-input">
-              <button class="get-started-btn btn-primary" type ="submit">SEARCH</button>
-            </form>
+                            <input type="search" placeholder="Search your job" name="query" id="query" class="search-bar-input">
+                            <button class="get-started-btn btn-primary" type ="submit">SEARCH</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -22,11 +23,11 @@
                     <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
                 </div>
             </div>
-            <div class="popup-msg">
-            {% for message in messages %}
-                <p class="popup-msg-text">{{message}}</h1>
-            {% endfor %}
-            </div>
+                <div class="popup-msg">
+                {% for message in messages %}
+                    <p class="popup-msg-text">{{message}}</h1>
+                {% endfor %}
+                </div>
         </div>
     </main>
     <section class="services">
@@ -51,8 +52,8 @@
     <section class="motto">
         <div class="motto-wrapper">
             <div class="motto-text">
-                <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, laborum.</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, accusamus.</p>
+                <h2>WHO UNDERSTANDS IT'S PERSONAL?<br> WE DO.<br><br>TO US,<br>IT'S ABOUT YOU</h2>
+                <p>Search, Apply & Get Jobs in Nepal - Free</p>
             </div>
         </div>
     </section>

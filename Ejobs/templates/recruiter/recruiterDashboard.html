@@ -1,24 +1,54 @@
+{% load static %}
 {% include "recruiter/recruiterHeader.html" %}
 <main class="hero">
-        <div class="container">
+        <div class="container" style="height:200px; width:80%;  border:2px solid black;">
+        <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="60px"></div>
             <div class="hero-text">
-                <h1 class="hero-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, minima.</h1>
-                <p class="hero-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem velit odio sit
-                    eligendi. Unde eaque est dolorem! Cupiditate, voluptate error.</p>
+                <h1 class="hero-title">Hire the best fit.</h1>
+                <p class="hero-desc">DISCOVER A FASTEST WAY TO GET A JOB DONE.</p>
                 <div class="cta">
-                    <a href="{% url 'jobhome' %}"><button class="btn btn-primary">view Jobs</button></a>
-                </div>
-                <div class="cta">
-                    <a href="{% url 'add_job' %}"><button class="btn btn-primary">aDD Jobs</button></a>
+                    <a href="{% url 'add_job' %}"><button class="btn btn-primary"><i class="far fa-plus-square"></i>  post a job</button></a>
                 </div>
             </div>
+        </div>        
+
+</main>
+<div class="container">
+  <div class="row" style="margin-top:30px">
+    <ul class="job-items">
+    <h3 ><a href="{% url 'jobhome'%}"><u>Active Jobs:</u></a> The list of jobs that you have posted and currently active.</h3>
+      {% for job in jobs %}
+      <li class="job-item" >
+        <div class="job-item-left">
+         <a href="{% url 'job_details' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
+          <p>Employer: {{ job.job_employer }}</p>
+          <p class="position">Position: {{ job.job_position }}</p>
+          <p>Experience required: {{ job.experience }}</p>
+          <div class="job-category-wrapper">
+            <p class="job-item-category">Category:</p>
+            <p></p>
+            <p class="job-category">{{ job.job_category }}</p>
+            
+          </div>
         </div>
+
+        <div class="job-item-low">
+          <h5>Contact Info</h5>
+          <p>Phone: {{ job.job_phone }}</p>
+          <p>Email Us: <a href="">{{ job.job_email }}</a></p>
+          <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
+          <p>Salary: <a href="">{{ job.salary }}</a></p>
+        </div>
+      </li>
+        {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
 <div class="popup-msg">
     {% for message in messages %}
         <p class="popup-msg-text">{{message}}</h1>
     {% endfor %}
 </div>
-    </main>
-
-
 {% include "footer.html" %}

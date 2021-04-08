@@ -3,51 +3,87 @@
 {% else %}
   {% include 'seeker/seekerHeader.html' %}
 {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Navbar -->
+<div class="nav1">
+  <div class="container1">
+    <h1>MY PROFILE</h1>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content">
 {% for userdata in userdata %}
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <div class="container1">
+      <img src="{{userdata.image.url}}" alt="Avatar" class="profile-photo">
+      <p class="profile-name">{{request.user.first_name}} {{request.user.last_name}}</p>
+      <button class="button profile-follow">Edit your profile</button>
+    </div>
+  </div>
+  <!-- Detail Section -->
+  <div class="detail-section">
+    <div class="container1">
 
-<div class="profile-wrapper">
-  <ul class="profile-items">
-  <h2>User data</h2>
-    <li class="profile-item profile-first-name">
-      <small class="profile-item-title">First Name</small>
-      <p class="profile-item-text">{{request.user.first_name}}</p>
-    </li>
-    <li class="profile-item profile-last-name">
-      <small class="profile-item-title">Last Name</small>
-      <p class="profile-item-text">{{request.user.last_name}}</p>
-    </li>
-    <li class="profile-item ">
-      <small class="profile-item-title">Profile image</small>
-      <p ><img src="{{userdata.image.url}}" class="profile-image"></p>
-    </li> 
-    <li class="profile-item profile-email">
-      <small class="profile-item-title">Email</small>
-      <p class="profile-item-text">{{request.user.email}}</p>
-    </li>
-    
-    <li class="profile-item profile-contact">
-      <small class="profile-item-title">Contact</small>
-      <p class="profile-item-text">{{userdata.contact}}</p>
-    </li>
-    <li class="profile-item profile-gender">
-      <small class="profile-item-title">Gender</small>
-      <p class="profile-item-text">{{userdata.gender}}</p>
-    </li>
-    <li class="profile-item profile-gender">
-      <small class="profile-item-title">Address</small>
-      <p class="profile-item-text">{{userdata.address}}</p>
-    </li>
-    <li class="profile-item profile-user-type">
-      <small class="profile-item-title">User Type</small>
-      <p class="profile-item-text">Seeker</p>
-    </li>
-    {% endfor %}
-    
+      <div class="card">
+        <div class="container1">
+          <div class="card-title">Basic details</div>
+          
+            <li class="profile-item profile-first-name">
+              <small class="profile-item-title">First Name</small>
+              <p class="profile-item-text">{{request.user.first_name}}</p>
+            </li>
+            <li class="profile-item profile-last-name">
+              <small class="profile-item-title">Last Name</small>
+              <p class="profile-item-text">{{request.user.last_name}}</p>
+            </li>
+            <li class="profile-item profile-email">
+              <small class="profile-item-title">Email</small>
+              <p class="profile-item-text">{{request.user.email}}</p>
+            </li>
+            
+            <li class="profile-item profile-contact">
+              <small class="profile-item-title">Contact</small>
+              <p class="profile-item-text">{{userdata.contact}}</p>
+            </li>
+            <li class="profile-item profile-gender">
+              <small class="profile-item-title">Gender</small>
+              <p class="profile-item-text">{{userdata.gender}}</p>
+            </li>
+            <li class="profile-item profile-gender">
+              <small class="profile-item-title">Address</small>
+              <p class="profile-item-text">{{userdata.address}}</p>
+            </li>
+            <li class="profile-item profile-user-type">
+              <small class="profile-item-title">User Type</small>
+              <p class="profile-item-text">Seeker</p>
+            </li>
+          <div class="card-body">
+          {% endfor %}
+          </div>
+        </div>
+      </div>
 
+      <div class="card">
+        <div class="container1">
 
-    
-    {% for adddata in adddata %}
-    <h2>Additional Data</h2>
+          <div class="card-title">Additional details</div>
+          <div class="card-body">
+          {% for adddata in adddata %}
+
     <li class="profile-item profile-contact">
       <small class="profile-item-title">University</small>
       <p class="profile-item-text">{{adddata.university}}</p>
@@ -77,12 +113,18 @@
       <p class="profile-item-text">{{adddata.preferred_location}}</p>
     </li>
     {% endfor %}
+          
+             
+          </div>
+        </div>
+      </div>
 
-
-
+      <div class="card">
+        <div class="container1">
+          <div class="card-title">Social details</div>
+          <div class="card-body">
+          {% for socialdata in socialdata %}
     
-    {% for socialdata in socialdata %}
-    <h2>Social media links</h2>
     <li class="profile-item profile-contact">
       <small class="profile-item-title">Facebook</small>
       <p class="profile-item-text">
@@ -110,6 +152,28 @@
       <p class="profile-item-text"><a href="{{socialdata.others}}">{{socialdata.others}}</a></p>
     </li>
     {% endfor %}
+
+          
+              
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
 
 {% if user.seekeradditionaldetails and user.seekersocialdetails%}
   <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >

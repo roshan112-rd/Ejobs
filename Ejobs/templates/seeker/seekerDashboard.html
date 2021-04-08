@@ -1,31 +1,42 @@
+{% load static %}
 {% include "seeker/seekerHeader.html" %}
 <main class="hero">
-    <div class="container">
-        <div class="hero-text">
-            <h1 class="hero-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, minima.</h1>
-            <p class="hero-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem velit odio sit
-                eligendi. Unde eaque est dolorem! Cupiditate, voluptate error.</p>
-            <div class="cta">
-                <a href="{% url 'jobs' %}"><button class="btn btn-primary">view available Jobs</button></a>
+
+
+
+<div class="container" style="height:200px; width:80%;  border:2px solid black;">
+        <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="60px"></div>
+            <div class="hero-text">
+                <h1 class="hero-title">Who Am I? Test.</h1>
+                <p class="hero-desc">EJobs brings to you scientific and meticulously designed Psychometric Career Assessment to discover your true potential and interest. Know and understand yourself and the world of work in order to make career, educational, and life decisions.</p>
+                <div class="cta" >
+                <a href="{% url 'jobs' %}"><button class="btn btn-primary"  >view available Jobs</button></a>
             </div>
-            <h1 > Jobs that you may be interested in.</h1>
-            <ul class="job-items">
-                {% for job in jobs %}
-                <li class="job-item">
-                <div class="job-item-left">
-                    <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
-                </div>
-                <div class="job-item-low">
-                    <h5>Contact Info</h5>
-                    <p>Phone: {{ job.job_phone }}</p>
-                    <p>Email Us: <a href="">{{ job.job_email }}</a></p>
-                    <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
-                </div>
-                </li>
-                {% endfor %}
-            </ul>
+            </div>
+        </div> 
+
+    <ul class="job-items" style="margin-top:30px">
+    <h3 >Jobs that you may be interested in.</h3>
+        {% for job in jobs %}
+        <li class="job-item">
+        <div class="job-item-left">
+            <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
+            <div class="job-category-wrapper">
+          <p class="job-item-category">Category:</p>
+          <p></p>
+          <p class="job-category">{{ job.job_category }}</p>
         </div>
-    </div>
+        </div>
+        <div class="job-item-low">
+            <h5>Contact Info</h5>
+            <p>Phone: {{ job.job_phone }}</p>
+            <p>Email Us: <a href="">{{ job.job_email }}</a></p>
+            <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
+        </div>
+        </li>
+        {% endfor %}
+    </ul>
+   
 </main>
 
 

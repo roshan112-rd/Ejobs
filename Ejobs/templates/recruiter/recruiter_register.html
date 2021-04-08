@@ -15,7 +15,7 @@
         <div class="auth-right" style="margin-top:35px; margin-bottom:20px;>
           <div class="auth-form-wrapper">
             <form action="{% url 'recruiter_register' %}" method="post" enctype="multipart/form-data">
-            <h2> Register user</h2>
+            <h2> Recruiter Register</h2>
               {% csrf_token %}
               <div class="form-item">
                 <input
@@ -131,5 +131,5 @@
       </div>
     </main>
   </body>
-    {% include 'footer.html'%}
-</html>
+  {% include 'footer.html'%}
+

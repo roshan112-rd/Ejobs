@@ -56,7 +56,7 @@ def seeker_dashboard(request):
         jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
         # jobs = Job.objects.all()
 
-        print(jobs[0].job_category)
+        # print(jobs[0].job_category)
         print(user_details.preferred_job_category)
         return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs})
     else:
@@ -142,7 +142,8 @@ def login(request):
   
 def recruiter_dashboard(request):
     if request.user.is_authenticated:
-        return render(request, 'recruiter/recruiterDashboard.html')
+        jobs = Job.objects.filter(user=request.user)
+        return render(request, 'recruiter/recruiterDashboard.html', {'jobs': jobs})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('login')

@@ -249,3 +249,16 @@ def edit_method(request,job_id,model,cls):
 
 def edit_job(request,job_id):
     return edit_method(request,job_id,Job,JobForm)
+
+
+
+
+
+
+def change_password(request):
+    if request.user.is_authenticated:
+        return render(request, 'change_password.html')
+    else:
+        messages.info(request, 'You are not logged in. Please log in to continue')
+        return redirect('home')
+        

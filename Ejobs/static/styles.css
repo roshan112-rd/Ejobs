@@ -117,8 +117,9 @@ nav {
   max-width: 450px;
 }
 .hero-title {
-  font-size: 4rem;
-  line-height: 66px;
+  font-size: 2rem;
+  line-height: 30px;
+  text-align: center;
   text-transform: uppercase;
 }
 .hero-right {
@@ -127,6 +128,7 @@ nav {
 
 .hero-desc {
   padding-top: 20px;
+  text-align: center;
 }
 
 .hero .cta {
@@ -378,7 +380,7 @@ section h3 {
   background-size: cover;
 }
 .motto-text {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 /* footer */
 
@@ -642,4 +644,116 @@ label[for="id_user"] {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+
+
+
+
+
+/* profile */
+
+
+.container1 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.button {
+  background-color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Style For Navigation */
+.nav1 {
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  border-bottom: solid 2px #60a2ff;
+}
+
+.nav1 h1 {
+  color: #272727;
+  font-size: 18px;
+}
+
+/* Style For Content */
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+/* Style For Profile Section */
+.profile-section {
+  float: left;
+  width: 25%;
+  height: 1000px;
+  text-align: center;
+  padding-top: 30px;
+  background: linear-gradient(rgba(5, 100, 0, 0.8), rgba(65, 100, 1000, 0.8));
+  background-size: cover;
+  background-position: top;
+}
+
+.profile-photo {
+  width: 50%;
+  border-radius: 50%;
+  border: solid 3px white;
+}
+
+.profile-name {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.profile-detail {
+  color: #fff;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.profile-follow {
+  background-color: #1c459e;
+  color: white;
+  transition: all 0.3s;
+  font-size: 15px;
+}
+
+.profile-follow:hover {
+  background-color: white;
+  color: #4c99b8;
+  transition: all 0.3s;
+}
+
+/* Style For Detail Section */
+.detail-section {
+  float: left;
+  width: 75%;
+  padding-top: 30px;
+}
+
+/* Card Style */
+.card {
+  background-color: white;
+  line-height: 25px;
+  margin-bottom: 15px;
+}
+
+.card-title {
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #2d2d2d;
+  border-bottom: solid 2px #dbdbdb;
+}
+
+.card-body {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
