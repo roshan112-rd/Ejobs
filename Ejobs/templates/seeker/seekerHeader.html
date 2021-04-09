@@ -13,22 +13,22 @@
     <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="50px"></div>
 
     <ul class="nav-items">
-        <li class="nav-item"><a href="{% url 'seeker_dashboard' %}"> Home</a></li>
-        <li class="nav-item"><a href="{% url 'saved_jobs' %}"> saved jobs</a></li>
-        <li class="nav-item"><a href="{% url 'appliedJobs' %}">Applied Jobs</a></li>
+        <li class="nav-item"><a href="{% url 'seeker_dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item"><a href="{% url 'saved_jobs' %}"><i class="fas fa-user-md"></i> saved jobs</a></li>
+        <li class="nav-item"><a href="{% url 'appliedJobs' %}"><i class="far fa-calendar-check"></i>Applied Jobs</a></li>
         {% if user.is_authenticated %}
-        <li class="nav-item"><a href="{% url 'seeker_profile' %}">{{ user.first_name }} </a></li>
+        <li class="nav-item"><a href="{% url 'seeker_profile' %}"><i class="fas fa-user-alt"></i>{{ user.first_name }} </a></li>
         {% else %}
-        <li class="nav-item"><a href="{% url 'seeker_profile' %}">Profile</a></li>
+        <li class="nav-item"><a href="{% url 'seeker_profile' %}"> <i class="fas fa-user-alt"></i>Profile</a></li>
         {% endif %}
-        <li class="nav-item" id="myBtn" style="cursor:pointer;"><a>Logout</a></li>
+        <li class="nav-item" id="myBtn" style="cursor:pointer;"><a><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
 </nav>
 
 <div id="myModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>Are you sure you want to logout?</p><a href="{% url 'logout' %}"><button >Logout</button></a>
+    <p>Are you sure you want to logout?</p><a href="{% url 'logout' %}"><button class="btn btn-primary  " style="" ><i class="fas fa-sign-out-alt"></i> Logout</button></a>
   </div>
 
 </div>

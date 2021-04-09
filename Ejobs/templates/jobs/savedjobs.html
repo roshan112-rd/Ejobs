@@ -48,15 +48,15 @@
           <p>Email Us: <a href="">{{ job.job.job_email }}</a></p>
           <p>Apply On Our Website: <a href="">{{ job.job.job_website }}</a></p>
           <div class="job-item-cta">
-          <button class="btn btn-primary" style="margin-right:20px;"  onclick="openForm()" > Remove job</button>
+          <button class="btn btn-primary" style="margin-right:20px;"  onclick="openForm()" > <i class="fas fa-trash-alt"></i>  Remove job</button>
 
 
           <div class="form-popup" id="myForm">
             <form class="form-container">
-            <h1 class="details">are you sure you want to remove this saved job?</h1>
+            <h2 class="details">Are you sure you want to remove this saved job?</h1>
             <div class="btns">
-              <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary apply" >Remove</button></a>
-              <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+              <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary apply" ><i class="fas fa-trash-alt"></i> Remove</button></a>
+              <button type="button" class="btn btn-primary cancel" onclick="closeForm()"><i class="far fa-window-close"></i> Close</button>
             </div>
             </form>
           </div>

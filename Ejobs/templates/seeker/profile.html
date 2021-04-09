@@ -4,18 +4,6 @@
   {% include 'seeker/seekerHeader.html' %}
 {% endif %}
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Navbar -->
 <div class="nav1">
   <div class="container1">
@@ -31,7 +19,21 @@
     <div class="container1">
       <img src="{{userdata.image.url}}" alt="Avatar" class="profile-photo">
       <p class="profile-name">{{request.user.first_name}} {{request.user.last_name}}</p>
-      <button class="button profile-follow">Edit your profile</button>
+
+
+
+      {% if user.seekeradditionaldetails and user.seekersocialdetails%}
+  <a href=""><button class="button profile-follow">Edit your profile</button></a >
+
+{% elif user.seekeradditionaldetails and not user.seekersocialdetails %}
+  <a href="{% url 'social_details' %}"><button class="button profile-follow">Add social details</button></a >
+
+{% else %}
+  <a href=""><button class="button profile-follow">Edit your profile</button></a >
+  <a href="{% url 'additional_details' %}"><button class="button profile-follow">Complete your profile</button></a >
+
+{% endif %}
+      <button class="button profile-follow">Change password</button>
     </div>
   </div>
   <!-- Detail Section -->
@@ -175,7 +177,7 @@
 
 
 
-{% if user.seekeradditionaldetails and user.seekersocialdetails%}
+{% comment %} {% if user.seekeradditionaldetails and user.seekersocialdetails%}
   <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
 
 {% elif user.seekeradditionaldetails and not user.seekersocialdetails %}
@@ -185,7 +187,7 @@
   <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
   <a href="{% url 'additional_details' %}"><button class="btn btn-primary centrebtn">Complete your profile</button></a >
 
-{% endif %}
+{% endif %} {% endcomment %}
 </ul>
 </div>
 {% comment %} {% include 'footer.html'  %} {% endcomment %}

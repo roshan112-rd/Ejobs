@@ -57,7 +57,7 @@ def seeker_dashboard(request):
         # jobs = Job.objects.all()
 
         # print(jobs[0].job_category)
-        print(user_details.preferred_job_category)
+        # print(user_details.preferred_job_category)
         return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')

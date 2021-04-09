@@ -12,10 +12,10 @@
 <nav>
     <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="50px"></div>
     <ul class="nav-items">
-        <li class="nav-item"><a href="/"> Home</a></li>
-        <li class="nav-item"><a href="{% url 'login' %}"> Login</a></li>
-        <li class="nav-item"><a href="{% url 'seeker_register' %}"> Register</a></li>
-        <li class="nav-item"><a href="{% url 'recruiter_register' %}"> Recruiter  portal</a></li>
-        <li class="nav-item"><a href="{% url 'about_us' %}"> About us</a></li>
+        <li class="nav-item"><a href="/"> <i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item"><a href="{% url 'login' %}"> <i class="fas fa-sign-in-alt"></i> Login</a></li>
+        <li class="nav-item"><a href="{% url 'seeker_register' %}"><i class="fas fa-user-plus"></i> Register</a></li>
+        <li class="nav-item"><a href="{% url 'recruiter_register' %}"><i class="fas fa-puzzle-piece"></i> Recruiter  portal</a></li>
+        <li class="nav-item"><a href="{% url 'about_us' %}"><i class="fas fa-address-card"></i> About us</a></li>
     </ul>
 </nav>

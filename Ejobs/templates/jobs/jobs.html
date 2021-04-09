@@ -1,11 +1,11 @@
 {% include 'seeker/seekerHeader.html'%}
     <div class="cta">
-        <div class="search-bar">
-             <form method="get" action="{% url 'search' %}" class="search-bar">            
+        <div class="search-bar" >
+             <form method="get" action="{% url 'search' %}" class="search-bar" >            
               <input type="search" placeholder="Search your job" name="query" id="query" class="search-bar-input">
               <button class="get-started-btn btn-primary" type ="submit">SEARCH</button>
             </form>
-            </div>
+        </div>
     </div>
 <ul class="job-items">
     {% for job in jobs %}

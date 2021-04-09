@@ -118,7 +118,7 @@ nav {
 }
 .hero-title {
   font-size: 2rem;
-  line-height: 30px;
+  line-height: 35px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -128,6 +128,7 @@ nav {
 
 .hero-desc {
   padding-top: 20px;
+  font-size: 1.1rem;
   text-align: center;
 }
 
@@ -375,7 +376,7 @@ section h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("https://images.pexels.com/photos/1000445/pexels-photo-1000445.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-image: url("https://images.unsplash.com/photo-1485120252639-4955174c75d6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80");
   background-attachment: fixed;
   background-size: cover;
 }
@@ -573,19 +574,19 @@ label[for="id_user"] {
 .form-popup {
   display: none;
   position: fixed;
-  top: 4.5rem;
-  right: 0;
+  top: 8.5rem;
+  right: 4rem;
   border: 3px solid #f1f1f1;
   z-index: 9;
-  max-width: 300px;
+  max-width: 350px;
 }
 .form-container {
-  max-width: 300px;
+  max-width: 350px;
   padding: 10px;
   background-color: white;
 }
 .details{
-  font-size: 25px;
+  font-size: 15px;
   margin-bottom: 30px;
 }
 .form-container .btn{

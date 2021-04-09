@@ -49,7 +49,7 @@
           <p>Email Us: <a href="">{{ job.job.job_email }}</a></p>
           <p>Apply On Our Website: <a href="">{{ job.job.job_website }}</a></p>
           <div class="job-item-cta">
-            <a href="{% url 'remove_applied_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px">Remove Job</button></a>
+            <a href="{% url 'remove_applied_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px"><i class="far fa-window-close"></i> Cancel Application</button></a>
           </div>
         </div>
       </li>
