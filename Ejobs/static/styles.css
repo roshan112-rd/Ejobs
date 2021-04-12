@@ -383,6 +383,8 @@ section h3 {
 .motto-text {
   color: rgb(0, 0, 0);
 }
+
+
 /* footer */
 
 footer {
@@ -507,11 +509,15 @@ footer li {
   background-size: cover;
   position: relative;
 }
+.show-available-wrapper{
+  border: 1px solid black;
+  height: 200px;
+}
 #id_user {
   display: none;
 }
 label[for="id_user"] {
-  display: none;
+  /* display: none; */
 }
 
 

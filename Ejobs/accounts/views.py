@@ -194,3 +194,10 @@ def social_details(request):
         return render(request, 'seeker/social_details.html')
 
 
+
+def password_change(request):
+    if request.user.is_authenticated:
+        return render(request, 'change_password.html')
+    else:
+        messages.info(request, 'You are not logged in. Please log in to continue')
+        return redirect('home')

@@ -185,8 +185,8 @@ def search(request):
     
     jobs = Job.objects.filter(Q(job_title__icontains=query) | Q(job_employer__icontains=query) | Q(job_position__icontains=query) | Q(job_category__icontains=query))
     if (jobs):
-        allJob =  {'jobs': jobs}
-        return render(request, 'jobs/search.html',allJob)
+        allJob =  {'searched_jobs': jobs}
+        return render(request, 'jobs/jobs.html',allJob)
     else:
         messages.info(request, 'job not found')
         return redirect('jobs')
@@ -254,11 +254,4 @@ def edit_job(request,job_id):
 
 
 
-
-def change_password(request):
-    if request.user.is_authenticated:
-        return render(request, 'change_password.html')
-    else:
-        messages.info(request, 'You are not logged in. Please log in to continue')
-        return redirect('home')
         

@@ -8,13 +8,12 @@
             </div>
     </div>
 <ul class="job-items">
-<H1>Your Search Results:</H1>
+
     {% for job in jobs %}
-    
+    <H1>Your Search Results:</H1>
     <li class="job-item">
       <div class="job-item-left">
         <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
-        {% comment %} <p class="job-desc">Job Description: {{ job.job_description }}</p> {% endcomment %}
         <p>Employer: {{ job.job_employer }}</p>
         <p>Position: {{ job.job_position }}</p>
         
@@ -32,10 +31,6 @@
         <p>Phone: {{ job.job_phone }}</p>
         <p>Email Us: <a href="">{{ job.job_email }}</a></p>
         <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
-        {% comment %} <div class="job-item-cta">
-          <a href="{% url 'apply_job' job.job_id %}" ><button class="btn btn-primary" style="margin-right:20px;"> APPLY</button></a>
-          <a href="{% url 'save_job' job.job_id %}"><button class="btn btn-primary"> save </button></a>
-        </div> {% endcomment %}
       </div>
     </li>
     {% endfor %}
