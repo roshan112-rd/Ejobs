@@ -17,9 +17,9 @@
         <li class="nav-item"><a href="{% url 'saved_jobs' %}"><i class="fas fa-user-md"></i> saved jobs</a></li>
         <li class="nav-item"><a href="{% url 'appliedJobs' %}"><i class="far fa-calendar-check"></i>Applied Jobs</a></li>
         {% if user.is_authenticated %}
-        <li class="nav-item"><a href="{% url 'seeker_profile' %}"><i class="fas fa-user-alt"></i>{{ user.first_name }} </a></li>
+        <li class="nav-item"><a href="{% url 'profile' %}"><i class="fas fa-user-alt"></i>{{ user.first_name }} </a></li>
         {% else %}
-        <li class="nav-item"><a href="{% url 'seeker_profile' %}"> <i class="fas fa-user-alt"></i>Profile</a></li>
+        <li class="nav-item"><a href="{% url 'profile' %}"> <i class="fas fa-user-alt"></i>Profile</a></li>
         {% endif %}
         <li class="nav-item" id="myBtn" style="cursor:pointer;"><a><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>

@@ -1,63 +1,81 @@
-{% include "recruiter/recruiterHeader.html" %}
-
-<ul class="job-items">
+{% include "header.html" %}
 {% if jobs %}
-  <h2 class="job-item-title">Applicants For  : {{ job.job }}</h2>
+<h2 class="job-item-title">Applicants For  : {{ job.job }}</h2>
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
   {% for jobs in jobs %}
-  <li class="job-item">
-
-    <div class="job-item-left">
-      
-      <div class="job-item-low">
-          <h3>Name of applicant  :{{jobs.user.first_name}} {{jobs.user.last_name}}</h3>
+    <li class="jobs-card-wrapper">
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
+        </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3>Name of applicant  :{{jobs.user.first_name}} {{jobs.user.last_name}}</h3>
+          </div>        
+          </p>
+        </div>
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{jobs.user.email}} </p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Contact</h5>
+            <p>{{ jobs.user.seeker.contact }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Address</h5>
+            <p>{{ jobs.user.seeker.address }}</p>
+          </li>
+           <li class="jobs-contact-item">
+              <a href="{% url 'accept' job.id %}" ><button class="btn btn-primary" style="margin-bottom:5px;"> accept application</button></a>
+              <a href="{% url 'decline' job.id %}"><button class="btn btn-primary"> decline application </button></a>
+          </li>
+        </ul>
       </div>
-      <h3> Email :{{jobs.user.email}}  </h3>
-      <h3> Gender :{{jobs.user.seeker.gender}}  </h3>
-      <h3> Contact :{{jobs.user.seeker.contact}}  </h3>
-      <h3> Address :{{jobs.user.seeker.address}}  </h3>
-      <h3> CV :<a href="{{jobs.usercv.url}} " target='_'>download CV </a>  </h3>
-
-    </div>
-    <div class="job-item-low">
-      <div class="job-item-cta">
-     {% comment %} <a href="" ><button class="btn btn-primary" id="myBtn" style="margin-right:20px;"> accept application</button></a>
-        <a href=""><button class="btn btn-primary" id="myBtn1"> decline application </button></a> {% endcomment %}
-
-
-
-        <a href="{% url 'accept' job.id %}" ><button class="btn btn-primary" style="margin-right:20px;"> accept application</button></a>
-        <a href="{% url 'decline' job.id %}"><button class="btn btn-primary"> decline application </button></a>
+      {% endfor %}
+    </li>
+ </section>
+{% else %}
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
+    <li class="jobs-card-wrapper">
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
+        </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3> {{job }}</h3>
+          </div>        
+          </p>
+        </div>
+        <ul class="jobs-card-low">
+         
+        </ul>
       </div>
-    </div>
-    {% endfor %}
-    {% else %}
-    <h1>{{job}}</h1>
-    {% endif %}
-</ul>
-</li>
+     
+    </li>
+ </section>
+
+{% endif %}
 
 
-{% comment %} 
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Are you sure you want to accept the application?</p>
-     <a href="{% url 'accept' job.id %}" ><button class="btn btn-primary" style="margin-right:20px;"> accept application</button>
-  </div>
-</div>
-<script>
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-span.onclick = function() {
-  modal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+

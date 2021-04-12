@@ -1,5 +1,5 @@
 {% load static %}
-{% include "recruiter/recruiterHeader.html" %}
+{% include "header.html" %}
 <main class="hero">
         <div class="container" style="height:200px; width:80%;  border:2px solid black;">
         <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="60px"></div>
@@ -13,39 +13,48 @@
         </div>        
 
 </main>
-<div class="container">
-  <div class="row" style="margin-top:30px">
-    <ul class="job-items">
-    <h3 ><a href="{% url 'jobhome'%}"><u>Active Jobs:</u></a> The list of jobs that you have posted and currently active.</h3>
-      {% for job in jobs %}
-      <li class="job-item" >
-        <div class="job-item-left">
-         <a href="{% url 'job_details' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
-          <p>Employer: {{ job.job_employer }}</p>
-          <p class="position">Position: {{ job.job_position }}</p>
-          <p>Experience required: {{ job.experience }}</p>
-          <div class="job-category-wrapper">
-            <p class="job-item-category">Category:</p>
-            <p></p>
-            <p class="job-category">{{ job.job_category }}</p>
-            
+
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
+  <h3 ><a href="{% url 'jobhome'%}"><u>Active Jobs:</u></a> The list of jobs that you have posted and currently active.</h3>
+  {% for job in jobs %}
+  
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'job_details' id=job.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
+        </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ job.job_title }}</h3>
           </div>
+          <p class="jobs-detail">
+          {{ job.job_description|truncatechars:100 }}
+          {% comment %} {{ job.job_description|truncate(50, True, '...') }} {% endcomment %}
+            
+          </p>
         </div>
-
-        <div class="job-item-low">
-          <h5>Contact Info</h5>
-          <p>Phone: {{ job.job_phone }}</p>
-          <p>Email Us: <a href="">{{ job.job_email }}</a></p>
-          <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
-          <p>Salary: <a href="">{{ job.salary }}</a></p>
-        </div>
-      </li>
-        {% endfor %}
-    </ul>
-  </div>
-</div>
-
-
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Number</h5>
+            <p>{{ job.job_phone }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Location</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+        </ul>
+      </div>
+      {% endfor %}
+    </li>
+ </section>
 <div class="popup-msg">
     {% for message in messages %}
         <p class="popup-msg-text">{{message}}</h1>

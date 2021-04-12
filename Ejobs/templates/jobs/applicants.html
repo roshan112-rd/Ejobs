@@ -1,28 +1,49 @@
+{% include "header.html" %}
 
-{% include "recruiter/recruiterHeader.html" %}
-{% for job in jobs %}
-<ul class="job-items">
-<li class="job-item">
-  <div class="job-item-left">
-    <h2 class="job-item-title"><a href="{% url 'applicant' job.job_id %}">{{ job }}</a></h2>
-    <p>Position: {{ job.job_position }}</p>
-    
-    <div class="job-category-wrapper">
-      <p class="job-item-category">Category:</p>
-      <p></p>
-      <p class="job-category">{{ job.job_category }}</p>
-    </div>
-  </div>
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
+  {% for job in jobs %}
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'applicant' job.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
+        </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ job.job_title }}</h3>
+          </div>        
+          </p>
+        </div>
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Issued Date</h5>
+            <p>{{ job.created }}</p>
+          </li>
+        </ul>
+      </div>
+      {% endfor %}
+    </li>
+ </section>
 
-  <div class="job-item-low">
-    <h5>Issued Date</h5>
-    <p>{{ job.created }}</p>
-  </div>
-</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="popup-msg">
     {% for message in messages %}
         <p class="popup-msg-text">{{message}}</h1>
     {% endfor %}
 </div>
-{% endfor %}

@@ -1,4 +1,4 @@
-{% load static %} {% include "seeker/seekerHeader.html" %}
+{% load static %} {% include "header.html" %}
 <main>
   <div class="container">
     <div class="show-avilable-wrapper">
@@ -21,30 +21,46 @@
       </div>
     </div>
 
-    <ul class="job-items" style="margin-top: 30px">
-      <h3>Jobs that you may be interested in.</h3>
-      {% for job in jobs %}
-      <li class="job-item">
-        <div class="job-item-left">
-          <a href="{% url 'job_details_2' id=job.job_id %}">
-            <h2 class="job-item-title">{{ job.job_title }}</h2></a
-          >
-          <div class="job-category-wrapper">
-            <p class="job-item-category">Category:</p>
-            <p></p>
-            <p class="job-category">{{ job.job_category }}</p>
-          </div>
-        </div>
-        <div class="job-item-low">
-          <h5>Contact Info</h5>
-          <p>Phone: {{ job.job_phone }}</p>
-          <p>Email Us: <a href="">{{ job.job_email }}</a></p>
-          <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</main>
 
+
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
+  {% for job in jobs %}
+  <h2>Jobs that you may be interested in.</h2>
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'job_details_2' id=job.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
+        </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ job.job_title }}</h3>
+          </div>
+          <p class="jobs-detail">
+          {{ job.job_description|truncatechars:100 }}
+          {% comment %} {{ job.job_description|truncate(50, True, '...') }} {% endcomment %}
+            
+          </p>
+        </div>
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Number</h5>
+            <p>{{ job.job_phone }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Location</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+        </ul>
+      </div>
+      {% endfor %}
+    </li>
+ </section>
 {% include "footer.html" %}

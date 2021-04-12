@@ -1,7 +1,7 @@
 {% load static %}
 
 
-  {% include 'header1.html'%}
+  {% include 'header.html'%}
     <main class="signup auth">
       <div class="container">
         <div class="auth-left">
@@ -84,6 +84,15 @@
               <div class="form-item">
                 <label for="image">Select profile image:</label>
                 <input type="file" id="image" name="image"  required="true" accept="image/*">
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  name="bio"
+                  required="true"
+                  placeholder="enter your bio"
+                />
               </div>
 
 

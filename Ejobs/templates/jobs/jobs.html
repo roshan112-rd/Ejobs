@@ -1,76 +1,107 @@
-{% include 'seeker/seekerHeader.html'%}
-    <div class="cta">
-        <div class="search-bar" >
-             <form method="get" action="{% url 'search' %}" class="search-bar" >            
-              <input type="search" placeholder="Search your job" name="query" id="query" class="search-bar-input">
-              <button class="get-started-btn btn-primary" type ="submit">SEARCH</button>
-            </form>
-        </div>
-    </div>
-
+{% include 'header.html'%}
+<title>Jobs</title>
+<div class="hero-search-section">
+  <form action="{% url 'search' %}" class="hero-search-form">
+    <input
+      type="search"
+      class="hero-search"
+      name="query"
+      placeholder="Software Engineer"
+    />
+    <input
+      type="submit"
+      value="Find your job"
+      class="hero-btn btn btn-primary"
+    />
+  </form>
+</div>
+       
 
 {% comment %} searched jobs {% endcomment %}
 
-  <ul class="job-items">
-    {% for job in searched_jobs %}
-    <H1>Your Search Results:</H1>
-    <li class="job-item">
-      <div class="job-item-left">
-        <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
-        <p>Employer: {{ job.job_employer }}</p>
-        <p>Position: {{ job.job_position }}</p>
-        
-    <p>Salary: <a href="">{{ job.salary }}</a></p>
-    <p>Experience required: {{ job.experience }}</p>
-        <div class="job-category-wrapper">
-          <p class="job-item-category">Category:</p>
-          <p></p>
-          <p class="job-category">{{ job.job_category }}</p>
+
+
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
+  {% for job in searched_jobs %}
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'job_details_2' id=job.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
         </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ job.job_title }}</h3> 
+          </div>
+          <p class="jobs-detail">
+          {{ job.job_description|truncatechars:100 }}
+          {% comment %} {{ job.job_description|truncate(50, True, '...') }} {% endcomment %}
+            
+          </p>
+        </div>
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Number</h5>
+            <p>{{ job.job_phone }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Location</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+        </ul>
       </div>
-
-      <div class="job-item-low">
-        <h5>Contact Info</h5>
-        <p>Phone: {{ job.job_phone }}</p>
-        <p>Email Us: <a href="">{{ job.job_email }}</a></p>
-        <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
-      </div>
+      {% endfor %}
     </li>
-    {% endfor %}
-    </ul>
+  </section>
 
-
-
-
-
-
+  
 {% comment %} all jobs {% endcomment %}
-<ul class="job-items">
-    {% for job in jobs %}
-    <li class="job-item">
-      <div class="job-item-left">
-        <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
-        <p>Employer: {{ job.job_employer }}</p>
-        <p>Position: {{ job.job_position }}</p>
-        
-    <p>Salary: <a href="">{{ job.salary }}</a></p>
-    <p>Experience required: {{ job.experience }}</p>
-        <div class="job-category-wrapper">
-          <p class="job-item-category">Category:</p>
-          <p></p>
-          <p class="job-category">{{ job.job_category }}</p>
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
+  {% for job in jobs %}
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'job_details_2' id=job.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
         </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ job.job_title }}</h3>
+          </div>
+          <p class="jobs-detail">
+          {{ job.job_description|truncatechars:100 }}
+          {% comment %} {{ job.job_description|truncate(50, True, '...') }} {% endcomment %}
+            
+          </p>
+        </div>
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Number</h5>
+            <p>{{ job.job_phone }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Location</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+        </ul>
       </div>
-
-      <div class="job-item-low">
-        <h5>Contact Info</h5>
-        <p>Phone: {{ job.job_phone }}</p>
-        <p>Email Us: <a href="">{{ job.job_email }}</a></p>
-        <p>Apply On Our Website: <a href="{{ job.job_website }}" target="popup" onclick="tab.open('../{{ job.job_website }}','name')">{{ job.job_website }}</a></p>
-      </div>
+      {% endfor %}
     </li>
-    {% endfor %}
-    </ul>
+ </section>
 <div class="popup-msg">
   {% for message in messages %}
     <p class="popup-msg-text">{{message}}</h1>

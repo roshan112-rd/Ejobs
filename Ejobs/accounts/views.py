@@ -20,6 +20,7 @@ def seeker_register(request):
         contact = request.POST['contact']
         gender = request.POST['gender']
         address = request.POST['address']
+        bio = request.POST['bio']
         image = request.FILES['image']
         
         if password1 != password2:
@@ -30,19 +31,17 @@ def seeker_register(request):
             messages.info(request, 'username taken')
             return redirect('seeker_register')
            
-        if User.objects.filter(email=email).exists():
-            messages.info(request, 'email taken')
-            return redirect('seeker_register')
         user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
-        Seeker.objects.create(user=user, contact=contact, gender=gender, address=address, image=image)
+        Seeker.objects.create(user=user, contact=contact, gender=gender, address=address, image=image, bio=bio)
         auth.login(request, user)
+        return redirect('seeker_dashboard')
                 
         subject = 'welcome to EJobs'
         message = f'Hi {user.username}, thank you for registering in EJobs.'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email, ]
         send_mail( subject, message, email_from, recipient_list )
-        return redirect('seeker_dashboard')
+        
 
     else:
         return render(request, 'seeker/seeker_register.html')
@@ -52,13 +51,12 @@ def seeker_register(request):
 
 def seeker_dashboard(request):
     if request.user.is_authenticated:
-        user_details = SeekerAdditionalDetails.objects.get(user=request.user) 
-        jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
-        # jobs = Job.objects.all()
-
-        # print(jobs[0].job_category)
-        # print(user_details.preferred_job_category)
-        return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs})
+        try:
+            user_details = SeekerAdditionalDetails.objects.get(user=request.user) 
+            jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
+            return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs})
+        except:
+            return render(request, 'seeker/seekerDashboard.html')
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('login')
@@ -87,6 +85,7 @@ def recruiter_register(request):
         address = request.POST['address']
         company_type=request.POST['company_type']
         company_name=request.POST['company_name']
+        bio = request.POST['bio']
         image = request.FILES['image']
 
         if password1 != password2:
@@ -149,15 +148,38 @@ def recruiter_dashboard(request):
         return redirect('login')
 
 
-def recruiter_profile(request):
+def profile(request):
     if request.user.is_authenticated:
-        userdata = Recruiter.objects.filter(user=request.user)
-        return render(request, 'recruiter/profile.html', {'userdata': userdata})
+        user=request.user
+        if user.is_staff:
+            userdata = Recruiter.objects.filter(user=request.user)
+            return render(request, 'recruiter/profile.html', {'userdata': userdata})
+        else:
+            userdata = Seeker.objects.filter(user=request.user)
+            adddata = SeekerAdditionalDetails.objects.filter(user=request.user)
+            socialdata = SeekerSocialDetails.objects.filter(user=request.user)
+            return render(request, 'seeker/profile.html', {'userdata': userdata ,'adddata': adddata , 'socialdata': socialdata})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('home')
 
+# def recruiter_profile(request):
+#     if request.user.is_authenticated:
+#         userdata = Recruiter.objects.filter(user=request.user)
+#         return render(request, 'recruiter/profile.html', {'userdata': userdata})
+#     else:
+#         messages.info(request, 'You are not logged in. Please log in to continue')
+#         return redirect('home')
 
+# def seeker_profile(request):
+#     if request.user.is_authenticated:
+#         userdata = Seeker.objects.filter(user=request.user)
+#         adddata = SeekerAdditionalDetails.objects.filter(user=request.user)
+#         socialdata = SeekerSocialDetails.objects.filter(user=request.user)
+#         return render(request, 'seeker/profile.html', {'userdata': userdata ,'adddata': adddata , 'socialdata': socialdata})
+#     else:
+#         messages.info(request, 'You are not logged in. Please log in to continue')
+#         return redirect('home')
 def logout(request):
     auth.logout(request)
     messages.info(request, 'logged out successfully')

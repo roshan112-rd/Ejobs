@@ -16,8 +16,8 @@ html {
     --primary-color: #37529E;
     --text-color-dark: #0f0f0f;
     --text-color-light: #f6f6f6;
-    --background-color: #FCFCFC;
-    --border-color: #d8d8d8;
+    --background-color: #fbf9f9;
+    --border-color: #e4e3e3;
     --border-radius-def: 8px;
     font-family: 'Poppins', sans-serif;
     color: var(--text-color-dark);
@@ -38,6 +38,49 @@ a {
 
 li {
     list-style: none;
+}
+
+/* NAV ITEMS */
+.top-nav{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-items{
+    display: flex;
+    height: 100%;
+}
+.nav-item{
+    margin-left: 40px;
+}
+.nav-item-link{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: var(--text-color-dark);
+    font-weight: 500;
+    height: 100%;
+    position: relative;
+}
+.nav-item-link::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    /* z-index: -1; */
+    border-bottom: 3px solid var(--primary-color);
+    transition: all ease 300ms;
+    visibility: hidden;
+    opacity: 0;
+}
+.nav-item-link:hover::after{
+    visibility: visible;
+    opacity: 1;
+    left: 0;
 }
 
 /* HOME PAGE SECTIONS */
@@ -210,19 +253,105 @@ li {
     padding-left: 80px;
     padding-bottom: 30px;
     background-image: linear-gradient(to top, rgba(22, 42, 99, 0.886) , rgba(0, 0, 0, 0));
-    /* padding-left: 40px; */
     z-index: 11;
 }
 
-/* .more-section-text::after{
-    content:"";
-    position: absolute;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    z-index: 11;
-} */
+/* ALL JOBS SECTION */
+
+/* jobs cards */
+.jobs-cards{
+    font-size: 10px;
+}
+.jobs-card-wrapper{
+    position: relative;
+    width: 750px;
+    margin: 70px 0;
+    height: 220px;
+    transition: all ease 300ms;
+}
+.jobs-card-wrapper:hover{
+    transform: translateY(-5px);
+}
+.jobs-top-category{
+    margin-left: 40px;
+}
+.jobs-top-category p{
+    border-top-left-radius: var(--border-radius-def);
+    border-top-right-radius: var(--border-radius-def);
+    width: max-content;
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 1.3em;
+    color: var(--text-color-light);
+    background-color: rgb(139, 42, 139);
+}
+.jobs-card{
+    height: inherit;
+    background-color: white;
+    padding: 30px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1.6em;
+    transition: all ease 300ms;
+}
+.jobs-card:hover{
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    
+}
+.jobs-detail{
+    opacity: 0.9;
+}
+.jobs-card-low{
+    border-top: 1px solid rgba(151, 151, 151, 0.205);
+    margin-top: 25px;
+    padding-top: 15px;
+    display: flex;
+    font-size: 0.9em;
+}
+.jobs-contact-item{
+    margin-right: 30px;
+}
+.jobs-card-top{
+    display: flex;
+}
+.fas{
+    margin-right: 5px;
+    padding-top: 5px;
+}
+/* profile */
+.profile-wrapper{
+    margin: 0 auto;
+    width: 1000px;
+    background-color: white;
+    padding: 30px;
+}
+.profile-image-wrapper{
+    height: 150px;
+    width: 150px;
+    background-color: red;
+    border-radius: 50%;
+}
+.profile-top-wrapper{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 100px;
+}
+.profile-image-details{
+    margin-left: 50px;
+    width: 400px;
+}
+.profile-info{
+    width: 60%;
+}
+.profile-info-items{
+    margin-bottom: 30px;
+}
+.profile-info-detail{
+    padding: 8px 10px;
+    border-radius: var(--border-radius-def);
+    background-color: rgb(250, 250, 250);
+    border: 1px solid var(--border-color);
+}
 
 /* sections */
 .section-wrapper {
@@ -256,55 +385,232 @@ li {
     color: var(--text-color-light);
 }
 
-/* nav bar css0 */
-li {
-    list-style: none;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  nav {
-    z-index: 11;
-    height: 70px;
-    align-items: center;
+
+
+/* footer */
+
+footer {
+    height: 260px;
     display: flex;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    right: 0;
-    left: 0;
+    justify-content: space-evenly;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.959);
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.1);
-    padding: 0rem 2rem;
+    border-top: 2px solid black;
+    margin-top: 20px;
   }
   
-  .nav-items {
-    display: flex;
-    height: inherit;
-    align-items: center;
+  footer a {
+    color: black;
+    font-weight: bold;
   }
-  .nav-item{
-    display: flex;
-    align-items: center;
-    height: inherit;
+  footer li {
+    margin-bottom: 25px;
   }
-  .nav-item a {
-    display: flex;
-    align-items: center;
-    height: inherit;
-    font-weight: 500;
+  .footer-el {
+    margin: 1rem;
+  }
+  /* popup logout form? */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+
+
+
+/* apply remove1 */
+
+/* popup cv upload form */
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 8.5rem;
+    right: 4rem;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    max-width: 350px;
+  }
+  .form-container {
+    max-width: 350px;
+    padding: 10px;
+    background-color: white;
+  }
+  .details{
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+  .form-container .btn{
+    padding:1rem;
+  }
+  .btns{
+    margin-top:20px;
+  }
+  .btns .cancel{
+    margin-left: 40px;
+    margin-right: 20px;
+  }
+  .btns .apply{
+    margin-right: 20px;
+  }
+  #id_user {
+    display: none;
+  }
+  label[for="id_user"] {
+    display: none;
+  }
+  
+
+  label {
+    display: inline-block;
+    margin: 5px 0px;
+  }
+  
+  .form-button {
+    width: 100%;
+  }
+  
+  .form-title {
+    font-size: 2rem;
     text-transform: uppercase;
-    margin-right: 3rem;
-    height: 100%;
-    color: rgb(0, 0, 0);
-    opacity: 0.6;
-    transition: all ease 300ms;
+    margin: 30px 0px 20px;
   }
   
-  .nav-item a:hover {
-    opacity: 1;
-    transition: all ease 300ms;
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .form-gender{
+    display: flex;
+    align-items: center;
+  }
+  .form-gender label{
+    padding-left:0.4rem;
+    padding-right:1.4rem;
+  }
+  .form-gender p{
+    font-weight: 500;
+    margin-right: 1rem;
+  }
+  .form-input {
+    height: 60px;
+    width: 100%;
+    padding: 0.4rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    border: 1px solid rgb(204, 204, 204);
+  }
+  .form-input:focus{
+    outline: none;
+  }
+  .form-item{
+    margin-bottom: 5px;
+  }
+  
+.auth .container {
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .auth-left {
+    flex: 1.6;
+    height: 100vh;
+  }
+  .auth-image-wrapper{
+      height: inherit;
+  }
+  .auth-image-wrapper img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .auth-right {
+    flex: 1;
+    padding: 0 8rem;
+    display: flex;
+    justify-content: center;
+  }
+  .auth-form-wrapper{
+      min-width: 500px;
+  }
+  .login .container {
+    background-image: url("https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  
+  .signup-form-wrapper {
+    display: flex;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .signup-form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    width: 400px;
+    padding: 2rem;
+    box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.3);
+    background-color: white;
+  }
+  
+  .login-form-wrapper {
+    display: flex;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 500px; */
+    width: 400px;
+    padding: 2rem;
+    box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.3);
+    background-color: white;
+  }
+  .register-user-type{
+    margin-bottom: 1rem;
   }

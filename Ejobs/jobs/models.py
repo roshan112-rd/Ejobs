@@ -24,6 +24,7 @@ class Job(models.Model):
     job_website = models.URLField()
     experience = models.TextField(null=False)    
     salary = models.CharField(max_length=100,null=True)
+    job_location = models.CharField(max_length=100,null=True)
     created = models.DateTimeField(auto_now_add=True)
     apply_until = models.CharField(max_length=100,null=True)
     

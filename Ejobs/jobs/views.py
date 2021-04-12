@@ -43,12 +43,8 @@ def jobhome(request):
 
 
 def jobs(request):
-    if request.user.is_authenticated:
-        jobs = Job.objects.all()
-        return render(request, 'jobs/jobs.html', {'jobs': jobs})
-    else:
-        messages.info(request, 'You are not logged in. Please log in to continue')
-        return redirect('home')
+    jobs = Job.objects.all()
+    return render(request, 'jobs/jobs.html', {'jobs': jobs})
 
 
 def saved_jobs(request):
@@ -145,7 +141,10 @@ def job_details(request, id):
 
 #job details for seeker
 def job_details_2(request, id):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.user.is_staff:
+        messages.info(request, 'You dont have access to this page')
+        return redirect('home')
+    elif request.user.is_authenticated:
         job = Job.objects.get(job_id= id)
         return render(request, 'jobs/job_details_2.html', {'job': job})
     else:

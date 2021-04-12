@@ -1,74 +1,60 @@
-{% comment %} {% include "seeker/seekerHeader.html" %}
+{% include 'header.html' %}
 
-
-    <h1>view your saved jobs</h1>
-
-    {% for job in jobs %}
-    {{job}}
-    title               :{{ job.job.job_title }}<br>
-    category            :{{ job.job.job_category}}<br>
-    Position            :{{ job.job.job_position }}<br>
-    Employer            :{{ job.job.job_employer }}<br>
-    Description         :{{ job.job.job_description }}<br>
-    Phone               :{{ job.job.job_phone }}<br>
-    website             :{{ job.job.job_website }}<br>
-    <a href="{% url 'remove_job' id=job.job_id %}"><button class="btn btn-primary">remove</button></a>
-    <br><br><br><br>
-    {% endfor %}
-<div class="popup-msg">
-    {% for message in messages %}
-        <p class="popup-msg-text">{{message}}</h1>
-    {% endfor %}
-</div>
-</div> {% endcomment %}
-
-
-{% include 'seeker/seekerHeader.html' %}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
-<div class="container">
-  <div class="row">
-    <ul class="job-items">
-      {% for job in jobs %}
-      <li class="job-item">
-        <div class="job-item-left">
-        <a href="{% url 'job_details_2' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job.job_title }}</h2></a>
-          <p>Employer: {{ job.job.job_employer }}</p>
-          <p>Position: {{ job.job.job_position }}</p>
-          <div class="job-category-wrapper">
-            <p class="job-item-category">Category:</p>
-            <p></p>
-            <p class="job-category">{{ job.job.job_category }}</p>
-          </div>
+<section class="jobs-wrapper section-wrapper">
+  <ul class="jobs-cards">
+  <h1> Your saved jobs</h1>
+  {% for job in jobs %}
+ 
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'job_details_2' id=job.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ job.job.job_category }}</p>
         </div>
-
-        <div class="job-item-low">
-          <h5>Contact Info</h5>
-          <p>Phone: {{ job.job.job_phone }}</p>
-          <p>Email Us: <a href="">{{ job.job.job_email }}</a></p>
-          <p>Apply On Our Website: <a href="">{{ job.job.job_website }}</a></p>
-          <div class="job-item-cta">
-          <button class="btn btn-primary" style="margin-right:20px;"  onclick="openForm()" > <i class="fas fa-trash-alt"></i>  Remove job</button>
-
-
-          <div class="form-popup" id="myForm">
-            <form class="form-container">
-            <h2 class="details">Are you sure you want to remove this saved job?</h1>
-            <div class="btns">
-              <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary apply" ><i class="fas fa-trash-alt"></i> Remove</button></a>
-              <button type="button" class="btn btn-primary cancel" onclick="closeForm()"><i class="far fa-window-close"></i> Close</button>
-            </div>
-            </form>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ job.job.job_title }}</h3>
           </div>
-            {% comment %} <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px">Remove Job</button></a> {% endcomment %}
-          </div>
+          <p class="jobs-detail">
+          {{ job.job.job_description|truncatechars:100 }}
+          {% comment %} {{ job.job.job_description|truncate(50, True, '...') }} {% endcomment %}
+            
+          </p>
         </div>
-      </li>
-      {% endfor %}
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{ job.job.job_email }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Number</h5>
+            <p>{{ job.job.job_phone }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Location</h5>
+            <p>{{ job.job.job_location }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5 >Remove this item></h5>
+            <a href="{% url 'remove_job' id=job.job_id %}"><button  class="btn btn-primary apply" ><i class="fas fa-trash-alt"></i> Remove</button></a>           
+          </li>
+        </ul>
       </div>
-    </ul>
-  </div>
-</div>
+     
+      {% endfor %}
+    </li>
+ </section>
+
+
+
+
+
+
+
+
+
 <div class="popup-msg">
     {% for message in messages %}
         <p class="popup-msg-text">{{message}}</h1>
@@ -76,12 +62,4 @@
 </div>
 
 {% include "footer.html" %}
-<script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>

@@ -1,3 +1,4 @@
+{% comment %}
 {% include 'recruiter/recruiterHeader.html' %}
 {% for userdata in userdata %}
 <div class="profile-wrapper">
@@ -44,4 +45,51 @@
     {% endfor %}
   </ul>
 </div>
-{% comment %} {% include 'footer.html' %} {% endcomment %}
+ {% include 'footer.html' %} {% endcomment %}
+
+
+{% include 'header.html' %}
+<section class="profile-wrapper section-wrapper">
+        <div class="profile-top-wrapper">
+          <div class="profile-image-wrapper">
+          {% for userdata in userdata %}
+            <img src="{{userdata.image.urll}}" class="profile-image" alt="avatar" />
+          </div>
+          <div class="profile-image-details">
+
+            <h4>{{request.user.first_name}} {{request.user.last_name}}</h4>
+            <p class="profile-bio">
+              {{userdata.bio}}
+            </p>
+          </div>
+        </div>
+        <ul class="profile-info">
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Username</h5>
+            <p class="profile-info-detail">{{request.user.username}}</p>
+          </li>
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Company Name</h5>
+            <p class="profile-info-detail">{{userdata.company_name}}</p>
+          </li>
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Company type</h5>
+            <p class="profile-info-detail">{{userdata.company_type}}</p>
+          </li>
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Address</h5>
+            <p class="profile-info-detail">{{userdata.address}}</p>
+          </li>
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Contact</h5>
+            <p class="profile-info-detail">{{userdata.contact}}</p>
+          </li>
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Company website</h5>
+            <p class="profile-info-detail">{{userdata.website}}</p>
+          </li>
+          
+         
+        </ul>
+        
+        {% endfor %}

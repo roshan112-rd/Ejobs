@@ -12,16 +12,23 @@ def feedback(request):
         email = request.POST['email']
         feedback = request.POST['feedback']
         image = request.FILES['image']
-        Feedback.objects.create(email=email, feedback=feedback, image=image)
 
+        Feedback.objects.create(email=email, feedback=feedback, image=image)
+    
         subject = 'Feedback'
         message = f'hello user, thank you for your feedback.'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [email, ]
-        send_mail( subject, message, email_from, recipient_list )
-        messages.info(request, 'Thank you for your feedback.')
 
+        send_mail( subject, message, email_from, recipient_list )
+        
         return redirect('home')
+
+
+
+        messages.info(request, 'Thank you for your feedback.')
+        return redirect('home')
+        
     else:
         return render (request, 'feedback/feedback.html')
 

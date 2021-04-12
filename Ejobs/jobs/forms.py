@@ -9,7 +9,7 @@ class JobForm(forms.ModelForm):
         ('accountant', 'Accountant'),
         ('management', 'Management'),
         ('technology', 'Technology'),
-        ('hardware', 'hardware'),
+        ('hardware', 'Hardware'),
         ('others', 'Others')
     )
     job_title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
@@ -20,6 +20,8 @@ class JobForm(forms.ModelForm):
     job_phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
     salary = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
     experience = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
+    job_location = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
+
     job_email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-input'}))
     job_website = forms.CharField(widget=forms.URLInput(attrs={'class': 'form-input'}))
     apply_until = forms.DateField( widget=forms.DateInput(attrs={'class': 'form-input'}))
