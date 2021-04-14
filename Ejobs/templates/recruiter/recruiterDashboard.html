@@ -1,17 +1,33 @@
 {% load static %}
 {% include "header.html" %}
 <main class="hero">
-        <div class="container" style="height:200px; width:80%;  border:2px solid black;">
-        <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="60px"></div>
+      <div class="container">
+            <div class="show-avilable-wrapper">
+      <div class="hero-text">
+      <img src="{% static "images/ej.png" %}" alt="logo"/ height="60px" >
+        
+        
+                <p class="hero-desc"> Hire the best fit.DISCOVER A FASTEST WAY TO GET A JOB DONE.</p>
+        <div class="cta"  style="padding:20px;">
+          <a href="{% url 'add_job' %}"><button class="btn btn-primary"><i class="far fa-plus-square"></i>  post a job</button></a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+        {% comment %} <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="60px"></div>
             <div class="hero-text">
                 <h1 class="hero-title">Hire the best fit.</h1>
                 <p class="hero-desc">DISCOVER A FASTEST WAY TO GET A JOB DONE.</p>
                 <div class="cta">
                     <a href="{% url 'add_job' %}"><button class="btn btn-primary"><i class="far fa-plus-square"></i>  post a job</button></a>
                 </div>
-            </div>
-        </div>        
-
+            </div> {% endcomment %}
+    </div>        
 </main>
 
 <section class="jobs-wrapper section-wrapper">

@@ -34,13 +34,19 @@ def seeker_register(request):
         user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
         Seeker.objects.create(user=user, contact=contact, gender=gender, address=address, image=image, bio=bio)
         auth.login(request, user)
-        return redirect('seeker_dashboard')
+        
                 
         subject = 'welcome to EJobs'
         message = f'Hi {user.username}, thank you for registering in EJobs.'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email, ]
-        send_mail( subject, message, email_from, recipient_list )
+        try:
+            send_mail( subject, message, email_from, recipient_list )
+        except:
+            return redirect('seeker_dashboard')
+
+        return redirect('seeker_dashboard')
+        
         
 
     else:
@@ -111,7 +117,10 @@ def recruiter_register(request):
         message = f'Hi {user.username}, thank you for registering as recruiter in EJobs.'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email, ]
-        send_mail( subject, message, email_from, recipient_list )
+        try:
+            send_mail( subject, message, email_from, recipient_list )
+        except:
+            return redirect('seeker_dashboard')
         return redirect('seeker_dashboard')
     else:
         return render(request, 'recruiter/recruiter_register.html')

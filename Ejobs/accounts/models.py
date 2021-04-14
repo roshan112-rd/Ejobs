@@ -8,7 +8,7 @@ class Seeker(models.Model):
     contact = models.CharField(max_length=15,null=True)
     gender = models.CharField(max_length=10, null=True)
     address = models.CharField(max_length=100, null=True)
-    bio = models.CharField(max_length=100, null=True)
+    bio = models.CharField(max_length=500, null=True)
     image = models.ImageField(blank=True,null=True, upload_to='seeker/', default='user.jpg')
 
     # def save(self, *args, **kwargs):

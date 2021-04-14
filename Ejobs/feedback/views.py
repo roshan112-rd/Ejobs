@@ -19,13 +19,13 @@ def feedback(request):
         message = f'hello user, thank you for your feedback.'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [email, ]
+        try:
+            send_mail( subject, message, email_from, recipient_list )
+        except:
 
-        send_mail( subject, message, email_from, recipient_list )
-        
+            return redirect('home')
+
         return redirect('home')
-
-
-
         messages.info(request, 'Thank you for your feedback.')
         return redirect('home')
         

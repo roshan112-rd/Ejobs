@@ -26,12 +26,12 @@
           {% endif %}
           {% else %}
           <li class="nav-item"><a class="nav-item-link" href="{% url 'home' %}">Home</a></li>
-          
           {% endif %}
 
 
 
           {% if user.is_staff %}
+          
           {% else %}
           <li class="nav-item"><a class="nav-item-link" href="{% url 'jobs' %}">Available Jobs</a></li>
           {% endif %}

@@ -2,18 +2,16 @@
 <main>
   <div class="container">
     <div class="show-avilable-wrapper">
-      <div class="logo">
-        <img src="{% static "images/ej.png" %}" alt="logo"/ height="60px">
-      </div>
       <div class="hero-text">
-        <h1 class="hero-title">Who Am I? Test.</h1>
+      <img src="{% static "images/ej.png" %}" alt="logo"/ height="60px" >
+        
         <p class="hero-desc">
           EJobs brings to you scientific and meticulously designed Psychometric
           Career Assessment to discover your true potential and interest. Know
           and understand yourself and the world of work in order to make career,
           educational, and life decisions.
         </p>
-        <div class="cta">
+        <div class="cta"  style="padding:20px;">
           <a href="{% url 'jobs' %}"
             ><button class="btn btn-primary">View available Jobs</button></a
           >

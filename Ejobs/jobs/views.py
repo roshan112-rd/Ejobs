@@ -169,6 +169,7 @@ def apply_job(request,job_id):
                     return redirect('appliedJobs')
                 else:
                     messages.info(request, 'Couldnot apply!')
+                    return redirect('appliedJobs')
             except:
                 return redirect('appliedJobs')
     else:
@@ -208,7 +209,7 @@ def decline(request,id):
         ''',
         'hello.ejobs@gmail.com',
         [f'{email}',],
-        fail_silently=False,)
+        fail_silently=True,)
         job.delete()
         return redirect('applicants')
     finally:
@@ -228,7 +229,7 @@ def accept(request,id):
     ''',
     'hello.ejobs@gmail.com',
     [f'{email}',],
-    fail_silently=False,)
+    fail_silently=True,)
     job.delete()
     return redirect('applicants') 
 

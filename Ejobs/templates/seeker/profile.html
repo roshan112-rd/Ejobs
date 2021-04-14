@@ -3,7 +3,7 @@
         <div class="profile-top-wrapper">
           <div class="profile-image-wrapper">
           {% for userdata in userdata %}
-            <img src="{{userdata.image.urll}}" class="profile-image" alt="avatar" />
+            <img src="{{userdata.image.url}}" class="profile-image" alt="avatar" />
           </div>
           <div class="profile-image-details">
           
@@ -86,6 +86,7 @@
           <a href="{{socialdata.instagram}}" target="popup"  onclick="tab.open('{{socialdata.instagram}}','name')"><i class="fab fa-instagram-square"></i></a>
           <a href="{{socialdata.twitter}}" target="popup"  onclick="tab.open('{{socialdata.twitter}}','name')"><i class="fab fa-twitter-square"></i></a>
           <a href="{{socialdata.others}}" target="popup"  onclick="tab.open('{{socialdata.others}}','name')"><i class="fab fa-google-plus"></i></a>
+          <a href="{% url 'password_change' %}">change password></a>
             </li>
 
     {% endfor %}
