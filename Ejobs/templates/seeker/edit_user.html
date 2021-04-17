@@ -1,0 +1,103 @@
+{% load static %}
+
+<title>Register</title>
+  {% include 'header.html'%}
+    <main class="signup auth">
+      <div class="container">
+        <div class="auth-left">
+          <div class="auth-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="auth-right">
+          <div class="auth-form-wrapper">
+          <h2> Seeker Register</h2>
+            <form action="{% url 'edit_user_data' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  name="first_name"
+                  required="true"
+                  placeholder="First name"
+                  value="{{request.user.first_name}}"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="last_name"
+                  placeholder="Last Name"
+                  value="{{request.user.last_name}}"
+                />
+              </div>
+              <div class="gender">
+                <input type="radio" id="male" name="gender" value="male" checked="checked"/>
+                <label for="male" >Male</label>
+                <input type="radio" id="female" name="gender" value="female" />
+                <label for="female" >Female</label>
+                <input type="radio" id="other" name="gender" value="other" />
+                <label for="other" >Other</label>
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="contact"
+                  placeholder="Contact number"
+                  value="{{user_data.contact}}"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  required="true"
+                  name="address"
+                  placeholder="Address"
+                  value="{{user_data.address}}"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="email"
+                  required="true"
+                  class="form-input"
+                  name="email"
+                  placeholder="Email"
+                  value="{{request.user.email}}"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="text"
+                  class="form-input"
+                  name="bio"
+                  value="{{user_data.bio}}"
+                  required="true"
+                  placeholder="enter your bio"
+                />
+              </div>
+              <div class="form-item">
+                <input
+                  type="submit"
+                  name="submit"
+                  class="form-button btn btn-primary"
+                  value="Submit"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+    {% include 'footer.html'%}
+</html>

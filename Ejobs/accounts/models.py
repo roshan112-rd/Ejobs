@@ -53,6 +53,7 @@ class Recruiter(models.Model):
     address = models.CharField(max_length=100, null=True)
     company_type= models.CharField(max_length=100, null=True)
     company_name= models.CharField(max_length=100, null=True)
+    website= models.CharField(max_length=100, null=True)
     image = models.ImageField(blank=True, null=True, upload_to='recruiter/')
     def __str__(self):
         return self.user.username

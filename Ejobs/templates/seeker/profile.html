@@ -13,6 +13,7 @@
             <p class="profile-bio">
               {{userdata.bio}}
             </p>
+            <a  onclick="openForm()">change profile picture></a>
             <a href="{% url 'password_change' %}">change password></a>
           </div>
         </div>
@@ -29,6 +30,7 @@
             <h5 class="profile-info-title">Address</h5>
             <p class="profile-info-detail">{{userdata.address}}</p>
           </li>
+          <a href=" {% url 'edit_user_data' %} ">edit details></a>
         </ul>
         
         
@@ -68,11 +70,17 @@
             <p class="profile-info-detail">{{adddata.available_for}}</p>
           </li>
           <li class="profile-info-items">
-          <a href="{% url 'edit_add_details' %}">edit details></a>
+
+         
+           
           </li>
         </ul>
     {% endfor %}
-
+ {% if user.seekersocialdetails%}
+         <a href="{% url 'edit_add_details' %}">edit details></a>
+          {% else %}
+          <a href=" {% url 'social_details' %} ">Add additional details></a>
+          {% endif %}
 
         <h1>Contact details</h1>
         <ul class="profile-info">
@@ -86,24 +94,47 @@
           </li>
           {% for socialdata in socialdata %}
           <li class="profile-info-items">
-              <a href="{{socialdata.facebook}}" target="popup"  onclick="tab.open('{{socialdata.facebook}}','name')"><i class="fab fa-facebook-square"></i></a>
-          
+          <a href="{{socialdata.facebook}}" target="popup"  onclick="tab.open('{{socialdata.facebook}}','name')"><i class="fab fa-facebook-square"></i></a>
           <a href="{{socialdata.instagram}}" target="popup"  onclick="tab.open('{{socialdata.instagram}}','name')"><i class="fab fa-instagram-square"></i></a>
           <a href="{{socialdata.twitter}}" target="popup"  onclick="tab.open('{{socialdata.twitter}}','name')"><i class="fab fa-twitter-square"></i></a>
-          <a href="{{socialdata.others}}" target="popup"  onclick="tab.open('{{socialdata.others}}','name')"><i class="fab fa-google-plus"></i></a>
-          <a href="{% url 'password_change' %}">change password></a>
+          <a href="{{socialdata.others}}" target="popup"  onclick="tab.open('{{socialdata.others}}','name')"><i class="fab fa-google-plus" ></i></a>
+
+    {% endfor %}
+    {% endfor %}
+              {% if user.seekersocialdetails%}
           <a href=" {% url 'edit_social_data' %} ">edit details></a>
-            </li>
-
-    {% endfor %}
-    {% endfor %}
-
-
-
+          {% else %}
+          <a href=" {% url 'social_details' %} ">Add details></a>
+          {% endif %}
+          </li>
+ 
 
 
 
 
+<div class="form-popup" id="myForm">
+  <form action="{% url 'change_pp' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    <h1 class="details">Please enter following details to continue</h1>
+    <label for="image">Chose company logo:</label>
+    <input type="file" id="image" name="image" accept="image/*">
+
+    <div class="btns">
+    <a href="{% url 'change_pp' %}"><button type="submit" name="submit" class="btn btn-primary apply">Change</button></a>
+      <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+    </div>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
 
 
 
@@ -117,7 +148,11 @@
 
 
 
-{% comment %} {% if user.seekeradditionaldetails and user.seekersocialdetails%}
+
+
+
+{% comment %} 
+ {% if user.seekeradditionaldetails and user.seekersocialdetails%}
   <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
 
 {% elif user.seekeradditionaldetails and not user.seekersocialdetails %}
@@ -127,6 +162,6 @@
   <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
   <a href="{% url 'additional_details' %}"><button class="btn btn-primary centrebtn">Complete your profile</button></a >
 
-{% endif %} {% endcomment %}
+{% endif %}  {% endcomment %}
 
 {% comment %} {% include 'footer.html'  %} {% endcomment %}

@@ -92,6 +92,7 @@ def recruiter_register(request):
         company_type=request.POST['company_type']
         company_name=request.POST['company_name']
         bio = request.POST['bio']
+        website = request.POST['website']
         image = request.FILES['image']
 
         if password1 != password2:
@@ -107,7 +108,7 @@ def recruiter_register(request):
             return redirect('recruiter_register')
 
         user = User.objects.create_user(first_name=first_name, last_name=last_name, password=password1, email=email, username=username,is_staff=True)
-        Recruiter.objects.create(user=user, contact=contact, address=address,company_type=company_type,company_name=company_name, image=image)
+        Recruiter.objects.create(user=user, contact=contact, address=address,company_type=company_type,company_name=company_name, image=image, bio=bio, website=website)
  
         auth.login(request, user)
         return redirect('recruiter_dashboard')
@@ -225,68 +226,4 @@ def social_details(request):
     else:
         return render(request, 'seeker/social_details.html')
 
-
-
-def password_change(request):
-    if request.user.is_authenticated:
-        if request.method =='POST':
-            password=request.POST.get('password1')
-            user=request.user
-            user.set_password(password)
-            user.save()
-        return render(request, 'change_password.html')
-    else:
-        messages.info(request, 'You are not logged in. Please log in to continue')
-        return redirect('home')
-
-def edit_add_details(request):
-    if request.method == 'POST':
-        university = request.POST['university']
-        qualification = request.POST['qualification']
-        skills = request.POST['skills']
-        preferred_job_category = request.POST['preferred_job_category']
-        available_for = request.POST['available_for']
-        preferred_location = request.POST['preferred_location']
-        work_experience = request.POST['work_experience']
-        user=User.objects.get(username=request.user)
-        adddata = SeekerAdditionalDetails.objects.filter(user=request.user)[0]
-       
-
-        adddata.qualification=qualification
-        adddata.university=university
-        adddata.skills=skills
-        adddata.preferred_job_category=preferred_job_category
-        adddata.available_for=available_for
-        adddata.referred_location=preferred_location
-        adddata.work_experience=work_experience
-    
-        adddata.save()
-        return redirect('profile')
-    else:
-        adddata = SeekerAdditionalDetails.objects.filter(user=request.user)[0]
-         
-
-        return render(request,'seeker/edit_add_details.html', {"adddata":adddata})
-
-def edit_social_data(request):
-    if request.method == 'POST':
-        facebook = request.POST['facebook']
-        instagram = request.POST['instagram']
-        twitter = request.POST['twitter']
-        others = request.POST['others']
-        user=User.objects.get(username=request.user)
-        social_data = SeekerSocialDetails.objects.filter(user=request.user)[0]
-
-        social_data.facebook=facebook
-        social_data.instagram=instagram
-        social_data.twitter=twitter
-        social_data.others=others
-        social_data.save()
-        return redirect('profile')
-
-    else:
-        social_data = SeekerSocialDetails.objects.filter(user=request.user)[0]
-        print(social_data.facebook)
-
-        return render(request,'seeker/edit_social_details.html', {"social_data":social_data})
 

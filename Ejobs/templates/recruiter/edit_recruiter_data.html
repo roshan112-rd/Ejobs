@@ -1,5 +1,5 @@
 {% load static %}
-<title>Register</title>
+<title>Edit Profile</title>
 
   {% include 'header.html'%}
     <main class="signup auth" >
@@ -14,7 +14,7 @@
         </div>
         <div class="auth-right" style="margin-top:35px; margin-bottom:20px;>
           <div class="auth-form-wrapper">
-            <form action="{% url 'recruiter_register' %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'edit_recruiter_data' %}" method="post" enctype="multipart/form-data">
             <h2> Recruiter Register</h2>
               {% csrf_token %}
               <div class="form-item">
@@ -24,6 +24,7 @@
                   required="true"
                   name="first_name"
                   placeholder="First Name"
+                  value="{{request.user.first_name}}"
                 />
               </div>
               <div class="form-item">
@@ -33,20 +34,8 @@
                   required="true"
                   name="last_name"
                   placeholder="Last Name"
+                  value="{{request.user.last_name}}"
                 />
-              </div>
-              <div class="form-item">
-                <input
-                  type="text"
-                  required="true"
-                  class="form-input"
-                  name="username"
-                  placeholder="Username"
-                />
-              </div>
-              <div class="form-item">
-                <label for="image">Chose company logo:</label>
-                <input type="file" id="image" name="image" accept="image/*">
               </div>
               <div class="form-item">
                 <input
@@ -55,6 +44,8 @@
                   required="true"
                   name="contact"
                   placeholder="Contact number"
+                  value="{{rec_data.contact}}"
+                   
                 />
               </div>
               <div class="form-item">
@@ -64,6 +55,7 @@
                   required="true"
                   name="address"
                   placeholder="Company Address"
+                  value="{{rec_data.address}}"
                 />
               </div>
               <div class="form-item">
@@ -73,6 +65,7 @@
                   class="form-input"
                   name="email"
                   placeholder="Company Email Address"
+                  value="{{request.user.email}}"
                 />
               </div>
               <div class="form-item">
@@ -82,6 +75,7 @@
                   class="form-input"
                   name="company_type"
                   placeholder="Company Type"
+                  value="{{rec_data.company_type}}"
                 />
               </div>
               <div class="form-item">
@@ -91,8 +85,10 @@
                   class="form-input"
                   name="company_name"
                   placeholder="Company Name"
+                  value="{{rec_data.company_name}}"
                 />
               </div>
+ 
               <div class="form-item">
                 <input
                   type="text"
@@ -100,26 +96,20 @@
                   name="bio"
                   required="true"
                   placeholder="Enter Company Bio"
+                  value="{{rec_data.bio}}"
                 />
               </div>
               <div class="form-item">
                 <input
-                  type="password"
+                  type="text"
                   class="form-input"
+                  name="website"
                   required="true"
-                  name="password1"
-                  placeholder="Password"
+                  placeholder="Enter Company website url"
+                  value="{{rec_data.website}}"
                 />
               </div>
-              <div class="form-item">
-                <input
-                  type="password"
-                  class="form-input"
-                  required="true"
-                  name="password2"
-                  placeholder="Confirm Password"
-                />
-              </div>
+ 
               <div class="form-item">
                 <input
                   type="submit"
