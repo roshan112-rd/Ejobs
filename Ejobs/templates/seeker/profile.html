@@ -12,6 +12,7 @@
             <p class="profile-bio">
               {{userdata.bio}}
             </p>
+            <a href="{% url 'password_change' %}">change password></a>
           </div>
         </div>
         <ul class="profile-info">
@@ -65,6 +66,9 @@
             <h5 class="profile-info-title">Preferred location</h5>
             <p class="profile-info-detail">{{adddata.available_for}}</p>
           </li>
+          <li class="profile-info-items">
+          <a href="{% url 'edit_add_details' %}">edit details></a>
+          </li>
         </ul>
     {% endfor %}
 
@@ -87,6 +91,7 @@
           <a href="{{socialdata.twitter}}" target="popup"  onclick="tab.open('{{socialdata.twitter}}','name')"><i class="fab fa-twitter-square"></i></a>
           <a href="{{socialdata.others}}" target="popup"  onclick="tab.open('{{socialdata.others}}','name')"><i class="fab fa-google-plus"></i></a>
           <a href="{% url 'password_change' %}">change password></a>
+          <a href=" ">edit details></a>
             </li>
 
     {% endfor %}

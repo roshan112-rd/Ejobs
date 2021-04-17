@@ -162,6 +162,7 @@ def profile(request):
         user=request.user
         if user.is_staff:
             userdata = Recruiter.objects.filter(user=request.user)
+
             return render(request, 'recruiter/profile.html', {'userdata': userdata})
         else:
             userdata = Seeker.objects.filter(user=request.user)
@@ -228,7 +229,40 @@ def social_details(request):
 
 def password_change(request):
     if request.user.is_authenticated:
+        if request.method =='POST':
+            password=request.POST.get('password1')
+            user=request.user
+            user.set_password(password)
+            user.save()
         return render(request, 'change_password.html')
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('home')
+
+def edit_add_details(request):
+    if request.method == 'POST':
+        university = request.POST['university']
+        qualification = request.POST['qualification']
+        skills = request.POST['skills']
+        preferred_job_category = request.POST['preferred_job_category']
+        available_for = request.POST['available_for']
+        preferred_location = request.POST['preferred_location']
+        work_experience = request.POST['work_experience']
+        user=User.objects.get(username=request.user)
+        adddata = SeekerAdditionalDetails.objects.filter(user=request.user)[0]
+       
+        adddata.qualification=qualification
+        adddata.university=university
+        adddata.skills=skills
+        adddata.preferred_job_category=preferred_job_category
+        adddata.available_for=available_for
+        adddata.referred_location=preferred_location
+        adddata.work_experience=work_experience
+    
+        adddata.save()
+        return redirect('profile')
+    else:
+        adddata = SeekerAdditionalDetails.objects.filter(user=request.user)[0]
+        print(adddata.university)
+
+        return render(request,'seeker/edit_add_details.html', {"adddata":adddata})

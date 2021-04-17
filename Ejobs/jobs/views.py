@@ -182,7 +182,6 @@ def search(request):
     query = request.GET['query']
     if(query==''):
         return redirect("jobs")
-    
     jobs = Job.objects.filter(Q(job_title__icontains=query) | Q(job_employer__icontains=query) | Q(job_position__icontains=query) | Q(job_category__icontains=query))
     if (jobs):
         allJob =  {'searched_jobs': jobs}
