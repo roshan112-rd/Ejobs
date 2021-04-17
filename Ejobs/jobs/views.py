@@ -114,20 +114,24 @@ def remove_applied_job(request,id):
 
 
 def save_job(request,job_id):
+    if request.user.is_authenticated:
+        if SavedJobs.objects.filter(job_id=job_id,user=request.user).exists():
+                messages.info(request, 'you already saved this job')
+                return redirect('saved_jobs')
+        else:
+            if request.user.is_authenticated:
+                try:
+                    job=Job.objects.get(job_id=job_id)
+                    user=User.objects.get(username=request.user)
+                    saved_Jobs=SavedJobs(job=job,user=user)
+                    saved_Jobs.save()
+                    return redirect('saved_jobs')
+                except:
+                    return redirect('saved_jobs')
     
-    if SavedJobs.objects.filter(job_id=job_id,user=request.user).exists():
-            messages.info(request, 'you already saved this job')
-            return redirect('saved_jobs')
     else:
-        if request.user.is_authenticated:
-            try:
-                job=Job.objects.get(job_id=job_id)
-                user=User.objects.get(username=request.user)
-                saved_Jobs=SavedJobs(job=job,user=user)
-                saved_Jobs.save()
-                return redirect('saved_jobs')
-            except:
-                return redirect('saved_jobs')
+        messages.info(request, 'You are not logged in. Please log in to continue')
+        return redirect('home')
 
 def job_details(request, id):
     if request.user.is_authenticated:
@@ -144,12 +148,14 @@ def job_details_2(request, id):
     if request.user.is_authenticated and request.user.is_staff:
         messages.info(request, 'You dont have access to this page')
         return redirect('home')
-    elif request.user.is_authenticated:
+    # elif request.user.is_authenticated:
+    #     job = Job.objects.get(job_id= id)
+    #     return render(request, 'jobs/job_details_2.html', {'job': job})
+    else:
         job = Job.objects.get(job_id= id)
         return render(request, 'jobs/job_details_2.html', {'job': job})
-    else:
-        messages.info(request, 'You are not logged in. Please log in to continue')
-        return redirect('home')
+        # messages.info(request, 'You are not logged in. Please log in to continue')
+        # return redirect('home')
         
 
 def apply_job(request,job_id):

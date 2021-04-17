@@ -21,7 +21,7 @@ class JobForm(forms.ModelForm):
     salary = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
     experience = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
     job_location = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
-    no__of_vacancy = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
+    no_of_vacancy = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
     job_email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-input'}))
     job_website = forms.CharField(widget=forms.URLInput(attrs={'class': 'form-input'}))
     apply_until = forms.DateField( widget=forms.DateInput(attrs={'class': 'form-input'}))

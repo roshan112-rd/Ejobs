@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
 <div class="container">
   <div class="row">
@@ -33,4 +33,82 @@
       </div>
     </ul>
   </div>
+</div> {% endcomment %}
+{% include 'header.html'%}
+<title>Job Details</title>
+<section class="job-detail-wrapper section-wrapper">
+        <div class="job-detail-top">
+          <div class="job-detail-image">
+          {% if 'finance' in job.job_category %}
+            <img src="https://images.unsplash.com/photo-1586021280718-53fbadcb65a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80">
+          {% elif 'management' in job.job_category %}
+          <img src="https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+          {% else %}
+            <img
+              src="https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt=""
+            />
+            {% endif %}
+          </div>
+          <div class="job-provider">
+            <div class="job-provider-image-wrapper">
+              <img
+                class="job-provider-image"
+                src="https://images.pexels.com/photos/315938/pexels-photo-315938.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                alt=""
+              />
+            </div>
+            <div class="job-provider-detail">
+              <h4>Recruiter</h4>
+              <p>{{job.user.first_name}} {{job.user.last_name}}  </p>
+            </div>
+          </div>
+        </div>
+        <div class="job-detail-low">
+          <div class="job-detail-desc b-btm">
+            {{job.job_description}}
+          </div>
+
+
+
+              <a href="{% url 'edit_job' job_id=job.job_id %}"><h3 class="job-category">Edit</h3></a>
+            
+              <a href="{% url 'delete_job' id=job.job_id %}" ><h3 class="job-category" >Delete</h3></a>
+           
+          </div>
+          <div class="job-information">
+          <h4>{{job.job_title}}</h4>
+            <h5><u>Basic Job Information</u></h5>
+            <div class="job-info-item">
+              <h5 class="job-info-title">Job Category : </h5>
+              <p class="job-info-desc">{{job.job_category}}</p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">Job Employer :</h5>
+              <p class="job-info-desc">{{ job.job_employer }}</p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">Phone number:</h5>
+              <p class="job-info-desc">{{ job.job_phone }}</p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">Apply on our website</h5>
+              <p class="job-info-desc"><a href="{{ job.job_website }}">{{ job.job_website }}</a></p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">Our Email :</h5>
+              <p class="job-info-desc">{{ job.job_email }}</p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">Job Location :</h5>
+              <p class="job-info-desc">{{ job.job_location }}</p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">No. of Vacancies :</h5>
+              <p class="job-info-desc">{{ job.no_of_vacancy }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 </div>
+{% include 'footer.html'%}

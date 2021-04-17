@@ -1,5 +1,5 @@
 {% include 'seeker/seekerHeader.html' %}
-<title>Profile</title>
+<title>Edit Profile</title>
   <main class="signup auth">
       <div class="container">
         <div class="auth-left">
@@ -13,43 +13,53 @@
         <div class="auth-right">
         
           <div class="auth-form-wrapper">
-            <form action="" method="post">
-            <h2>Add social details</h2>
+            <form action="  {% url 'edit_social_data' %}" method="post">
+            <h2>Edit social details</h2>
               {% csrf_token %}
+            
               <div class="form-item">
+              <h3>Facebook</h3>
                 <input
-                  type="text"
+                  type="url"
                   class="form-input"
                   required="true"
                   name="facebook"
-                  placeholder="Facebook"
+                  placeholder="{{social_data.facebook}}"
+                  value="{{social_data.facebook}}"
                 />
+
               </div>
               <div class="form-item">
+              <h3>Instagram</h3>
                 <input
-                  type="text"
+                  type="url"
                   class="form-input"
                   name="instagram"
                   required="true"
-                  placeholder="Instagram"
+                  placeholder="{{social_data.instagram}}"
+                  value="{{social_data.instagram}}"
                 />
               </div>
               <div class="form-item">
+              <h3>Twitter</h3>
                 <input
-                  type="text"
+                  type="url"
                   class="form-input"
                   required="true"
                   name="twitter"
-                  placeholder="twitter"
+                  placeholder="{{social_data.twitter}}"
+                  value="{{social_data.twitter}}"
                 />
               </div>
               <div class="form-item">
+              <h3>Others</h3>
                 <input
-                  type="text"
+                  type="url"
                   class="form-input"
                   required="true"
                   name="others"
-                  placeholder="Others"
+                  placeholder="{{social_data.others}}"
+                  value="{{social_data.others}}"
                 />
               </div>
               

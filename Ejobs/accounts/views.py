@@ -251,6 +251,7 @@ def edit_add_details(request):
         user=User.objects.get(username=request.user)
         adddata = SeekerAdditionalDetails.objects.filter(user=request.user)[0]
        
+
         adddata.qualification=qualification
         adddata.university=university
         adddata.skills=skills
@@ -263,6 +264,29 @@ def edit_add_details(request):
         return redirect('profile')
     else:
         adddata = SeekerAdditionalDetails.objects.filter(user=request.user)[0]
-        print(adddata.university)
+         
 
         return render(request,'seeker/edit_add_details.html', {"adddata":adddata})
+
+def edit_social_data(request):
+    if request.method == 'POST':
+        facebook = request.POST['facebook']
+        instagram = request.POST['instagram']
+        twitter = request.POST['twitter']
+        others = request.POST['others']
+        user=User.objects.get(username=request.user)
+        social_data = SeekerSocialDetails.objects.filter(user=request.user)[0]
+
+        social_data.facebook=facebook
+        social_data.instagram=instagram
+        social_data.twitter=twitter
+        social_data.others=others
+        social_data.save()
+        return redirect('profile')
+
+    else:
+        social_data = SeekerSocialDetails.objects.filter(user=request.user)[0]
+        print(social_data.facebook)
+
+        return render(request,'seeker/edit_social_details.html', {"social_data":social_data})
+

@@ -46,14 +46,14 @@
   </ul>
 </div>
  {% include 'footer.html' %} {% endcomment %}
-
-
+<title>Profile</title>
+{% load static %}
 {% include 'header.html' %}
 <section class="profile-wrapper section-wrapper">
         <div class="profile-top-wrapper">
           <div class="profile-image-wrapper">
           {% for userdata in userdata %}
-            <img src="{{userdata.image.urll}}" class="profile-image" alt="avatar" />
+            <img src="{{userdata.image.url}}" class="profile-image" alt={% static 'seeker/user.jpg' %} />
           </div>
           <div class="profile-image-details">
 
