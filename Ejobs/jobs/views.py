@@ -23,7 +23,6 @@ def add_job(request):
                 return redirect('jobhome')
                 
             else:
-                # print(form)
                 messages.info(request, 'invalid date format (mm/dd/yyyy)')
                 return render(request, 'jobs/addJob.html', {'form': form})
         else:

@@ -1,6 +1,7 @@
 {% include 'header.html' %}
 <title>Saved Jobs</title>
 <section class="jobs-wrapper section-wrapper">
+{% include 'bannerad.html'%}
   <ul class="jobs-cards">
   <h1> Your saved jobs</h1>
   {% for job in jobs %}
@@ -55,11 +56,6 @@
 
 
 
-<div class="popup-msg">
-    {% for message in messages %}
-        <p class="popup-msg-text">{{message}}</h1>
-    {% endfor %}
-</div>
-
+ 
 {% include "footer.html" %}
 

@@ -1,77 +1,89 @@
 <title>Profile</title>
-{% load static %}
-{% include 'header.html' %}
+{% load static %} {% include 'header.html' %}
 <section class="profile-wrapper section-wrapper">
-        <div class="profile-top-wrapper">
-          <div class="profile-image-wrapper">
-          {% for userdata in userdata %}
-            <img src="{{userdata.image.url}}" class="profile-image" alt={% static 'seeker/user.jpg' %} />
-          </div>
-          <div class="profile-image-details">
-
-            <h4>{{request.user.first_name}} {{request.user.last_name}}</h4>
-            <p class="profile-bio">
-              {{userdata.bio}}
-            </p>
-            <a  onclick="openForm()">change profile picture></a>
-          </div>
-        </div>
-        <ul class="profile-info">
-          <li class="profile-info-items">
-            <h5 class="profile-info-title">Username</h5>
-            <p class="profile-info-detail">{{request.user.username}}</p>
-          </li>
-          <li class="profile-info-items">
-            <h5 class="profile-info-title">Company Name</h5>
-            <p class="profile-info-detail">{{userdata.company_name}}</p>
-          </li>
-          <li class="profile-info-items">
-            <h5 class="profile-info-title">Company type</h5>
-            <p class="profile-info-detail">{{userdata.company_type}}</p>
-          </li>
-          <li class="profile-info-items">
-            <h5 class="profile-info-title">Address</h5>
-            <p class="profile-info-detail">{{userdata.address}}</p>
-          </li>
-          <li class="profile-info-items">
-            <h5 class="profile-info-title">Contact</h5>
-            <p class="profile-info-detail">{{userdata.contact}}</p>
-          </li>
-          <li class="profile-info-items">
-            <h5 class="profile-info-title">Company website</h5>
-            <p class="profile-info-detail">{{userdata.website}}</p>
-            <a href=" {% url 'edit_recruiter_data' %} ">edit details></a>
-
-          </li>
-          
-         <a href="{% url 'password_change' %}">change password></a>
-        </ul>
-        
-        {% endfor %}
-
-
-
-
-<div class="form-popup" id="myForm">
-  <form action="{% url 'pp_change' %}" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-    <h1 class="details">Please enter following details to continue</h1>
-    <label for="image">Chose company logo:</label>
-    <input type="file" id="image" name="image" accept="image/*">
-
-    <div class="btns">
-    <a href="{% url 'pp_change' %}"><button type="submit" name="submit" class="btn btn-primary apply">Change</button></a>
-      <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
+  <div class="profile-top-wrapper">
+    <div class="profile-image-wrapper">
+      {% for userdata in userdata %}
+      <img src="{{userdata.image.url}}" class="profile-image" alt="pp" />
     </div>
-  </form>
-</div>
+    <div class="profile-image-and-upload">
+      <div class="profile-image-details">
+        <h4>{{request.user.first_name}} {{request.user.last_name}}</h4>
+        <p class="profile-bio">{{userdata.bio}}</p>
+        <a onclick="openForm()" class="changepp">change profile picture></a>
+        <a href="{% url 'password_change' %}" >change password></a>
+      </div>
+      <div class="form-popup" id="myForm">
+        <form
+          action="{% url 'pp_change' %}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <label for="image">Chose company logo:</label>
+          <input type="file" id="image" name="image" accept="image/*" />
 
-<script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+          <div class="btns">
+            <a href="{% url 'pp_change' %}"
+              ><button
+                type="submit"
+                name="submit"
+                class="btn btn-primary apply"
+              >
+                Change
+              </button></a
+            >
+            <button
+              type="button"
+              onclick="closeForm()"
+              style="border: none"
+            >
+             <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <ul class="profile-info">
+    <li class="profile-info-items">
+      <h5 class="profile-info-title">Username</h5>
+      <p class="profile-info-detail">{{request.user.username}}</p>
+    </li>
+    <li class="profile-info-items">
+      <h5 class="profile-info-title">Company Name</h5>
+      <p class="profile-info-detail">{{userdata.company_name}}</p>
+    </li>
+    <li class="profile-info-items">
+      <h5 class="profile-info-title">Company type</h5>
+      <p class="profile-info-detail">{{userdata.company_type}}</p>
+    </li>
+    <li class="profile-info-items">
+      <h5 class="profile-info-title">Address</h5>
+      <p class="profile-info-detail">{{userdata.address}}</p>
+    </li>
+    <li class="profile-info-items">
+      <h5 class="profile-info-title">Contact</h5>
+      <p class="profile-info-detail">{{userdata.contact}}</p>
+    </li>
+    <li class="profile-info-items">
+      <h5 class="profile-info-title">Company website</h5>
+      <p class="profile-info-detail">{{userdata.website}}</p>
+      <a href=" {% url 'edit_recruiter_data' %} ">edit details></a>
+    </li>
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
+    <a href="{% url 'password_change' %}">change password></a>
+  </ul>
+
+  {% endfor %}
+
+  <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+  </script>
+</section>

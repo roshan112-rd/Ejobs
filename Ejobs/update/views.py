@@ -102,7 +102,7 @@ def edit_user_data(request):
         gender = request.POST['gender']
         address = request.POST['address']
         bio = request.POST['bio']
-        image = request.FILES['image']
+        # image = request.FILES['image']
 
         user=request.user
 
@@ -121,7 +121,7 @@ def edit_user_data(request):
         user_data.gender=gender
         user_data.address=address
         user_data.bio=bio
-        user_data.image=image
+        # user_data.image=image
         user_data.save()
         return redirect('profile')
 
@@ -141,7 +141,7 @@ def edit_recruiter_data(request):
         company_name=request.POST['company_name']
         bio = request.POST['bio']
         website = request.POST['website']
-        image = request.FILES['image']
+        # image = request.FILES['image']
        
         user=request.user
         user.first_name=first_name
@@ -158,7 +158,7 @@ def edit_recruiter_data(request):
         rec_data.company_type=company_type
         rec_data.address=address
         rec_data.bio=bio
-        rec_data.image=image
+        # rec_data.image=image
         rec_data.company_name=company_name
         rec_data.website=website
         rec_data.save()
@@ -172,8 +172,10 @@ def pp_change(request):
     if request.method =='POST':
         image = request.FILES['image']
         user=User.objects.get(username=request.user)
-
-        img = Recruiter.objects.filter(user=request.user)[0]
+        if user.is_staff:
+            img = Recruiter.objects.filter(user=request.user)[0]
+        else:
+            img = Seeker.objects.filter(user=request.user)[0]
         img.image=image
         img.save()
         return redirect('profile')

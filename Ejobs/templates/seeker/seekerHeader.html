@@ -48,3 +48,10 @@ window.onclick = function(event) {
   }
 }
 </script>
+
+{% for message in messages %}
+<div class="popup-msg">
+  <p class="popup-msg-text">{{message}}</p>
+  <i class="fa fa-times popup-close"></i>
+</div>
+{% endfor %}

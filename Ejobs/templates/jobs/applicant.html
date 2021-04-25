@@ -2,6 +2,7 @@
 {% if jobs %}
 <h2 class="job-item-title">Applicants For  : {{ job.job }}</h2>
 <section class="jobs-wrapper section-wrapper">
+{% include 'bannerad.html'%}
   <ul class="jobs-cards">
   {% for jobs in jobs %}
     <li class="jobs-card-wrapper">
@@ -29,6 +30,10 @@
           <li class="jobs-contact-item">
             <h5>Address</h5>
             <p>{{ jobs.user.seeker.address }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>CV</h5>
+            <a href="{{ jobs.usercv.url }}" target='_'>View CV</a>
           </li>
            <li class="jobs-contact-item">
               <a href="{% url 'accept' job.id %}" ><button class="btn btn-primary" style="margin-bottom:5px;"> accept application</button></a>

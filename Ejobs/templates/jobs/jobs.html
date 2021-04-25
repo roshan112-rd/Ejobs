@@ -20,8 +20,9 @@
 {% comment %} searched jobs {% endcomment %}
 
 
-
+{% comment %} {% include 'bannerad.html'%} {% endcomment %}
 <section class="jobs-wrapper section-wrapper">
+{% include 'bannerad.html'%}
   <ul class="jobs-cards">
   {% for job in searched_jobs %}
     <li class="jobs-card-wrapper">
@@ -63,7 +64,8 @@
 
   
 {% comment %} all jobs {% endcomment %}
-<section class="jobs-wrapper section-wrapper">
+<section class="jobs-wrapper section-wrapper job-class">
+{% include 'bannerad.html'%}
   <ul class="jobs-cards">
   {% for job in jobs %}
     <li class="jobs-card-wrapper">

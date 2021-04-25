@@ -1,6 +1,7 @@
 {% include "header.html" %}
 <title>Applicants</title>
 <section class="jobs-wrapper section-wrapper">
+{% include 'bannerad.html'%}
   <ul class="jobs-cards">
   {% for job in jobs %}
     <li class="jobs-card-wrapper">
@@ -22,6 +23,10 @@
             <h5>Issued Date</h5>
             <p>{{ job.created }}</p>
           </li>
+          <li class="jobs-contact-item">
+            <h5>Due Date</h5>
+            <p>{{ job.apply_until }}</p>
+          </li>
         </ul>
       </div>
       {% endfor %}
@@ -42,8 +47,4 @@
 
 
 
-<div class="popup-msg">
-    {% for message in messages %}
-        <p class="popup-msg-text">{{message}}</h1>
-    {% endfor %}
-</div>
+ 

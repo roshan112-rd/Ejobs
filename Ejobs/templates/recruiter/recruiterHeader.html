@@ -1,0 +1,25 @@
+{% load static %}
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Home</title>
+</head>
+<nav>
+    <a href="{% url 'home' %}">   <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="50px"></div></a>
+
+    <ul class="nav-items">
+        <li class="nav-item"><a href="{% url 'recruiter_dashboard' %}">   Dashboard</a></li>
+        <li class="nav-item"><a href=" {% url 'profile' %}">   Org. Profile </a></li> 
+        <li class="nav-item"><a href="{% url 'applicants' %}">applicants</a></li>
+        <li class="nav-item"><a href="{% url 'logout' %}">  Logout</a></li>
+    </ul>
+</nav>
+{% for message in messages %}
+<div class="popup-msg">
+  <p class="popup-msg-text">{{message}}</p>
+  <i class="fa fa-times popup-close"></i>
+</div>
+{% endfor %}

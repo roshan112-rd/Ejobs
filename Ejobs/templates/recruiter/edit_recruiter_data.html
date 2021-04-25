@@ -14,7 +14,7 @@
         </div>
         <div class="auth-right" style="margin-top:35px; margin-bottom:20px;>
           <div class="auth-form-wrapper">
-            <form action="{% url 'edit_recruiter_data' %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'edit_recruiter_data' %}" method="post" enctype="multipart/form-data" class="org-profile-edit-form">
             <h2> Recruiter Register</h2>
               {% csrf_token %}
               <div class="form-item">
@@ -119,11 +119,6 @@
                 />
               </div>
               <p>Already a member? <a href="{% url 'login' %}">Login</a></p>
-              <div class="popup-msg">
-{% for message in messages %}
-    <p class="popup-msg-text">{{message}}</h1>
-{% endfor %}
-</div
             </form>
           </div>
         </div>

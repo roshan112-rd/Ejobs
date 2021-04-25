@@ -8,7 +8,7 @@
       <img src="{% static "images/ej.png" %}" alt="logo"/ height="60px" >
         
         
-                <p class="hero-desc"> Hire the best fit.DISCOVER A FASTEST WAY TO GET A JOB DONE.</p>
+                <p class="hero-desc"> Hire the best fit.<br>DISCOVER A FASTEST WAY TO GET A JOB DONE.</p>
         <div class="cta"  style="padding:20px;">
           <a href="{% url 'add_job' %}"><button class="btn btn-primary"><i class="far fa-plus-square"></i>  post a job</button></a>
         </div>
@@ -32,6 +32,7 @@
 </main>
 
 <section class="jobs-wrapper section-wrapper">
+{% include 'bannerad.html'%}
   <ul class="jobs-cards">
   <h3 ><a href="{% url 'jobhome'%}"><u>Active Jobs:</u></a> The list of jobs that you have posted and currently active.</h3>
   {% for job in jobs %}
@@ -72,9 +73,5 @@
       {% endfor %}
     </li>
  </section>
-<div class="popup-msg">
-    {% for message in messages %}
-        <p class="popup-msg-text">{{message}}</h1>
-    {% endfor %}
-</div>
+ 
 {% include "footer.html" %}

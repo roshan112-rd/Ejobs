@@ -32,11 +32,28 @@
           <div class="job-detail-desc b-btm">
             {{job.job_description}}
           </div>
-
+            <div class="group-btn">
               <a href="{% url 'save_job' job.job_id %}"><h3 class="job-category">Save</h3></a>
-            
-              <h3 class="job-category" onclick="openForm()">Apply</h3>
-           
+              {% if user.is_authenticated %}
+              <h3 class="job-category" onclick="openForm()">Apply</h3>   
+              {% else %} 
+                 <a href="{% url 'login'%}"><h3 class="job-category" >Apply</h3></a>
+              {% endif %}       
+           </div>
+           <div class="form-popup" id="myForm">
+  <form class="form-container" method="post" enctype="multipart/form-data" action="{% url 'apply_job' job.job_id %}">
+  {% csrf_token %}
+    <h1 class="details">Please enter following details to continue</h1>
+    <label for="usercv"><b>Attach your cv</b></label>
+    <input type="file" name="usercv" required>
+    <div class="btns">
+
+      {% comment %} <a href="{% url 'apply_job' job.job_id %}" type="submit"><h3 class="job-category"  >Apply</h3></a> {% endcomment %}
+      <a href="{% url 'apply_job' job.job_id %}" ><button type="submit" class="job-category">APPLY</button></a>
+      <button type="button" class="job-category" onclick="closeForm()">Close</button>
+    </div>
+  </form>
+</div>
           </div>
           <div class="job-information">
           <h4>{{job.job_title}}</h4>
@@ -68,6 +85,16 @@
             <div class="job-info-item">
               <h5 class="job-info-title">No. of Vacancies :</h5>
               <p class="job-info-desc">{{ job.no_of_vacancy }}</p>
+            </div>
+
+
+            <div class="job-info-item">
+              <h5 class="job-info-title">Apply until:</h5>
+              <p class="job-info-desc">{{ job.apply_until }}</p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">No. of Vacancies :</h5>
+              <p class="job-info-desc">{{ job.created }}</p>
             </div>
           </div>
         </div>

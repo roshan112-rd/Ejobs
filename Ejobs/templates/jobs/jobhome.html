@@ -1,4 +1,4 @@
-
+<title>Jobs</title>
 {% include "recruiter/recruiterHeader.html" %}
 <title>Ejobs</title>
 {% block content %}
@@ -45,11 +45,7 @@
       <div class="cta">
         <a href="{% url 'add_job' %}"><button class="btn btn-primary centrebtn">aDD more Jobs</button></a >
       </div>
-      <div class="popup-msg">
-        {% for message in messages %}
-        <p class="popup-msg-text">{{message}}</h1>
-        {% endfor %}
-      </div>
+ >
     </ul>
   </div>
 </div>

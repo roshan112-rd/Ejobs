@@ -9,12 +9,12 @@ class Seeker(models.Model):
     gender = models.CharField(max_length=10, null=True)
     address = models.CharField(max_length=100, null=True)
     bio = models.CharField(max_length=500, null=True)
-    image = models.ImageField(blank=True,null=True, upload_to='seeker/', default='user.jpg')
+    image = models.ImageField(blank=True,null=True, upload_to='seeker/', default='user.jpg' )
 
     # def save(self, *args, **kwargs):
     #     super().save(*args, **kwargs)
-    #     img=Image.open(self.image.path)
-    #     if imag.height>300 or img.width>300:
+    #     img=image.open(self.image.path)
+    #     if image.height>300 or img.width>300:
     #         output_size=(300,300)
     #         img.thumbnail(output_size)
     #         img.save(self.image.path)

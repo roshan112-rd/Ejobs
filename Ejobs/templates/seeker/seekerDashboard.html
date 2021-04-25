@@ -4,28 +4,32 @@
   <div class="container">
     <div class="show-avilable-wrapper">
       <div class="hero-text">
-      <img src="{% static "images/ej.png" %}" alt="logo"/ height="60px" >
+          <img src="{% static "images/ej.png" %}" alt="logo"/ height="60px" >
         
-        <p class="hero-desc">
-          EJobs brings to you scientific and meticulously designed Psychometric
-          Career Assessment to discover your true potential and interest. Know
-          and understand yourself and the world of work in order to make career,
-          educational, and life decisions.
-        </p>
-        <div class="cta"  style="padding:20px;">
-          <a href="{% url 'jobs' %}"
-            ><button class="btn btn-primary">View available Jobs</button></a
-          >
+          <p class="hero-desc">
+            EJobs brings to you scientific and meticulously designed Psychometric
+            Career Assessment to discover your true potential and interest. Know
+            and understand yourself and the world of work in order to make career,
+            educational, and life decisions.
+          </p>
+          <div class="cta"  style="padding:20px;">
+            <a href="{% url 'jobs' %}"
+              ><button class="btn btn-primary">View available Jobs</button></a
+            >
+          </div>
         </div>
       </div>
-    </div>
+  </div>
+</main>
 
 
 
 <section class="jobs-wrapper section-wrapper">
+{% include 'bannerad.html'%}
   <ul class="jobs-cards">
+   <h2>Jobs specially made for you.</h2><h4>(jobs are recommended according to your preferred job category.</h4>
   {% for job in jobs %}
-  <h2>Recommended jobs.</h2>
+ 
     <li class="jobs-card-wrapper">
       <a href="{% url 'job_details_2' id=job.job_id %}"> 
         <div class="jobs-top-category">
@@ -59,7 +63,9 @@
           </li>
         </ul>
       </div>
-      {% endfor %}
     </li>
+    {% endfor %}
+    </ul>
  </section>
+ 
 {% include "footer.html" %}
