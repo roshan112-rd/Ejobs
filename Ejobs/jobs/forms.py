@@ -6,7 +6,6 @@ class JobForm(forms.ModelForm):
         ('finance', 'Finance'),
         ('marketing', 'Marketing'),
         ('webdesign', 'Webdesign'),
-        ('accountant', 'Accountant'),
         ('management', 'Management'),
         ('technology', 'Technology'),
         ('hardware', 'Hardware'),

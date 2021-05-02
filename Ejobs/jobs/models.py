@@ -8,7 +8,6 @@ class Job(models.Model):
         ('finance', 'Finance'),
         ('marketing', 'Marketing'),
         ('webdesign', 'Webdesign'),
-        ('accountant', 'Accountant'),
         ('management', 'Management'),
         ('technology', 'Technology'),
         ('hardware', 'hardware'),

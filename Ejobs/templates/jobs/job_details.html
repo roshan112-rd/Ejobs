@@ -70,11 +70,12 @@
           </div>
 
 
-
+<div class="group-btn">    
+           
               <a href="{% url 'edit_job' job_id=job.job_id %}"><h3 class="job-category">Edit</h3></a>
             
               <a href="{% url 'delete_job' id=job.job_id %}" ><h3 class="job-category" >Delete</h3></a>
-           
+           </div>
           </div>
           <div class="job-information">
           <h4>{{job.job_title}}</h4>
@@ -106,6 +107,16 @@
             <div class="job-info-item">
               <h5 class="job-info-title">No. of Vacancies :</h5>
               <p class="job-info-desc">{{ job.no_of_vacancy }}</p>
+            </div>
+
+
+            <div class="job-info-item">
+              <h5 class="job-info-title">Apply until:</h5>
+              <p class="job-info-desc">{{ job.apply_until }}</p>
+            </div>
+            <div class="job-info-item">
+              <h5 class="job-info-title">Published date :</h5>
+              <p class="job-info-desc">{{ job.created }}</p>
             </div>
           </div>
         </div>

@@ -58,11 +58,15 @@
           </li>
           <li class="profile-info-items">
             <h5 class="profile-info-title">Gender</h5>
-            <p class="profile-info-detail">{{userdata.gender}}</p>
+            <p class="profile-info-detail  profile-info-detail-cap">{{userdata.gender}}</p>
           </li>
           <li class="profile-info-items">
             <h5 class="profile-info-title">Address</h5>
-            <p class="profile-info-detail">{{userdata.address}}</p>
+            <p class="profile-info-detail  profile-info-detail-cap">{{userdata.address}}</p>
+          </li>
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Date joined</h5>
+            <p class="profile-info-detail">{{request.user.date_joined}}</p>
           </li>
           <a href=" {% url 'edit_user_data' %} ">edit details></a>
         </ul>
@@ -73,35 +77,30 @@
         <ul class="profile-info">
           <li class="profile-info-items">
             <h5 class="profile-info-title">University</h5>
-            <p class="profile-info-detail">{{adddata.university}}</p>
+            <p class="profile-info-detail  profile-info-detail-cap">{{adddata.university}}</p>
           </li>
           <li class="profile-info-items">
             <h5 class="profile-info-title">Qualification</h5>
-            <p class="profile-info-detail">{{adddata.qualification}}</p>
+            <p class="profile-info-detail  profile-info-detail-cap">{{adddata.qualification}}</p>
           </li>
           <li class="profile-info-items">
             <h5 class="profile-info-title">Skills</h5>
-            <p class="profile-info-detail">{{adddata.skills}}</p>
+            <p class="profile-info-detail  profile-info-detail-cap">{{adddata.skills}}</p>
           </li>
           <li class="profile-info-items">
             <h5 class="profile-info-title">Work Experience</h5>
-            <p class="profile-info-detail">{{adddata.work_experience}}</p>
-          </li>
-           <li class="profile-info-items">
-            <h5 class="profile-info-title">Skills</h5>
-            <p class="profile-info-detail">{{adddata.skills}}</p>
-          </li>
+            <p class="profile-info-detail  profile-info-detail-cap">{{adddata.work_experience}}</p>
           <li class="profile-info-items">
             <h5 class="profile-info-title">Preferred Job Category</h5>
-            <p class="profile-info-detail">{{adddata.preferred_job_category}}</p>
+            <p class="profile-info-detail  profile-info-detail-cap">{{adddata.preferred_job_category}}</p>
           </li>
           <li class="profile-info-items">
             <h5 class="profile-info-title">Preferred location</h5>
-            <p class="profile-info-detail">{{adddata.preferred_location}}</p>
+            <p class="profile-info-detail  profile-info-detail-cap">{{adddata.preferred_location}}</p>
           </li>
           <li class="profile-info-items">
-            <h5 class="profile-info-title">Preferred location</h5>
-            <p class="profile-info-detail">{{adddata.available_for}}</p>
+            <h5 class="profile-info-title">Available for Work</h5>
+            <p class="profile-info-detail  profile-info-detail-cap">{{adddata.available_for}}</p>
           </li>
           <li class="profile-info-items">
 
@@ -123,8 +122,8 @@
             <p class="profile-info-detail">{{request.user.email}}</p>
           </li>
           <li class="profile-info-items">
-            <h5 class="profile-info-title">Contact</h5>
-            <p class="profile-info-detail">{{userdata.contact}}</p>
+            <h5 class="profile-info-title">Phone number</h5>
+            <p class="profile-info-detail  profile-info-detail-cap">+977 {{userdata.contact}}</p>
           </li>
           {% for socialdata in socialdata %}
           <li class="profile-info-items">

@@ -1,7 +1,7 @@
 {% include 'header.html' %}
 <title>Saved Jobs</title>
 <section class="jobs-wrapper section-wrapper">
-{% include 'bannerad.html'%}
+{% include 'bannerad3.html'%}
   <ul class="jobs-cards">
   <h1> Your saved jobs</h1>
   {% for job in jobs %}
@@ -46,6 +46,29 @@
      
       {% endfor %}
     </li>
+    
+
+
+
+    <div class="paginator">
+        {% if jobs.has_previous %}
+          <a href="?page=1" class="pagination-action"> <i class="fas fa-angle-double-left"></i> </a>
+          <a href="?page={{jobs.previous_page_number}}" class="pagination-action"> <i class="fas fa-angle-left"></i> </a>
+        {% endif %}
+
+
+        {% for num in jobs.paginator.page_range %}
+          {%if jobs.number == num %}
+            <strong>{{ num }}</strong>
+          {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+            {{ num }}
+          {% endif %}
+        {% endfor %}
+        {% if jobs.has_next %}
+          <a href="?page={{jobs.next_page_number}}" class="pagination-action"> <i class="fas fa-angle-right"></i> </a>
+          <a href="?page={{jobs.paginator.num_pages}}" class="pagination-action"> <i class="fas fa-angle-double-right"></i> </a>
+        {% endif %}
+    </div>
  </section>
 
 

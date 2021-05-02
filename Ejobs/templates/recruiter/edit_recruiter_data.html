@@ -15,7 +15,7 @@
         <div class="auth-right" style="margin-top:35px; margin-bottom:20px;>
           <div class="auth-form-wrapper">
             <form action="{% url 'edit_recruiter_data' %}" method="post" enctype="multipart/form-data" class="org-profile-edit-form">
-            <h2> Recruiter Register</h2>
+            <h2> Edit Profile</h2>
               {% csrf_token %}
               <div class="form-item">
                 <input
@@ -115,10 +115,10 @@
                   type="submit"
                   name="submit"
                   class="form-button btn btn-primary"
-                  value="Signup"
+                  value="Submit"
                 />
               </div>
-              <p>Already a member? <a href="{% url 'login' %}">Login</a></p>
+              
             </form>
           </div>
         </div>

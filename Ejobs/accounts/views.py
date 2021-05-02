@@ -7,7 +7,8 @@ from django.template import RequestContext
 from django.conf import settings
 from django.core.mail import send_mail
 from jobs.models import Job
-
+from django.core.paginator import Paginator
+from . import train
 
 # register method for seeker
 def seeker_register(request):
@@ -128,21 +129,27 @@ def login(request):
 # dashboard for seekers
 def seeker_dashboard(request):
     if request.user.is_authenticated:
-        try:
-            user_details = SeekerAdditionalDetails.objects.get(user=request.user) 
-            jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
-            return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs})
-        except:
-            return render(request, 'seeker/seekerDashboard.html')
+        user_details = SeekerAdditionalDetails.objects.get(user=request.user) 
+        jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
+
+        # print(train.Recommendations(user_details.preferred_job_category))
+        rec=Job.objects.get(job_title=train.Recommendations(user_details.preferred_job_category).array[0])
+
+        return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs, 'rec':rec})
+        
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('login')
+
 
 
 # dashboard for recruiter
 def recruiter_dashboard(request):
     if request.user.is_authenticated:
         jobs = Job.objects.filter(user=request.user)
+        paginator = Paginator(jobs, 3)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
         return render(request, 'recruiter/recruiterDashboard.html', {'jobs': jobs})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')

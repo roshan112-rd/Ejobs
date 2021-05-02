@@ -6,7 +6,8 @@ from .forms import *
 from django.http import HttpResponseRedirect
 from accounts.models import *
 from django.core.mail import send_mail
-from django.db.models import Q
+from django.db.models import Q, Count
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -35,6 +36,9 @@ def add_job(request):
 def jobhome(request):
     if request.user.is_authenticated:
         jobs = Job.objects.filter(user=request.user)
+        paginator = Paginator(jobs, 3)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
         return render(request, 'jobs/jobhome.html', {'jobs': jobs})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
@@ -42,13 +46,22 @@ def jobhome(request):
 
 
 def jobs(request):
-    jobs = Job.objects.all()
-    return render(request, 'jobs/jobs.html', {'jobs': jobs})
-
+    if request.user.is_authenticated:
+        jobs = Job.objects.all()
+        paginator = Paginator(jobs, 3)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
+        return render(request, 'jobs/jobs.html', {'jobs': jobs})
+    else:
+        messages.info(request, 'You are not logged in. Please log in to continue')
+        return redirect('home')
 
 def saved_jobs(request):
     if request.user.is_authenticated:
         jobs=SavedJobs.objects.filter(user=request.user)
+        paginator = Paginator(jobs, 3)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
         if(jobs):
             job=jobs[0]
         else:
@@ -61,6 +74,9 @@ def saved_jobs(request):
 def appliedJobs(request):
     if request.user.is_authenticated:
         jobs=AppliedJobs.objects.filter(user=request.user)
+        paginator = Paginator(jobs, 3)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
         if(jobs):
             job=jobs[0]
         else:
@@ -74,17 +90,20 @@ def appliedJobs(request):
 
 def applicants(request):
     jobs=Job.objects.filter(user=request.user)
-    return render(request, 'jobs/applicants.html',{'jobs':jobs})
+    job_count = Job.objects.filter(user=request.user).count()
+    applicant_count = AppliedJobs.objects.count()
+    return render(request, 'jobs/applicants.html',{'jobs':jobs,'job_count':job_count,'applicant_count':applicant_count})
 
 
 
 def applicant(request, job_id):
     jobs=AppliedJobs.objects.filter(job=job_id, job__user=request.user)
+    count=AppliedJobs.objects.filter(job=job_id, job__user=request.user).count()
     if(jobs):
         job=jobs[0]
     else:
         job='sorry! no seekers found'
-    return render(request, 'jobs/applicant.html',{'jobs':jobs,'job':job})
+    return render(request, 'jobs/applicant.html',{'jobs':jobs,'job':job,'count':count})
 
 
   

@@ -14,20 +14,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
-        {% comment %} <div class="logo"><img src="{% static "images/ej.png" %}" alt="logo"/ height="60px"></div>
-            <div class="hero-text">
-                <h1 class="hero-title">Hire the best fit.</h1>
-                <p class="hero-desc">DISCOVER A FASTEST WAY TO GET A JOB DONE.</p>
-                <div class="cta">
-                    <a href="{% url 'add_job' %}"><button class="btn btn-primary"><i class="far fa-plus-square"></i>  post a job</button></a>
-                </div>
-            </div> {% endcomment %}
     </div>        
 </main>
 
@@ -72,6 +58,29 @@
       </div>
       {% endfor %}
     </li>
+
+
+
+
+    <div class="paginator">
+    {% if jobs.has_previous %}
+      <a href="?page=1" class="pagination-action"> <i class="fas fa-angle-double-left"></i> </a>
+      <a href="?page={{jobs.previous_page_number}}" class="pagination-action"> <i class="fas fa-angle-left"></i> </a>
+    {% endif %}
+
+
+    {% comment %} {% for num in jobs.paginator.page_range %}
+      {%if jobs.number == num %}
+        <strong>{{ num }}</strong>
+      {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+        {{ num }}
+      {% endif %}
+    {% endfor %} {% endcomment %}
+    {% if jobs.has_next %}
+      <a href="?page={{jobs.next_page_number}}" class="pagination-action"> <i class="fas fa-angle-right"></i> </a>
+      <a href="?page={{jobs.paginator.num_pages}}" class="pagination-action"> <i class="fas fa-angle-double-right"></i> </a>
+    {% endif %}
+    </div>
  </section>
  
 {% include "footer.html" %}

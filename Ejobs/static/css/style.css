@@ -353,6 +353,7 @@ li {
 .profile-image-details {
   width: 400px;
 }
+
 .profile-info {
   width: 60%;
 }
@@ -364,6 +365,9 @@ li {
   border-radius: var(--border-radius-def);
   background-color: rgb(250, 250, 250);
   border: 1px solid var(--border-color);
+}
+.profile-info-detail-cap{
+  text-transform: capitalize;
 }
 .org-profile-edit-form {
   width: 100%;
@@ -780,9 +784,7 @@ h5 {
 
   box-shadow: 3px 4px 12px 0px rgba(0, 0, 0, 0.3);
 }
-.popup-msg-text {
-  background-color: white;
-}
+ 
 .popup-close {
   margin-left: 10px;
   color: #cc0000;
@@ -832,4 +834,33 @@ h5 {
   width: 100%;
   object-fit: cover;
 
+}
+
+
+
+
+
+
+/* pagination */
+.paginator{
+  text-align: center;
+  margin-top: 1rem;
+
+}
+.pagination-action{
+  display: inline-block;
+  padding: 0.5rem;
+  color: #37529e;
+  font-size: 1.5rem;
+}
+.pagination-action:hover{
+  color: #000;
+}
+.total_applicant{
+  margin-bottom: -60px;
+}
+
+
+.feedback{
+  height:150px;
 }

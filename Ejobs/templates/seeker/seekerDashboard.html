@@ -25,7 +25,8 @@
 
 
 <section class="jobs-wrapper section-wrapper">
-{% include 'bannerad.html'%}
+{% include 'bannerad1.html'%}
+
   <ul class="jobs-cards">
    <h2>Jobs specially made for you.</h2><h4>(jobs are recommended according to your preferred job category.</h4>
   {% for job in jobs %}
@@ -66,6 +67,95 @@
     </li>
     {% endfor %}
     </ul>
+    
+
+
+
+  <ul class="jobs-cards">
+   <h2>Jobs recommended by the system.
+   </h4>
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'job_details_2' id=rec.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ rec.job_category }}</p>
+        </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ rec.job_title }}</h3>
+          </div>
+          <p class="jobs-detail">
+          {{ rec.job_description|truncatechars:100 }}            
+          </p>
+        </div>
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{ rec.job_email }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Number</h5>
+            <p>{{ rec.job_phone }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Location</h5>
+            <p>{{ rec.job_email }}</p>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="paginator">
+      {% if jobs.has_previous %}
+        <a href="?page=1" class="pagination-action"> <i class="fas fa-angle-double-left"></i> </a>
+        <a href="?page={{jobs.previous_page_number}}" class="pagination-action"> <i class="fas fa-angle-left"></i> </a>
+      {% endif %}
+
+
+      {% for num in jobs.paginator.page_range %}
+        {%if jobs.number == num %}
+          <strong>{{ num }}</strong>
+        {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+          {{ num }}
+        {% endif %}
+      {% endfor %}
+      {% if jobs.has_next %}
+        <a href="?page={{jobs.next_page_number}}" class="pagination-action"> <i class="fas fa-angle-right"></i> </a>
+        <a href="?page={{jobs.paginator.num_pages}}" class="pagination-action"> <i class="fas fa-angle-double-right"></i> </a>
+      {% endif %}
+    </div>
  </section>
  
 {% include "footer.html" %}

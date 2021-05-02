@@ -764,3 +764,20 @@ label[for="id_user"] {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+
+/* pagination */
+.paginator{
+  text-align: center;
+  margin-top: 1rem;
+
+}
+.pagination-action{
+  display: inline-block;
+  padding: 0.5rem;
+  color: #37529e;
+  font-size: 1.5rem;
+}
+.pagination-action:hover{
+  color: #000;
+}

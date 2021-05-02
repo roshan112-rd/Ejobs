@@ -1,6 +1,14 @@
 {% include "header.html" %}
 <title>Applicants</title>
 <section class="jobs-wrapper section-wrapper">
+
+
+<h2>Total jobs : {{job_count}}</h2>
+<h2>Total applicants : {{applicant_count}}</h2>
+
+
+
+
 {% include 'bannerad.html'%}
   <ul class="jobs-cards">
   {% for job in jobs %}

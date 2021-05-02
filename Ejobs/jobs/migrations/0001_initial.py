@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('job_title', models.CharField(max_length=200)),
                 ('job_employer', models.CharField(max_length=100)),
                 ('job_position', models.CharField(max_length=200)),
-                ('job_category', models.CharField(choices=[('finance', 'Finance'), ('marketing', 'Marketing'), ('webdesign', 'Webdesign'), ('accountant', 'Accountant'), ('others', 'Others')], default='others', max_length=250)),
+                ('job_category', models.CharField(choices=[('finance', 'Finance'), ('marketing', 'Marketing'), ('webdesign', 'Webdesign'),  ('others', 'Others')], default='others', max_length=250)),
                 ('job_description', models.TextField()),
                 ('job_phone', models.CharField(max_length=100)),
                 ('job_email', models.EmailField(max_length=254)),

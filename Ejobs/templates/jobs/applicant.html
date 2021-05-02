@@ -1,6 +1,7 @@
 <title>Applicant</title>{% include "header.html" %}
 {% if jobs %}
 <h2 class="job-item-title">Applicants For  : {{ job.job }}</h2>
+<h2 class="total_applicant"> Total Applicants : {{count}}</h2>
 <section class="jobs-wrapper section-wrapper">
 {% include 'bannerad.html'%}
   <ul class="jobs-cards">

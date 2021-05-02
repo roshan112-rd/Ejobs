@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='job',
             name='job_category',
-            field=models.CharField(choices=[('finance', 'Finance'), ('marketing', 'Marketing'), ('webdesign', 'Webdesign'), ('accountant', 'Accountant'), ('management', 'Management'), ('technology', 'Technology'), ('hardware', 'hardware'), ('others', 'Others')], default='others', max_length=250),
+            field=models.CharField(choices=[('finance', 'Finance'), ('marketing', 'Marketing'), ('webdesign', 'Webdesign'), ('management', 'Management'), ('technology', 'Technology'), ('hardware', 'hardware'), ('others', 'Others')], default='others', max_length=250),
         ),
     ]

@@ -1,11 +1,11 @@
 
-{% include 'recruiter/recruiterHeader.html' %}
+{% include 'header.html' %}
 <title>Edit job</title>
 {% load static %} 
 <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
 {% block content %}
-<div class="job-container"style="margin-top:200px; margin-bottom:300px;">
-  <div class="form-group form-listJob">
+<div class="job-container"
+  <div class="form-group form-listJob edit-job">
     <h3 class="form-title">Edit job</h3>
     <form method="POST" action="">
       {% csrf_token %} {{ form.as_ul }}

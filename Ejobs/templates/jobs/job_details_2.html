@@ -38,7 +38,8 @@
               <h3 class="job-category" onclick="openForm()">Apply</h3>   
               {% else %} 
                  <a href="{% url 'login'%}"><h3 class="job-category" >Apply</h3></a>
-              {% endif %}       
+              {% endif %}   
+                  
            </div>
            <div class="form-popup" id="myForm">
   <form class="form-container" method="post" enctype="multipart/form-data" action="{% url 'apply_job' job.job_id %}">
