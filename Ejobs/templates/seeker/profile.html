@@ -22,8 +22,7 @@
         <form
           action="{% url 'pp_change' %}"
           method="post"
-          enctype="multipart/form-data"
-        >
+          enctype="multipart/form-data">
           {% csrf_token %}
           <label for="image">Chose a new profile picture:</label>
           <input type="file" id="image" name="image" accept="image/*" />
@@ -51,7 +50,41 @@
           </div>
           
         </div>
-        <ul class="profile-info">
+        <ul class="profile-info" class="profile-info-items">
+
+
+          {% if user.seekeradditionaldetails and user.seekersocialdetails %}
+              <h5 class="profile-info-title">Profile completness</h5>
+              <div id="progress">
+                <span id="percent">100%</span>
+                <div id="bar"  style="width: 100%;"></div>
+              </div>
+          {% elif user.seekeradditionaldetails or user.seekersocialdetails %}
+              <h5 class="profile-info-title">Profile completness</h5>
+              <div id="progress">
+                <span id="percent">60%</span>
+                <div id="bar"  style="width: 60%;"></div>
+              </div>
+              {% if user.seekeradditionaldetails %}
+              <h5 class="profile-info-title">Add social details</h5>
+              {% else %}
+              <h5 class="profile-info-title">Add additional details</h5>
+              {% endif %}
+
+
+          {% else %}
+              <h5 class="profile-info-title">Profile completness</h5>
+              <div id="progress">
+                <span id="percent">30%</span>
+                <div id="bar" style="width: 30%;"></div>
+              </div>
+              {% if user.seekeradditionaldetails %}
+              <h5 class="profile-info-title">Add social details</h5>
+              {% else %}
+              <h5 class="profile-info-title">Add additional details</h5>
+              {% endif %}
+          {% endif %}
+
           <li class="profile-info-items">
             <h5 class="profile-info-title">Username</h5>
             <p class="profile-info-detail">{{request.user.username}}</p>
@@ -68,7 +101,11 @@
             <h5 class="profile-info-title">Date joined</h5>
             <p class="profile-info-detail">{{request.user.date_joined}}</p>
           </li>
-          <a href=" {% url 'edit_user_data' %} ">edit details></a>
+          <li class="profile-info-items">
+            <h5 class="profile-info-title">Last Logged in</h5>
+            <p class="profile-info-detail">{{request.user.last_login}}</p>
+          </li>
+          <a href=" {% url 'edit_user_data' %} ">Edit details></a>
         </ul>
         
         
@@ -109,10 +146,11 @@
           </li>
         </ul>
     {% endfor %}
- {% if user.seekersocialdetails%}
-         <a href="{% url 'edit_add_details' %}">edit details></a>
+
+          {% if user.seekeradditionaldetails%}
+              <a href="{% url 'edit_add_details' %}">Edit details></a>
           {% else %}
-          <a href=" {% url 'social_details' %} ">Add additional details></a>
+              <a href=" {% url 'additional_details' %} ">Add Additional details></a>
           {% endif %}
 
         <h1>Contact details</h1>
@@ -135,66 +173,12 @@
     {% endfor %}
     {% endfor %}
               {% if user.seekersocialdetails%}
-          <a href=" {% url 'edit_social_data' %} ">edit details></a>
+          <a href=" {% url 'edit_social_data' %} ">Edit details></a>
           {% else %}
-          <a href=" {% url 'social_details' %} ">Add details></a>
+          <a href=" {% url 'social_details' %} ">Add social details></a>
           {% endif %}
           </li>
  
-
-
-
-
-{% comment %} <div class="form-popup" id="myForm">
-  <form action="{% url 'change_pp' %}" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-    <h1 class="details">Please enter following details to continue</h1>
-    <label for="image">Chose company logo:</label>
-    <input type="file" id="image" name="image" accept="image/*">
-
-    <div class="btns">
-    <a href="{% url 'change_pp' %}"><button type="submit" name="submit" class="btn btn-primary apply">Change</button></a>
-      <button type="button" class="btn btn-primary cancel" onclick="closeForm()">Close</button>
-    </div>
-  </form>
-</div> {% endcomment %}
-
-<script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% comment %} 
- {% if user.seekeradditionaldetails and user.seekersocialdetails%}
-  <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
-
-{% elif user.seekeradditionaldetails and not user.seekersocialdetails %}
-  <a href="{% url 'social_details' %}"><button class="btn btn-primary centrebtn">Add social details</button></a >
-
-{% else %}
-  <a href=""><button class="btn btn-primary centrebtn">Edit your profile</button></a >
-  <a href="{% url 'additional_details' %}"><button class="btn btn-primary centrebtn">Complete your profile</button></a >
-
-{% endif %}  {% endcomment %}
-
-{% comment %} {% include 'footer.html'  %} {% endcomment %}
+ </ul>
+ </div>
+ {% include 'footer.html'  %} 

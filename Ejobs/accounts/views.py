@@ -131,8 +131,6 @@ def seeker_dashboard(request):
     if request.user.is_authenticated:
         user_details = SeekerAdditionalDetails.objects.get(user=request.user) 
         jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
-
-        # print(train.Recommendations(user_details.preferred_job_category))
         rec=Job.objects.get(job_title=train.Recommendations(user_details.preferred_job_category).array[0])
 
         return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs, 'rec':rec})
@@ -193,7 +191,7 @@ def additional_details(request):
 
         user=User.objects.get(username=request.user)
         SeekerAdditionalDetails.objects.create(user=user, qualification=qualification, university=university, skills=skills, preferred_job_category=preferred_job_category, available_for=available_for,preferred_location=preferred_location,work_experience=work_experience )
-        return redirect('seeker_profile')
+        return redirect('profile')
     else:
         return render(request, 'seeker/additional_details.html')
 
@@ -208,6 +206,6 @@ def social_details(request):
 
         user=User.objects.get(username=request.user)
         SeekerSocialDetails.objects.create(user=user, facebook=facebook, instagram=instagram, twitter=twitter, others=others)
-        return redirect('seeker_profile')
+        return redirect('profile')
     else:
         return render(request, 'seeker/social_details.html')

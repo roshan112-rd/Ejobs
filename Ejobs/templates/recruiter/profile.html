@@ -51,6 +51,14 @@
       <p class="profile-info-detail">{{request.user.username}}</p>
     </li>
     <li class="profile-info-items">
+      <h5 class="profile-info-title">Company Email</h5>
+      <p class="profile-info-detail">{{request.user.email}}</p>
+    </li>
+    <li class="profile-info-items">
+      <h5 class="profile-info-title">Company Address</h5>
+      <p class="profile-info-detail">{{userdata.address}}</p>
+    </li>
+    <li class="profile-info-items">
       <h5 class="profile-info-title">Company Name</h5>
       <p class="profile-info-detail">{{userdata.company_name}}</p>
     </li>
@@ -59,11 +67,7 @@
       <p class="profile-info-detail">{{userdata.company_type}}</p>
     </li>
     <li class="profile-info-items">
-      <h5 class="profile-info-title">Address</h5>
-      <p class="profile-info-detail">{{userdata.address}}</p>
-    </li>
-    <li class="profile-info-items">
-      <h5 class="profile-info-title">Contact</h5>
+      <h5 class="profile-info-title">Company Contact Number</h5>
       <p class="profile-info-detail">{{userdata.contact}}</p>
     </li>
     <li class="profile-info-items">

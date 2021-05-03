@@ -7,3 +7,12 @@ popupCloser.addEventListener("click", () => {
     popup.parentNode
   );
 });
+
+//logout
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}

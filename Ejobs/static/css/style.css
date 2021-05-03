@@ -864,3 +864,24 @@ h5 {
 .feedback{
   height:150px;
 }
+
+
+
+/* profile progress bar  */
+#progress {
+  border: 1px solid black;
+  position: relative;
+  padding: 1px;
+  margin: 5px 0 30px 0 ;
+ }
+ 
+ #percent {
+  position: absolute;   
+  left: 50%;
+ }
+ 
+ #bar {
+  height: 20px;
+  background-color:#47e4a3;
+  
+ }
