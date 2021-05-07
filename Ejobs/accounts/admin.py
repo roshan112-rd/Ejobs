@@ -11,7 +11,7 @@ admin.site.site_header = 'Admin dashboard'
 
 class SeekerAdmin(admin.ModelAdmin):
     list_display = ('user','address','contact')
-    # list_filter = ('created',)
+    list_filter = ('created',)
 
 
 
@@ -22,3 +22,4 @@ admin.site.register(Recruiter)
 admin.site.register(SeekerAdditionalDetails)
 admin.site.register(SeekerSocialDetails)
 admin.site.unregister(Group)
+admin.site.register(Token)

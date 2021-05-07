@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from jobs.models import Job
 from django.core.paginator import Paginator
 from . import train
+import uuid
 
 # register method for seeker
 def seeker_register(request):
@@ -19,38 +20,62 @@ def seeker_register(request):
         password2 = request.POST['password2']
         email = request.POST['email']
         username = request.POST['username']
-        
         contact = request.POST['contact']
         gender = request.POST['gender']
         address = request.POST['address']
         bio = request.POST['bio']
         image = request.FILES['image']
-        
+        preferred_job_category = request.POST['preferred_job_category']
         if password1 != password2:
             messages.info(request, 'passwords are different')
             return redirect('seeker_register')
-
         if User.objects.filter(username=username).exists():
             messages.info(request, 'username taken')
             return redirect('seeker_register')
            
         user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
-        Seeker.objects.create(user=user, contact=contact, gender=gender, address=address, image=image, bio=bio)
-        auth.login(request, user)
+        Seeker.objects.create(user=user, contact=contact, gender=gender, address=address, image=image, bio=bio, preferred_job_category=preferred_job_category)
         
-        # sending mail after user creation      
-        subject = 'welcome to EJobs'
-        message = f'Hi {user.username}, thank you for registering in EJobs.'
+        auth_token=str(uuid.uuid4())
+        profile_obj = Token.objects.create(user=user, auth_token=auth_token)
+        profile_obj.save()
+        
+        subject = 'Welcome to EJobs. Please verify your account'
+        message = f'Hi {user.username}, thank you for registering in EJobs.http://127.0.0.1:8000/accounts/success/{auth_token}'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email, ]
         try:
             send_mail( subject, message, email_from, recipient_list )
+            messages.info(request, 'Please check your email to verify your account')
         except:
-            return redirect('seeker_dashboard')
-        return redirect('seeker_dashboard')
+            messages.info(request, 'Couldnot send mail')
+            return redirect('home')
+        return redirect('home')
     else:
         return render(request, 'seeker/seeker_register.html')
 
+
+
+def success(request, auth_token):
+    try:
+        profile_obj = Token.objects.filter(auth_token = auth_token).first()
+        if profile_obj:
+            if profile_obj.is_verified:
+                messages.info(request, 'Email address is already verified')
+                return redirect('login')
+            else:
+                profile_obj.is_verified=True
+                profile_obj.save()
+                messages.info(request, 'Congratulation your email has been verified')
+                return redirect('login')
+        else:
+            messages.info(request, 'Couldnot verify.')
+            return redirect('home')
+
+
+    except Exception as e :
+        print(e)
+        return redirect('home')
 
 # recruiter registration
 def recruiter_register(request):
@@ -86,6 +111,8 @@ def recruiter_register(request):
         Recruiter.objects.create(user=user, contact=contact, address=address,company_type=company_type,company_name=company_name, image=image, bio=bio, website=website)
  
         auth.login(request, user)
+        # messages.info(request, 'Please check your email to verify your account')
+
         return redirect('recruiter_dashboard')
 
         # sending mail after user creation 
@@ -108,20 +135,31 @@ def login(request):
         username = request.POST['username']
         password1 = request.POST['password1']
         user = auth.authenticate(username=username, password=password1)
+        user_obj = User.objects.filter(username=username).first()
+
+        profile_obj = Token.objects.filter(user=user_obj).first()
         # superusers will be redirected into admin panel
         if user is not None and user.is_superuser:
             auth.login(request, user)
             return HttpResponseRedirect('/admin/')
 
         # staff status user will be redirected to recruiter dashboard
-        elif user is not None and user.is_staff:
-            auth.login(request, user)
-            return redirect('recruiter_dashboard')
+        elif user is not None and user.is_staff :
+            if profile_obj.is_verified :
+                auth.login(request, user)
+                return redirect('recruiter_dashboard')
+            else:
+                messages.info(request, 'Your are not verified')
+                return redirect('login')
 
         # rest of the users will be redirected to seeker dashboard
         elif user is not None and not user.is_staff and not user.is_superuser:
-            auth.login(request, user)
-            return redirect('seeker_dashboard')
+            if profile_obj.is_verified :
+                auth.login(request, user)
+                return redirect('seeker_dashboard')
+            else:
+                messages.info(request, 'Your are not verified')
+                return redirect('login')
     else:
         return render(request, 'seeker/login.html')
     return render(request, 'seeker/login.html')
@@ -129,11 +167,13 @@ def login(request):
 # dashboard for seekers
 def seeker_dashboard(request):
     if request.user.is_authenticated:
-        user_details = SeekerAdditionalDetails.objects.get(user=request.user) 
-        jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
-        rec=Job.objects.get(job_title=train.Recommendations(user_details.preferred_job_category).array[0])
 
-        return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs, 'rec':rec})
+        user_details = Seeker.objects.get(user=request.user) 
+        jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
+        rec=Job.objects.filter(job_title=train.Recommendations(user_details.preferred_job_category)[0])
+        print(jobs)
+
+        return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs, 'records':rec})
         
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
@@ -184,13 +224,12 @@ def additional_details(request):
         university = request.POST['university']
         qualification = request.POST['qualification']
         skills = request.POST['skills']
-        preferred_job_category = request.POST['preferred_job_category']
         available_for = request.POST['available_for']
         preferred_location = request.POST['preferred_location']
         work_experience = request.POST['work_experience']
 
         user=User.objects.get(username=request.user)
-        SeekerAdditionalDetails.objects.create(user=user, qualification=qualification, university=university, skills=skills, preferred_job_category=preferred_job_category, available_for=available_for,preferred_location=preferred_location,work_experience=work_experience )
+        SeekerAdditionalDetails.objects.create(user=user, qualification=qualification, university=university, skills=skills, available_for=available_for,preferred_location=preferred_location,work_experience=work_experience )
         return redirect('profile')
     else:
         return render(request, 'seeker/additional_details.html')

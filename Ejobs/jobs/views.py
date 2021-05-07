@@ -91,8 +91,10 @@ def applicants(request):
         paginator = Paginator(jobs, 3)
         page = request.GET.get('page')
         jobs = paginator.get_page(page)
+
         job_count = Job.objects.filter(user=request.user).count()
         applicant_count = AppliedJobs.objects.count()
+        # print(request.user["_wrapped"].__dict__)
         return render(request, 'jobs/applicants.html',{'jobs':jobs,'job_count':job_count,'applicant_count':applicant_count})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
@@ -223,10 +225,10 @@ def apply_job(request,job_id):
 
 
 def search(request):
-
     query = request.GET['query']
     if(query==''):
         return redirect("jobs")
+        messages.info(request, 'search bar is blank')
     jobs = Job.objects.filter(Q(job_title__icontains=query) | Q(job_employer__icontains=query) | Q(job_position__icontains=query) | Q(job_category__icontains=query))
     if (jobs):
         allJob =  {'searched_jobs': jobs}
@@ -236,6 +238,23 @@ def search(request):
         return redirect('jobs')
 
 
+
+    # query = request.GET['query']
+    # filter_query = request.GET['query']
+    # if(query=='' and filter_query==''):
+    #     return redirect("jobs")
+    #     messages.info(request, 'search bar is blank')
+    # jobs = Job.objects.filter(Q(job_title__icontains=query) | Q(job_employer__icontains=query) | Q(job_position__icontains=query) | Q(job_category__icontains=query))
+    # filtered_jobs = Job.objects.filter(Q(job_title__icontains=filter_query) | Q(job_employer__icontains=filter_query) | Q(job_position__icontains=filter_query) | Q(job_category__icontains=filter_query))
+    # if (jobs and filtered_jobs):
+    #     allJob =  {'searched_jobs': jobs, 'filtered_jobs':filtered_jobs}
+    #     return render(request, 'jobs/jobs.html',allJob)
+    # else:
+    #     messages.info(request, 'job not found')
+    #     return redirect('jobs')
+
+
+        
 
 
 

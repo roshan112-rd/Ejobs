@@ -49,7 +49,7 @@ def edit_add_details(request):
         university = request.POST['university']
         qualification = request.POST['qualification']
         skills = request.POST['skills']
-        preferred_job_category = request.POST['preferred_job_category']
+        
         available_for = request.POST['available_for']
         preferred_location = request.POST['preferred_location']
         work_experience = request.POST['work_experience']
@@ -60,7 +60,6 @@ def edit_add_details(request):
         adddata.qualification=qualification
         adddata.university=university
         adddata.skills=skills
-        adddata.preferred_job_category=preferred_job_category
         adddata.available_for=available_for
         adddata.referred_location=preferred_location
         adddata.work_experience=work_experience
@@ -77,6 +76,7 @@ def edit_social_data(request):
         instagram = request.POST['instagram']
         twitter = request.POST['twitter']
         others = request.POST['others']
+        
         user=User.objects.get(username=request.user)
         social_data = SeekerSocialDetails.objects.filter(user=request.user)[0]
 
@@ -99,6 +99,7 @@ def edit_user_data(request):
         email = request.POST['email']
 
         contact = request.POST['contact']
+        preferred_job_category = request.POST['preferred_job_category']
         gender = request.POST['gender']
         address = request.POST['address']
         bio = request.POST['bio']
@@ -116,7 +117,7 @@ def edit_user_data(request):
 
         user=User.objects.get(username=request.user)
         user_data = Seeker.objects.filter(user=request.user)[0]
-
+        user_data.preferred_job_category=preferred_job_category
         user_data.contact=contact
         user_data.gender=gender
         user_data.address=address

@@ -85,6 +85,21 @@
                 <label for="image">Select profile image:</label>
                 <input type="file" id="image" name="image"  required="true" accept="image/*">
               </div>
+              
+              <div class="form-item">
+              <label for="preferred_job_category">Please select your Preferred Job Category</label>
+              <select name="preferred_job_category" id="preferred_job_category" required="true">
+                <option value="finance">Finance</option>
+                <option value="marketing">Marketing</option>
+                <option value="webdesign ">Webdesign </option>
+                <option value="management ">Management</option>
+                <option value="technology ">Technology</option>
+                <option value="hardware ">Hardware</option>
+                <option value="others ">Others</option>
+              </select>
+              </div>
+
+
               <div class="form-item">
                 <input
                   type="text"
@@ -125,7 +140,6 @@
               </div>
               <p>Already a member? <a href="{% url 'login' %}">Login</a></p>
               <p><a href="{% url 'recruiter_register' %}">Are you a recruiter? </a></p>
- v
             </form>
           </div>
         </div>

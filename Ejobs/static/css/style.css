@@ -109,6 +109,9 @@ li {
 .hero-search-section {
   margin-top: 100px;
 }
+.hero-search-form{
+  display: flex;
+} 
 
 .hero-search {
   border-radius: var(--border-radius-def);
@@ -884,4 +887,16 @@ h5 {
   height: 20px;
   background-color:#47e4a3;
   
+ }
+
+
+
+
+ select{
+   height:30px;
+   border: none;
+ }
+ .filter-job{
+   background-color: #fbf9f9;;
+   height:30px;
  }

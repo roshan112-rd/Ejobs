@@ -2,17 +2,39 @@
 <title>Jobs</title>
 <div class="hero-search-section">
   <form action="{% url 'search' %}" class="hero-search-form">
+
+    <div class="form-item filter-job">
+    <label for="filter_query">Category:</label>
+    <select name="filter_query" id="filter_query" class="select">
+      <option value="finance">Finance</option>
+      <option value="marketing" >Marketing</option>
+      <option value="webdesign ">Webdesign </option>
+      <option value="management ">Management</option>
+      <option value="technology ">Technology</option>
+      <option value="hardware ">Hardware</option>
+      <option value="others " >Others</option>
+      <option value="" selected></option>
+    </select>
+    </div>
+
     <input
       type="search"
       class="hero-search"
       name="query"
       placeholder="Software Engineer"
     />
-    <input
+   
+
+
+ <input
       type="submit"
       value="Find your job"
       class="hero-btn btn btn-primary"
     />
+
+
+
+
   </form>
 </div>
        

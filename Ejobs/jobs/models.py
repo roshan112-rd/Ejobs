@@ -40,7 +40,7 @@ class SavedJobs(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.job
+        return self.job.job_title
 
 
 
@@ -50,5 +50,5 @@ class AppliedJobs(models.Model):
     usercv = models.FileField(blank=True,null=True, upload_to='cv/')
 
     def __str__(self):
-        return self.job
+        return self.job.job_title
     

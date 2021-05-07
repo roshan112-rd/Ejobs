@@ -10,7 +10,10 @@ textarea,
 input {
   font-family: "Poppins", sans-serif;
 }
-
+select{
+  height:30px;
+  border: none;
+}
 .container {
   padding: 0 10rem;
   /* max-width: 1400px; */
