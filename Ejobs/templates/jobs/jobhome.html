@@ -1,67 +1,94 @@
 <title>Jobs</title>
-{% include "recruiter/recruiterHeader.html" %}
-<title>Ejobs</title>
-{% block content %}
-<div class="container">
-  <div class="row">
-    <ul class="job-items">
-      {% for job in jobs %}
-      <li class="job-item" >
-        <div class="job-item-left">
-         <a href="{% url 'job_details' id=job.job_id %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a>
-          {% comment %} <p class="job-desc">Job Description: {{ job.job_description }}</p> {% endcomment %}
-          <p>Employer: {{ job.job_employer }}</p>
-          <p class="position">Position: {{ job.job_position }}</p>
-          <p>Experience required: {{ job.experience }}</p>
-          <div class="job-category-wrapper">
-            <p class="job-item-category">Category:</p>
-            <p></p>
-            <p class="job-category">{{ job.job_category }}</p>
+{% include "header.html" %}
+<section class="jobs-wrapper section-wrapper">
+{% include 'bannerad.html'%}
+  <ul class="jobs-cards">
+  <h3 >Your currently active jobs.</h3>
+  {% for job in jobs %}
+  
+    <li class="jobs-card-wrapper">
+      <a href="{% url 'job_details' id=job.job_id %}"> 
+        <div class="jobs-top-category">
+         <p>{{ job.job_category }}</p>
+        </div>
+      </a>
+      <div class="jobs-card">
+        <div class="jobs-card-content">
+          <div class="jobs-card-top">
+            <i class="fas fa-search"></i>
+            <h3 class="jobs-card-title">{{ job.job_title }}</h3>
+          </div>
+          <p class="jobs-detail">
+          {{ job.job_description|truncatechars:100 }}
             
-          </div>
+          </p>
         </div>
-
-        <div class="job-item-low">
-          <h5>Contact Info</h5>
-          <p>Phone: {{ job.job_phone }}</p>
-          <p>Email Us: <a href="">{{ job.job_email }}</a></p>
-          <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
-
-
-
-          
-          <p>Salary: <a href="">{{ job.salary }}</a></p>
-          
-          {% comment %} <div class="job-item-cta">
-            <a href="{% url 'delete_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px">Delete Job</button></a>
-          </div>
-          <div class="job-item-cta">
-            <a href=""><button class="btn btn-primary" style="float: right; margin-right: 40px" > edit Job</button></a >
-          </div> {% endcomment %}
-        </div>
-      </li>
-
-      {% endfor %}
-       <div class="cta">
-        <a href="{% url 'add_job' %}"><button class="btn btn-primary centrebtn">aDD more Jobs</button></a >
+        <ul class="jobs-card-low">
+          <li class="jobs-contact-item">
+            <h5>Email</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Number</h5>
+            <p>{{ job.job_phone }}</p>
+          </li>
+          <li class="jobs-contact-item">
+            <h5>Location</h5>
+            <p>{{ job.job_email }}</p>
+          </li>
+        </ul>
       </div>
+      {% endfor %}
+    </li>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       
+    <div class="cta">
+      <a href="{% url 'add_job' %}"><button class="btn btn-primary centrebtn">Add more jobs</button></a >
+    </div>
     <div class="paginator">
     {% if jobs.has_previous %}
       <a href="?page=1" class="pagination-action"> <i class="fas fa-angle-double-left"></i> </a>
       <a href="?page={{jobs.previous_page_number}}" class="pagination-action"> <i class="fas fa-angle-left"></i> </a>
     {% endif %}
-
-
-    {% comment %} {% for num in jobs.paginator.page_range %}
+    {% for num in jobs.paginator.page_range %}
       {%if jobs.number == num %}
         <strong>{{ num }}</strong>
       {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
         {{ num }}
       {% endif %}
-    {% endfor %} {% endcomment %}
+    {% endfor %} 
     {% if jobs.has_next %}
       <a href="?page={{jobs.next_page_number}}" class="pagination-action"> <i class="fas fa-angle-right"></i> </a>
       <a href="?page={{jobs.paginator.num_pages}}" class="pagination-action"> <i class="fas fa-angle-double-right"></i> </a>
@@ -69,12 +96,7 @@
     </div>
 
 
-
-
-     
-
     </ul>
   </div>
 </div>
-{% endblock %}
 {% include 'footer.html' %}

@@ -35,4 +35,3 @@ def Recommendations(title:str):
     # print(job)
     return (Xtrain['job_title'].iloc[job]).tolist()
 
-# print(Recommendations("webdesign")[0])

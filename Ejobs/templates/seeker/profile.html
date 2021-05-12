@@ -1,10 +1,15 @@
+{% load static %}
 {% include 'header.html' %}
 <title>Profile</title>
 <section class="profile-wrapper section-wrapper">
         <div class="profile-top-wrapper">
           <div class="profile-image-wrapper">
           {% for userdata in userdata %}
+          {% if userdata.image %}
             <img src="{{userdata.image.url}}" class="profile-image" alt="avatar" />
+          {% else %}
+            <img src="{% static "images/user.jpg" %}" class="profile-image" alt="avatar" />
+          {% endif %}
           </div>
           <div class="profile-image-details">
           
@@ -66,9 +71,9 @@
                 <div id="bar"  style="width: 60%;"></div>
               </div>
               {% if user.seekeradditionaldetails %}
-              <h5 class="profile-info-title">Add social details</h5>
+              <h5 class="profile-info-title">Add social details to complete your profile.</h5>
               {% else %}
-              <h5 class="profile-info-title">Add additional details</h5>
+              <h5 class="profile-info-title">Add additional details to complete your profile.</h5>
               {% endif %}
 
           {% else %}
@@ -78,9 +83,9 @@
                 <div id="bar" style="width: 30%;"></div>
               </div>
               {% if user.seekeradditionaldetails %}
-              <h5 class="profile-info-title">Add social details</h5>
+              <h5 class="profile-info-title">Add social details to complete your profile.</h5>
               {% else %}
-              <h5 class="profile-info-title">Add additional details</h5>
+              <h5 class="profile-info-title">Add additional details to complete your profile.</h5>
               {% endif %}
           {% endif %}
 
@@ -147,7 +152,7 @@
     {% endfor %}
 
           {% if user.seekeradditionaldetails%}
-              <a href="{% url 'edit_add_details' %}">Edit details></a>
+              <a href="{% url 'edit_add_details' %}">Edit details></a><a href=" {% url 'remove_social' %} ">Remove details></a>
           {% else %}
               <a href=" {% url 'additional_details' %} ">Add Additional details></a>
           {% endif %}
@@ -172,7 +177,7 @@
     {% endfor %}
     {% endfor %}
               {% if user.seekersocialdetails%}
-          <a href=" {% url 'edit_social_data' %} ">Edit details></a>
+          <a href=" {% url 'edit_social_data' %} ">Edit details></a><a href=" {% url 'remove_social' %} ">Remove details></a>
           {% else %}
           <a href=" {% url 'social_details' %} ">Add social details></a>
           {% endif %}

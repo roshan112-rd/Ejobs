@@ -41,12 +41,12 @@ def seeker_register(request):
         profile_obj.save()
         
         subject = 'Welcome to EJobs. Please verify your account'
-        message = f'Hi {user.username}, thank you for registering in EJobs.http://127.0.0.1:8000/accounts/success/{auth_token}'
+        message = f'Hi {user.username}, thank you for becoming a member. Please click the link below to verify yourself http://127.0.0.1:8000/accounts/success/{auth_token}'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email, ]
         try:
             send_mail( subject, message, email_from, recipient_list )
-            messages.info(request, 'Please check your email to verify your account')
+            messages.info(request, 'Please check your inbox to verify yourself.')
         except:
             messages.info(request, 'Couldnot send mail')
             return redirect('home')
@@ -138,6 +138,12 @@ def login(request):
         user_obj = User.objects.filter(username=username).first()
 
         profile_obj = Token.objects.filter(user=user_obj).first()
+        if user is None:
+            messages.info(request, 'Invalid credentials')
+            return redirect('login')
+
+
+
         # superusers will be redirected into admin panel
         if user is not None and user.is_superuser:
             auth.login(request, user)
@@ -167,14 +173,13 @@ def login(request):
 # dashboard for seekers
 def seeker_dashboard(request):
     if request.user.is_authenticated:
-
         user_details = Seeker.objects.get(user=request.user) 
         jobs = Job.objects.filter(job_category=user_details.preferred_job_category)
-        rec=Job.objects.filter(job_title=train.Recommendations(user_details.preferred_job_category)[0])
-        print(jobs)
-
+        try:
+            rec=Job.objects.filter(job_title=train.Recommendations(user_details.preferred_job_category)[0])
+        except:
+            rec=None
         return render(request, 'seeker/seekerDashboard.html',{'jobs': jobs, 'records':rec})
-        
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('login')

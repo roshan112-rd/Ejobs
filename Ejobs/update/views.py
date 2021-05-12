@@ -195,3 +195,30 @@ def change_pp(request):
         return redirect('profile')
     else:
         return render(request,'seeker/profile.html')
+
+
+def remove_social(request):
+    if request.user.is_authenticated:
+        social = SeekerSocialDetails.objects.get(user=request.user)
+        social.delete()
+        messages.info(request, 'Social data removed ')
+        return redirect('profile')
+    else:
+        messages.info(request, 'You are not logged in. Please log in to continue')
+        return redirect('home')
+
+
+
+
+
+
+def remove_add(request):
+    if request.user.is_authenticated:
+        social = SeekerAdditionalDetails.objects.get(user=request.user)
+        social.delete()
+        messages.info(request, 'Additional data removed ')
+        return redirect('profile')
+
+    else:
+        messages.info(request, 'You are not logged in. Please log in to continue')
+        return redirect('home')

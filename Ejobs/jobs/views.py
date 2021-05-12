@@ -87,15 +87,18 @@ def appliedJobs(request):
 
 def applicants(request):
     if request.user.is_authenticated:
+        
         jobs=Job.objects.filter(user=request.user)
+        applicant_count = AppliedJobs.objects.filter(job__in=jobs).count()
         paginator = Paginator(jobs, 3)
         page = request.GET.get('page')
         jobs = paginator.get_page(page)
 
         job_count = Job.objects.filter(user=request.user).count()
-        applicant_count = AppliedJobs.objects.count()
+        job_applicant_count = AppliedJobs.objects.filter(job__in=jobs).count()
+        
         # print(request.user["_wrapped"].__dict__)
-        return render(request, 'jobs/applicants.html',{'jobs':jobs,'job_count':job_count,'applicant_count':applicant_count})
+        return render(request, 'jobs/applicants.html',{'jobs':jobs,'job_count':job_count,'applicant_count':applicant_count,'job_applicant_count':job_applicant_count})
     else:
         messages.info(request, 'You are not logged in. Please log in to continue')
         return redirect('home')

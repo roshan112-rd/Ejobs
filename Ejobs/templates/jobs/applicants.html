@@ -29,7 +29,7 @@
         <ul class="jobs-card-low">
           <li class="jobs-contact-item">
             <h5>Issued Date</h5>
-            <p>{{ job.created }}</p>
+            <p>{{ job.created.date }}</p>
           </li>
           <li class="jobs-contact-item">
             <h5>Due Date</h5>
@@ -38,6 +38,10 @@
         </ul>
       </div>
       {% endfor %}
+      
+            <h2>Total applicants: {{ job_applicant_count }} </h2>
+            
+          
     </li>
     
 

@@ -11,9 +11,8 @@ def feedback(request):
     if request.method =="POST":
         email = request.POST['email']
         feedback = request.POST['feedback']
-        image = request.FILES['image']
 
-        Feedback.objects.create(email=email, feedback=feedback, image=image)
+        Feedback.objects.create(email=email, feedback=feedback)
     
         subject = 'Feedback'
         message = f'hello user, thank you for your feedback.'
@@ -22,10 +21,7 @@ def feedback(request):
         try:
             send_mail( subject, message, email_from, recipient_list )
         except:
-
             return redirect('home')
-
-        return redirect('home')
         messages.info(request, 'Thank you for your feedback.')
         return redirect('home')
         

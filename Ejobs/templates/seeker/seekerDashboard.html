@@ -71,9 +71,10 @@
 
 
 
+  {% if records %}
   <ul class="jobs-cards">
    <h2>Jobs recommended by the system.
-   </h4>
+   </H2>
     {% for rec in records %}
     <li class="jobs-card-wrapper">
       <a href="{% url 'job_details_2' id=rec.job_id %}"> 
@@ -109,6 +110,9 @@
     </li>
     {% endfor %}
     </ul>
+    {% else %}
+    <h2>No recommendations</h2>
+    {% endif %}
 
 
 

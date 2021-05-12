@@ -10,15 +10,12 @@
             />
           </div>
         </div>
-        <div class="auth-right" style="margin-top:35px; margin-bottom:20px;>
+        <div class="auth-right" >
           <div class="auth-form-wrapper">
             <form action="{% url 'feedback' %}" method="post" enctype="multipart/form-data">
             <h2>Feedback Form</h2>
               {% csrf_token %}
-              <div class="form-item">
-                <label for="image">Provide screenshots if any:</label>
-                <input type="file" id="image" name="image" accept="image/*" required="true">
-              </div>
+              
               <div class="form-item">
                 <input
                   type="email"

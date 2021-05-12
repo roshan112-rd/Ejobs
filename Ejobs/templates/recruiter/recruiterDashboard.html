@@ -69,13 +69,13 @@
     {% endif %}
 
 
-    {% comment %} {% for num in jobs.paginator.page_range %}
+    {% for num in jobs.paginator.page_range %}
       {%if jobs.number == num %}
         <strong>{{ num }}</strong>
       {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
         {{ num }}
       {% endif %}
-    {% endfor %} {% endcomment %}
+    {% endfor %}
     {% if jobs.has_next %}
       <a href="?page={{jobs.next_page_number}}" class="pagination-action"> <i class="fas fa-angle-right"></i> </a>
       <a href="?page={{jobs.paginator.num_pages}}" class="pagination-action"> <i class="fas fa-angle-double-right"></i> </a>

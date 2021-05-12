@@ -776,7 +776,7 @@ h5 {
   justify-content: space-between;
   position: absolute;
   transform: translateX(-50%);
-  top: 10%;
+  top: 7%;
   left: 50%;
   width: calc(max-content + 50px);
   padding: 1.3rem;
@@ -900,3 +900,6 @@ h5 {
    background-color: #fbf9f9;;
    height:30px;
  }
+
+
+ 

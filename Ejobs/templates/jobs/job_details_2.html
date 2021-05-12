@@ -87,16 +87,15 @@
               <h5 class="job-info-title">No. of Vacancies :</h5>
               <p class="job-info-desc">{{ job.no_of_vacancy }}</p>
             </div>
-
-
+            <div class="job-info-item">
+              <h5 class="job-info-title">Job Issued :</h5>
+              <p class="job-info-desc">{{ job.created.date}}</p>
+            </div>
             <div class="job-info-item">
               <h5 class="job-info-title">Apply until:</h5>
               <p class="job-info-desc">{{ job.apply_until }}</p>
             </div>
-            <div class="job-info-item">
-              <h5 class="job-info-title">No. of Vacancies :</h5>
-              <p class="job-info-desc">{{ job.created }}</p>
-            </div>
+            
           </div>
         </div>
       </section>
