@@ -108,9 +108,9 @@ def edit_user_data(request):
         user=request.user
 
         user.first_name=first_name
-        user.set_last_name=last_name
-        user.set_email=email
-
+        user.last_name=last_name
+        user.email=email
+        
         user.save()
 
 
@@ -146,8 +146,8 @@ def edit_recruiter_data(request):
        
         user=request.user
         user.first_name=first_name
-        user.set_last_name=last_name
-        user.set_email=email
+        user.last_name=last_name
+        user.email=email
         user.save()
 
 
